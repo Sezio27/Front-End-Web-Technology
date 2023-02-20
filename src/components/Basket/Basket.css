@@ -1,0 +1,39 @@
+#cart {
+    border: 1px solid #ccc;
+    width: 60%;
+    min-width: 800px;
+    
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-right: 5%;
+   
+  }
+
+
+  #cart table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: end;
+    
+  }
+
+  #cart table thead th{
+    
+    padding-bottom: 14px;
+  }
+  
+  #cart table th,
+  #cart table td {
+    padding: 4px;
+    text-align: right;
+  }
+
+  #cart table th {
+    font-weight: bold;
+  }
+
+  #cart table tfoot td{
+ 
+    font-weight: bold;
+    padding-top: 20px;
+  }

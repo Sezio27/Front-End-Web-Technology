@@ -1,0 +1,57 @@
+[
+    {
+      "id": "fruit-apple",
+      "name": "Æble",
+      "price": 2,
+      "currency": "DKK",
+      "rebateQuantity": null,
+      "rebatePercent": null,
+      "upsellProductId": null
+    },
+    {
+        "id": "fruit-apple-organic",
+        "name": "Øko. Æble",
+        "price": 5,
+        "currency": "DKK",
+        "rebateQuantity": null,
+        "rebatePercent": null,
+        "upsellProductId": null
+    },
+    {
+      "id": "fruit-melon",
+      "name": "Melon",
+      "price": 10,
+      "currency": "DKK",
+      "rebateQuantity": null,
+      "rebatePercent": null,
+      "upsellProductId": null
+    },
+    {
+      "id": "fruit-orange",
+      "name": "Appelsin",
+      "price": 7,
+      "currency": "DKK",
+      "rebateQuantity": null,
+      "rebatePercent": null,
+      "upsellProductId": null
+    },
+    {
+      "id": "fruit-pear",
+      "name": "Pære",
+      "price": 5,
+      "currency": "DKK",
+      "rebateQuantity": null,
+      "rebatePercent": null,
+      "upsellProductId": null
+    },
+    {
+      "id": "fruit-lemon",
+      "name": "Citron",
+      "price": 6,
+      "currency": "DKK",
+      "rebateQuantity": null,
+      "rebatePercent": null,
+      "upsellProductId": null
+    }
+]
+  
