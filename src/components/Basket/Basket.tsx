@@ -84,8 +84,8 @@ const Basket = () => {
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={3}>Total</td>
-              <td style={{borderTop: "2px solid black", borderTopLeftRadius: "5px", borderTopRightRadius: "5px"}}>{getTotalAmount()} DKK</td>
+              <td colSpan={3}>Total:</td>
+              <td style={{borderTop: "3px solid black", borderTopLeftRadius: "5px", borderTopRightRadius: "5px"}}>{getTotalAmount()} DKK</td>
             </tr>
           </tfoot>
         </table>
