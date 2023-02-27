@@ -1,0 +1,11 @@
+.close-button {
+  border: 1px solid transparent;
+  background-color: #242424;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.close-button:hover {
+  border-color: #646cff;
+}
+
