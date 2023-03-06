@@ -1,0 +1,64 @@
+.close-button {
+  background-color: white;
+  cursor: pointer;
+  color: black;
+  transition: border-color 0.2s;
+}
+
+.close-button:hover {
+  border-color: black;
+}
+
+.rowWrapper {
+    display: flex;
+    /* margin-bottom: 3vh; */
+    margin-top: 3vh;
+    padding-bottom: 3vh;
+    border-bottom: 1px solid rgba(189, 195, 195, 0.5);
+  }
+.rowWrapper > * {
+  display: flex;
+  flex: 2;
+  place-content: center;
+  align-items: center;
+}
+
+.productContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 7;
+  text-align: start;
+}
+
+.quantityContainer {
+
+}
+
+
+.priceContainer {
+
+}
+
+
+.removeItemContainer {
+  flex: 1;
+}
+
+.rowHeaderInnerContainer {
+  flex: 3;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+.rowHeaderSection {
+  flex: 3;
+  
+}
+
+
+.rowHeaderImage {
+  flex: 1;
+}
+
+
+

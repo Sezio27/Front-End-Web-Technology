@@ -1,0 +1,79 @@
+.cardContainer {
+   display: flex;
+   background-color: white;
+   width: 85%;
+   height: 200px;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+   margin: 15px;
+   padding-bottom: 10px;
+}
+
+.cardImage {
+   height: 100%;
+   /* max-width: 100%; */
+   width: fit-content;
+
+}
+
+.imageItem {
+   max-height: 95%;
+   max-width: 95%;
+   object-fit: cover;
+   padding: 5px;
+}
+
+
+.cardItemContainer {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 0;
+   padding: 5px;
+}
+.cardItemGrid {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   grid-auto-rows: minmax(100%, auto);
+
+   /* place-content: center;
+   align-items: center; */
+   height: 75%;
+   /* border: 1px solid black; */
+}
+
+.cardItem{
+   max-width: 90%;
+   padding-top: 15px;
+   text-align: left;
+   font-weight: 700;
+}
+.cardItem > div {
+   font-weight: 400;
+}
+
+.cardItem > div > input {
+   width: 60%;
+   height: 30px;
+   font-size: large;
+   padding-left: 5px;
+   background-color: rgba(0, 0, 0, 0.0);
+   border-radius: 10px;
+   border-color: rgba(0, 0, 0, 0.4);
+   color: black;
+}
+
+.cardItemButtons {
+   display: flex;
+   flex-wrap: wrap;
+   align-content: flex-end;
+   height: 25%;
+}
+
+.button {
+   color: black;
+   text-align: center;
+   background: rgba(0, 0, 0, 0.00);
+   border-radius: 10px;
+   border-color: rgba(0, 0, 0, 0.2);
+   max-height: 100%;
+}

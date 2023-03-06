@@ -1,0 +1,11 @@
+.Title {
+   color: black;
+   text-align: center;
+   border-bottom: 2px solid rgba(189,195,199,0.3);
+}
+
+.Subtitle {
+   font-size: x-large;
+   color: black;
+   text-align: center;
+}

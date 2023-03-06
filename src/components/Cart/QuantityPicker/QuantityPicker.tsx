@@ -1,10 +1,6 @@
 
 import { TextField } from "@mui/material";
-
-type QuantityPickerProps = {
-    quantity: number,
-    onQuantityChange: (newQuantity: number) => void
-  };
+import { QuantityPickerProps } from "../../../Types/Types";
 
 
 const QuantityPicker = ({quantity, onQuantityChange}: QuantityPickerProps) => {
@@ -19,13 +15,13 @@ const QuantityPicker = ({quantity, onQuantityChange}: QuantityPickerProps) => {
   };
     
       return (
-        <div style={{width: "100%", flexDirection: "row", justifyContent: "flex-end", display: "flex"}}>
+        <div>
           <TextField
             id="number"
             type="number"
             value={String(quantity).replace(/^0+(?!$)/, '')}
             onChange={handleInputChange}
-            inputProps={{style: {textAlign: 'end', color: 'white', width: "3vw", minWidth: "45px"} }}
+            inputProps={{style: {textAlign: 'end', color: 'black', width: "3vw", minWidth: "60px"} }}
             InputLabelProps={{
               shrink: true,
             }}

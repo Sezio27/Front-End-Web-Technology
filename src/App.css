@@ -1,11 +1,8 @@
+@import "./css/Title.css";
+
 #root {
   text-align: center;
-}
-
-#content {
-  display: flex;
-  flex-direction: column;
-  padding: 12%;
+  height: 100vh;
 }
 
 #table {
@@ -18,8 +15,31 @@
   align-items: center; 
 }
 
-h3 {
-  text-align: start;
-  width: 60%;
-  min-width: 780px;
+.App {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  
 }
+
+.siteContainer {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+
+.siteSection {
+   flex: 1;
+   /* border-bottom: 2px solid rgba(189,195,199,0.3); */
+   justify-content: center;
+   align-items: center;
+}
+
+.siteSectionComponent {
+   flex: 10;
+   height: 100%;
+   display: flex;
+}
+
+
+
