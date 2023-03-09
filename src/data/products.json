@@ -4,41 +4,50 @@
       "name": "Æble",
       "price": 2,
       "currency": "DKK",
-      "rebateQuantity": null,
-      "rebatePercent": null,
-      "upsellProductId": null
+      "rebateQuantity": 5,
+      "rebatePercent": 0.2,
+      "upsellProductId": "fruit-apple-org"
     },
     {
-        "id": "fruit-apple-organic",
+        "id": "fruit-apple-org",
         "name": "Øko. Æble",
-        "price": 5,
+        "price": 4,
         "currency": "DKK",
-        "rebateQuantity": null,
-        "rebatePercent": null,
+        "rebateQuantity": 5,
+        "rebatePercent": 0.2,
         "upsellProductId": null
-    },
-    {
-      "id": "fruit-melon",
-      "name": "Melon",
-      "price": 10,
-      "currency": "DKK",
-      "rebateQuantity": null,
-      "rebatePercent": null,
-      "upsellProductId": null
     },
     {
       "id": "fruit-orange",
       "name": "Appelsin",
+      "price": 5,
+      "currency": "DKK",
+      "rebateQuantity": 6,
+      "rebatePercent": 0.5,
+      "upsellProductId": "fruit-orange-org"
+    },
+    {
+      "id": "fruit-orange-org",
+      "name": "Øko. Appelsin",
       "price": 7,
       "currency": "DKK",
-      "rebateQuantity": null,
-      "rebatePercent": null,
+      "rebateQuantity": 4,
+      "rebatePercent": 0.25,
       "upsellProductId": null
     },
     {
       "id": "fruit-pear",
       "name": "Pære",
-      "price": 5,
+      "price": 6,
+      "currency": "DKK",
+      "rebateQuantity": null,
+      "rebatePercent": null,
+      "upsellProductId": "fruit-pear-org"
+    },
+    {
+      "id": "fruit-pear-org",
+      "name": "Øko. Pære",
+      "price": 8,
       "currency": "DKK",
       "rebateQuantity": null,
       "rebatePercent": null,
@@ -49,8 +58,26 @@
       "name": "Citron",
       "price": 6,
       "currency": "DKK",
-      "rebateQuantity": null,
-      "rebatePercent": null,
+      "rebateQuantity": 4,
+      "rebatePercent": 0.25,
+      "upsellProductId": "fruit-lemon-org"
+    },
+    {
+      "id": "fruit-lemon-org",
+      "name": "Øko. Citron",
+      "price": 8,
+      "currency": "DKK",
+      "rebateQuantity": 4,
+      "rebatePercent": 0.25,
+      "upsellProductId": null
+    },
+    {
+      "id": "fruit-melon",
+      "name": "Melon",
+      "price": 10,
+      "currency": "DKK",
+      "rebateQuantity": 5,
+      "rebatePercent": 0.5,
       "upsellProductId": null
     }
 ]
