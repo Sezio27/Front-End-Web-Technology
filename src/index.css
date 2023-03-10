@@ -8,6 +8,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  overflow: auto;
   }
 
   
@@ -20,7 +21,6 @@ body {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;

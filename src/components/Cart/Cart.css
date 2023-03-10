@@ -1,32 +1,20 @@
 .cartContainer {
-   
    width: 100%;
-   height: 100%;
-   min-height: 100%;
    display: flex;
    flex-direction: column;
-   
+   margin-inline: 10%;
 }
 
 .cartSection {
-   height: 100%;
    display: flex;
    flex-direction: row;
-}
-
-.cartSection:last-child {
-   flex:1;
-   scale: 50%;
+   
 }
 
 .basketContainer {
    flex: 3;
-   overflow-y:scroll;
-   scrollbar-width: none;
-}
-.basketContainer::-webkit-scrollbar {
-   width: 0;
-   height: 0;
+   margin-bottom: 5%;
+   
 }
 
 .checkoutContainer {

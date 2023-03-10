@@ -1,5 +1,4 @@
 import Basket from "./Basket/Basket";
-import UpSellList from "../UpSell/UpSellList";
 import Checkout from "./Checkout/Checkout";
 import products from "../../data/products.json";
 import { Item, BasketTotals } from "../../Types/Types";
@@ -83,18 +82,18 @@ const Cart = () => {
     
   return (
     <div className="cartContainer">
-      <div className="cartSection">
-        <div className="basketContainer">
-          <Basket basketItems={basketItems} setBasketItems={setBasketItems} removeFromCart = {removeFromCart} changeToUpsell={changeToUpsell} getProductName = {getProductName}/>
+      {basketItems.length > 0 ? (
+        <div className="cartSection">
+          <div className="basketContainer">
+            <Basket basketItems={basketItems} setBasketItems={setBasketItems} removeFromCart={removeFromCart} changeToUpsell={changeToUpsell} getProductName={getProductName} />
+          </div>
+          <div className="checkoutContainer">
+            <Checkout cartQuantity={totalQuantity} totalPrice={totalPrice} currency={""} />
+          </div>
         </div>
-        <div className="checkoutContainer">
-          <Checkout cartQuantity={totalQuantity} totalPrice={totalPrice} currency={""} />
-        </div>
-      </div>
-      <div className="cartSection">
-        
-        <UpSellList />
-      </div>
+      ) : (
+        <span>Your basket is empty.</span>
+      )}
     </div>
   );
 };

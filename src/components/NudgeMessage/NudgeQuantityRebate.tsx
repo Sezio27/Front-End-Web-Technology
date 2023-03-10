@@ -20,7 +20,7 @@ const NudgeQuantityRebate = ({ rebateQuantity, rebatePercentDec, quantity, price
                 :
                 <div className="rebateContainer">
                     <span className="rebatePercent"> -{rebatePercent}%!</span>
-                    <span>You are saving {savedAmount.toFixed(2)} DKK by purchasing {rebateQuantity} or more units!</span>
+                    <span>You are saving {savedAmount.toFixed(2)} DKK by purchasing minimum {rebateQuantity} units!</span>
                 </div>
             }
         </>

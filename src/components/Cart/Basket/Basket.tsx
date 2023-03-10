@@ -30,7 +30,7 @@ const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, g
 
 
   return (
-    <div id="basket">
+    <div className="basket">
       <table className="basketTable">
         <thead>
           <tr>

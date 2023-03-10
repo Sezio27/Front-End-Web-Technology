@@ -1,5 +1,3 @@
-import Basket from "./components/Cart/Basket/Basket";
-//import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 
 function App() {
@@ -16,17 +14,6 @@ function App() {
           <Cart />
         </div>
       </div>
-
-      {/* <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="cart" element={<Blogs />} />
-          <Route path="checkout" element={<Contact />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter> */}
     </div>
   );
 }
