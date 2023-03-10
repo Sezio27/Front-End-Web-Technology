@@ -1,34 +1,53 @@
-
+import { useState, KeyboardEvent } from "react";
 import { TextField } from "@mui/material";
 import { QuantityPickerProps } from "../../../Types/Types";
+import "./QuantityPicker.css"
 
+const QuantityPicker = ({ quantity, onQuantityChange }: QuantityPickerProps) => {
+  const [newQuantityInput, setNewQuantityInput] = useState(String(quantity))
+  const [validInput, setValidInput] = useState(true);
 
-const QuantityPicker = ({quantity, onQuantityChange}: QuantityPickerProps) => {
-    
-
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value.replace(/[^0-9]/g, "");
-    let newQuantity = Math.min(parseInt(newValue), 1000);
-    newQuantity = isNaN(newQuantity) ? 0 : newQuantity;
-    onQuantityChange(newQuantity);
+  const handleInputChange = () => {
+    const newQuantity = parseInt(newQuantityInput)
+    if (!isNaN(newQuantity) && newQuantity >= 0 && newQuantity < 1000) {
+      setValidInput(true);
+      onQuantityChange(newQuantity);
+    } else {
+      setValidInput(false);
+      setNewQuantityInput(String(quantity))
+    }
   };
-    
-      return (
-        <div>
-          <TextField
-            id="number"
-            type="number"
-            value={String(quantity).replace(/^0+(?!$)/, '')}
-            onChange={handleInputChange}
-            inputProps={{style: {textAlign: 'end', color: 'black', width: "3vw", minWidth: "60px"} }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        
-        </div>
-      );
+
+  const handleEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == 'Enter') {
+      handleInputChange()
+    }
+  };
+
+
+  const inputQuantity = newQuantityInput === "0" ? "0" : newQuantityInput.length > 4 ? newQuantityInput.substring(0,4): newQuantityInput.replace(/^0+/, "");
+
+  return (
+    <div className="quantityContainer">
+      <div>
+      <TextField
+        id="number"
+        type="string"
+        value={inputQuantity}
+        onKeyDown={handleEnterPress}
+        onChange={(e) => {setNewQuantityInput(e.target.value)}}
+        inputProps={{ style: { textAlign: 'end', maxWidth: "3vw", minWidth: "60px" } }}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      </div>
+      <div>
+      {!validInput && <span className="errorMessage">Please enter a number between 0-1000</span> }
+      </div>
+      
+    </div>
+  );
 
 }
 

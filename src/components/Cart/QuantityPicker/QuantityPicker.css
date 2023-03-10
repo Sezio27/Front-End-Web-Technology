@@ -1,0 +1,15 @@
+.quantityContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column; 
+   
+}
+
+.errorMessage {
+
+    color: red;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: start;
+
+}
