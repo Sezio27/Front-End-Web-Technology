@@ -15,12 +15,15 @@
     margin-top: 3vh;
     padding-bottom: 3vh;
     border-bottom: 1px solid rgba(189, 195, 195, 0.5);
+    
   }
 .rowWrapper > * {
   display: flex;
   flex: 2;
   place-content: center;
   align-items: center;
+  
+  
 }
 
 .productContainer {
@@ -28,6 +31,8 @@
   flex-direction: row;
   flex: 7;
   text-align: start;
+  
+  
 }
 
 .quantityContainer {
@@ -46,13 +51,13 @@
 
 .rowHeaderInnerContainer {
   flex: 3;
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
+  
 }
 .rowHeaderSection {
   flex: 3;
-  
+  font-size: 18px;
 }
 
 

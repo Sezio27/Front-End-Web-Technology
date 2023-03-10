@@ -1,0 +1,51 @@
+.rebateContainer {
+    display: flex;
+    align-items: center;
+    font-weight: 200;
+    font-size: 15px;
+    margin-top: 4px;
+   
+}
+
+.rebatePercent {
+    color: green;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+
+.upSellContainer {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-top: 16px;
+    font-size: 16px;
+   
+}
+.upSellContainer span {
+    margin-right: 5px; 
+}
+
+
+.upSellButton {
+    margin-left: 5px;
+    color: #2d91d4;
+    border: solid 2px #2d91d4;
+    background: #fff;
+    margin-top: 2px;
+    padding: 4px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    letter-spacing: .91px;
+    min-height: 26px;
+    min-width: 100px;
+    line-height: 16px; 
+    transition: all 0.2s linear 0s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.upSellButton:hover {
+    color: #fff;
+    background: #2d91d4;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+ }

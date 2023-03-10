@@ -1,5 +1,6 @@
 import "./Checkout.css"
 // import lockLogo from "./assets/lockicon.png"
+import { FaChevronRight} from 'react-icons/fa';
 
 interface ICheckout {
    cartQuantity: number,

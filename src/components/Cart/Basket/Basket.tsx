@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
-import products from "../../../data/products.json";
 import BasketItem from "../BasketItem/BasketItem";
-import NudgeMessage from "../../NudgeMessage/NudgeMessage";
-import { Product, Item } from "../../../Types/Types";
+import { Item } from "../../../Types/Types";
 import "./Basket.css";
 
 interface IBasket {
   basketItems: Item[];
   setBasketItems: (basketItems: Item[]) => void;
+  removeFromCart: (id: string) => void;
+  changeToUpsell: (id: string) => void;
+  getProductName: (id: string) => string | undefined;
 }
 
-const Basket = ({ basketItems, setBasketItems }: IBasket) => {
+const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, getProductName }: IBasket) => {
+
   const onQuantityChange = (productId: string, quantity: number) => {
     const existingItemIndex = basketItems.findIndex(
       (item) => item.id === productId
@@ -22,10 +23,11 @@ const Basket = ({ basketItems, setBasketItems }: IBasket) => {
     }
   };
 
-  const removeFromCart = (productId: string) => {
-    const updatedCart = basketItems.filter((item) => item.id !== productId);
-    setBasketItems(updatedCart);
-  };
+
+  const isProductInBasket = (productId: string) => {
+    return basketItems.some(item => item.id == productId)
+  }
+
 
   return (
     <div id="basket">
@@ -45,6 +47,9 @@ const Basket = ({ basketItems, setBasketItems }: IBasket) => {
               product={item}
               onQuantityChange={onQuantityChange}
               removeFromCart={removeFromCart}
+              changeToUpsell={changeToUpsell}
+              isProductInBasket={isProductInBasket}
+              getProductName = {getProductName}
             />
           ))}
         </tbody>

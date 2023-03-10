@@ -4,13 +4,18 @@ import { Item, BasketFunctions } from "../../../Types/Types";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import "./BasketItemTemp.css";
 import "./BasketItem.css";
+import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";
+import NudgeUpSell from "../../NudgeMessage/NudgeUpSell";
 
 const BasketItem = ({
   product,
   onQuantityChange,
   removeFromCart,
+  changeToUpsell,
+  isProductInBasket,
+  getProductName
 }: { product: Item } & BasketFunctions) => {
-  const { id, name, price, currency, quantity } = product;
+  const { id, name, price, currency, quantity, rebateQuantity, rebatePercent, upsellProductId } = product;
   const [itemQuantity, setItemQuantity] = useState(quantity);
 
   const handleQuantityChange = (newQuantity: number) => {
@@ -30,13 +35,22 @@ const BasketItem = ({
     );
   };
 
+  
+  const showQuantityRebate = rebateQuantity && rebatePercent
+  
+  const showUpSell = upsellProductId && !isProductInBasket(upsellProductId)
+  
+
   return (
     <tr key={id} className="rowWrapper">
       <th className="productContainer">
         <div className="rowHeaderImage"> TEST </div>
         <div className="rowHeaderInnerContainer">
           <div className="rowHeaderSection">{name}</div>
-          <div className="rowHeaderSection">nudge halløj</div>
+          <div className="rowHeaderSection">
+            {showQuantityRebate ? <NudgeQuantityRebate rebateQuantity = {rebateQuantity!} rebatePercentDec = {rebatePercent!} quantity = {quantity} price = {price}/> : <></>}
+            {showUpSell ? <NudgeUpSell productId = {id} upSellName = {getProductName(upsellProductId)!} changeToUpsell = {changeToUpsell}/> : <></>}
+          </div>
         </div>
       </th>
       <td className = "quantityContainer">
