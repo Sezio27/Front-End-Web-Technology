@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import "./CheckoutForm.css";
 
+
 const CheckoutForm = () => {
 
     const [zip, setZip] = useState('');
@@ -13,11 +14,58 @@ const CheckoutForm = () => {
     const [cName, setCName] = useState('');
     const [cVat, setCVat] = useState('');
 
+    //Bruges som en prop så values kan tilgås i useEffect
+    let [byData, setByData] = useState([
+        {
+            "href": "https://api.dataforsyningen.dk/postnumre/1050",
+            "nr": "1050",
+            "navn": "København K",
+            "stormodtageradresser": null,
+            "bbox": [
+                12.5841266,
+                55.67871944,
+                12.58827962,
+                55.68185111
+            ],
+            "visueltcenter": [
+                12.58600133,
+                55.68065246
+            ],
+            "kommuner": [
+                {
+                    "href": "https://api.dataforsyningen.dk/kommuner/0101",
+                    "kode": "0101",
+                    "navn": "København"
+                }
+            ],
+            "ændret": "2018-04-30T15:23:13.528Z",
+            "geo_ændret": "2014-11-04T16:01:00.879Z",
+            "geo_version": 1,
+            "dagi_id": "191050"
+        }])
+
+    const POSTNUMRE_URL = 'https://api.dataforsyningen.dk/postnumre';
+
+    useEffect(() => {
+
+        const fetchItems = async () => {
+
+            const response = await fetch(POSTNUMRE_URL);
+            byData = (await response.json());
+
+            for (let i = 0; i < byData.length; i++) {
+                if (zip === byData[i].nr) {
+                    setCity(byData[i].navn)
+                }
+            }
+        }
+        (async () => await fetchItems())();
+    }, [zip])
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        //Object to do stuff with - made from user input info
+        //Et form objekt - til senere?
         const formInfo = { zip, city, address1, address2, fName, phone, email, cName, cVat };
     }
 
@@ -26,8 +74,8 @@ const CheckoutForm = () => {
 
               <p>
                   <label>ZIP code:</label>
-                  <input type="number" name="zip" value={zip}
-                         onChange={(e) => setZip(e.target.value)} required />
+                  <input type="text" name="zip" value={zip}
+                         onChange={(e) => setZip(e.target.value)} required pattern="\d{4}" />
               </p>
               <p>
                   <label>City:</label>
@@ -51,8 +99,8 @@ const CheckoutForm = () => {
               </p>
               <p>
                   <label>Phone:</label>
-                  <input type="tel" name="phone" pattern="\d{8}" value={phone}
-                         onChange={(e) => setPhone(e.target.value)} required />
+                  <input type="tel" name="phone" value={phone}
+                         onChange={(e) => setPhone(e.target.value)} required pattern="\d{8}" />
               </p>
               <p>
                   <label>Email:</label>
@@ -66,8 +114,8 @@ const CheckoutForm = () => {
               </p>
               <p>
                   <label>Company VAT:</label>
-                  <input type="text" name="cVat" pattern="\d{8}" value={cVat}
-                         onChange={(e) => setCVat(e.target.value)}  />
+                  <input type="text" name="cVat" value={cVat}
+                         onChange={(e) => setCVat(e.target.value)} pattern="\d{8}" />
               </p>
               <button>To payment</button>
           </form>

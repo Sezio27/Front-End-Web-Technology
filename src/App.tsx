@@ -12,7 +12,7 @@ function App() {
           <h1 className="Subtitle"> Cart </h1>
         </div>
         <div className="siteSectionComponent">
-          <CheckoutForm />
+          <Cart />
         </div>
       </div>
     </div>
