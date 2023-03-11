@@ -1,4 +1,5 @@
 import Cart from "./components/Cart/Cart";
+import CheckoutForm from "./components/Forms/CheckoutForm";
 
 function App() {
   return (
@@ -11,11 +12,10 @@ function App() {
           <h1 className="Subtitle"> Cart </h1>
         </div>
         <div className="siteSectionComponent">
-          <Cart />
+          <CheckoutForm />
         </div>
       </div>
     </div>
   );
 }
-
 export default App;

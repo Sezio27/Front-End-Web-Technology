@@ -1,0 +1,15 @@
+.p {
+    display: table-row;
+}
+.label {
+    display: table-cell;
+    padding: 7px;
+}
+.input {
+    display: flex;
+    width: 15em;
+}
+.form {
+    margin:auto;
+    text-align: center;
+}
