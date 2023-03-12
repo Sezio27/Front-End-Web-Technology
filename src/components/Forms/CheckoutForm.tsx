@@ -1,9 +1,12 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import "./CheckoutForm.css";
 
 
 const CheckoutForm = () => {
 
+    const POSTNUMRE_URL = 'https://api.dataforsyningen.dk/postnumre';
+
+    const [country, setCountry] = useState('Denmark');
     const [zip, setZip] = useState('');
     const [city, setCity] = useState('');
     const [address1, setAddress1] = useState('');
@@ -13,6 +16,13 @@ const CheckoutForm = () => {
     const [email, setEmail] = useState('');
     const [cName, setCName] = useState('');
     const [cVat, setCVat] = useState('');
+
+    useEffect(() => {
+
+            if (country !== 'Denmark')
+                setCountry('Denmark')
+
+    }, [country])
 
     //Bruges som en prop så values kan tilgås i useEffect
     let [byData, setByData] = useState([
@@ -44,8 +54,6 @@ const CheckoutForm = () => {
             "dagi_id": "191050"
         }])
 
-    const POSTNUMRE_URL = 'https://api.dataforsyningen.dk/postnumre';
-
     useEffect(() => {
 
         const fetchItems = async () => {
@@ -55,7 +63,11 @@ const CheckoutForm = () => {
 
             for (let i = 0; i < byData.length; i++) {
                 if (zip === byData[i].nr) {
-                    setCity(byData[i].navn)
+                    setCity(byData[i].navn);
+                }
+                //Måske lidt ooga booga måde at validere zip for nu..
+                else if (zip.length > 3 && !byData.some(by => by.nr === zip)) {
+                    setZip('');
                 }
             }
         }
@@ -66,12 +78,16 @@ const CheckoutForm = () => {
         e.preventDefault();
 
         //Et form objekt - til senere?
-        const formInfo = { zip, city, address1, address2, fName, phone, email, cName, cVat };
+        const formInfo = { country, zip, city, address1, address2, fName, phone, email, cName, cVat };
     }
 
     return (
           <form onSubmit={handleSubmit}>
-
+              <p>
+                  <label>Country:</label>
+                  <input type="text" name="country" value={country}
+                         onChange={(e) => setCountry(e.target.value)} required pattern="Denmark" />
+              </p>
               <p>
                   <label>ZIP code:</label>
                   <input type="text" name="zip" value={zip}
@@ -120,7 +136,6 @@ const CheckoutForm = () => {
               <button>To payment</button>
           </form>
     )
-
 }
 
 export default CheckoutForm;
