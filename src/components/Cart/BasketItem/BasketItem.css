@@ -22,8 +22,7 @@
   flex: 2;
   place-content: center;
   align-items: center;
-  
-  
+   
 }
 
 .productContainer {
@@ -41,7 +40,20 @@
 
 
 .priceContainer {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
 
+.priceContainer > div {
+  width: 100%;
+  font-size: small;
+  font-weight: 700;
+  color: green;
+  -webkit-text-stroke: 0.3px black;
+  margin: 1px;
+  border-top: 1px solid rgba(189, 195, 195, 0.5);
+  
 }
 
 

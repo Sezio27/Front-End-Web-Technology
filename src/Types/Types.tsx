@@ -1,3 +1,5 @@
+import { SAVINGS } from "../components/Cart/Basket/Basket";
+
 export type Product = {
     id: string;
     name: string;
@@ -26,6 +28,7 @@ export type BasketFunctions = {
     changeToUpsell: (id: string) => void
     isProductInBasket: (id: string) => boolean
     getProductName: (id: string) => string | undefined
+    onSavingsChange: (type: SAVINGS, value: number) => void
 };
 
 export type QuantityPickerProps = {
