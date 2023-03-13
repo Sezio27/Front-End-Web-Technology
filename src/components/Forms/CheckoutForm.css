@@ -1,0 +1,35 @@
+.formContainer {
+    flex-direction: column;
+    display: flex;
+    outline: 222px groove #2d91d4;
+    padding: 22px;
+    align-items: center;
+    justify-content: center;
+}
+
+.theForm {
+    outline: 2px groove #2d91d4;
+    padding: 22px;
+
+}
+.formDivE {
+
+}
+.formLabel {
+    display: flex;
+    align-items: flex-start;
+    padding: 2px;
+}
+.formInput {
+    display: flex;
+    width: 17em;
+    padding: 5px;
+    font-size: 14px;
+}
+.pError {
+    color: red;
+}
+.formButton {
+    padding: 5px;
+    background-color: lightblue;
+}
