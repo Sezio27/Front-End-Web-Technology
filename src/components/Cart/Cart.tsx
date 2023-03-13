@@ -34,7 +34,7 @@ const Cart = () => {
 
   const calculateTotals = () => {
     let totals: BasketTotals = { totalQuantity: 0, totalPrice: 0, totalSavings: 0 };
-    basketItems.map(({ name, price, quantity, rebatePercent, rebateQuantity }: Item) => {
+    basketItems.map(({ price, quantity, rebatePercent, rebateQuantity }: Item) => {
       let subTotal: number = price * quantity;
 
       let basketItemDiscount: number = 0;
