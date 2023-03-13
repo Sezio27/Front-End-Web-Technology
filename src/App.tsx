@@ -6,9 +6,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate replace to="/Cart" />}/>
           <Route
-            path="/Cart"
+            path="/"
             element={
               <div className="App">
                 <div className="siteContainer">
