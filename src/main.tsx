@@ -6,6 +6,6 @@ import CheckoutForm from "./components/Forms/CheckoutForm";
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <CheckoutForm />
+    <App />
   </React.StrictMode>,
 )

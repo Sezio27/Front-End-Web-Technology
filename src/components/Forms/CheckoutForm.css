@@ -1,20 +1,39 @@
 
-
 .formContainer {
-    display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    display: flex;
+    outline: 222px groove #2d91d4;
+    padding: 22px;
+    align-items: center;
+    justify-content: center;
 }
 
-.label {
-    display: table-cell;
-    padding: 7px;
+.theForm {
+    outline: 2px groove #2d91d4;
+    padding: 22px;
+
 }
-.input {
+.formDivE {
+
+}
+.formLabel {
     display: flex;
-    width: 15em;
+    align-items: flex-start;
+    padding: 2px;
 }
-.form {
-    margin:auto;
-    text-align: center;
+.formInput {
+    display: flex;
+    width: 17em;
+    padding: 5px;
+    font-size: 14px;
 }
+.pError {
+    color: red;
+}
+.formButton {
+    padding: 5px;
+    color: #2d91d4;
+}
+
+
+

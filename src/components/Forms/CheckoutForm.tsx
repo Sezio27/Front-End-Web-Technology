@@ -67,74 +67,81 @@ const CheckoutForm = () => {
 
     return (
        <div className="formContainer">
-          <form onSubmit={handleSubmit}>
-              <div>
-                  <label>Country:</label>
-                  <input type="text" name="country" value={country}
+          <form className="theForm" onSubmit={handleSubmit}>
+
+              <div className="formDivE">
+                  <label className="formLabel">Country *</label>
+                  <input className="formInput" type="text" name="country" value={country}
                          onChange={(e) => setCountry(e.target.value)} required pattern="Denmark" />
               </div>
-              <div>
-                <div>
-                  <label>ZIP code:</label>
-                  <input type="text" name="zip" value={zip}
+
+              <div className="formDivE">
+                  <label className="formLabel">ZIP code *</label>
+                  <input className="formInput" type="text" name="zip" value={zip}
                          onChange={(e) => setZip(e.target.value)} required pattern="\d{4}" />
                    {!validZip &&
                    <div>
-                    <p>Invalid Zip Code</p>
+                    <p className="pError">Invalid Zip Code</p>
                    </div>
                    }
-
-                </div>
               </div>
-              <div>
-                   
 
-                  <label>City:</label>
-                  <input type="text" name="city" value={city}
+              <div className="formDivE">
+                  <label className="formLabel">City *</label>
+                  <input className="formInput" type="text" name="city" value={city}
                          onChange={(e) => setCity(e.target.value)} required/>
               </div>
               
-              <div>
-                  <label>Address line 1:</label>
-                  <input type="text" name="address1" value={address1}
+              <div className="formDivE">
+                  <label className="formLabel">Address line 1 *</label>
+                  <input className="formInput" type="text" name="address1" value={address1}
                          onChange={(e) => setAddress1(e.target.value)} required />
               </div>
-             <div>
-                  <label>Address line 2:</label>
-                  <input type="text" name="address2" value={address2}
+
+              <div className="formDivE">
+                  <label className="formLabel">Address line 2</label>
+                  <input className="formInput" type="text" name="address2" value={address2}
                          onChange={(e) => setAddress2(e.target.value)}  />
               </div>
-            <div>
-                  <label>First name:</label>
-                  <input type="text" name="fName" max="50" value={fName}
+
+              <div className="formDivE">
+                  <label className="formLabel">First name *</label>
+                  <input className="formInput" type="text" name="fName" max="50" value={fName}
                          onChange={(e) => setFName(e.target.value)} required pattern = "^[A-Za-z]+$"/>
               </div>
-             <div>
-                  <label>Last name:</label>
-                  <input type="text" name="lName" max="50" value={lName}
+
+              <div className="formDivE">
+                  <label className="formLabel">Last name *</label>
+                  <input className="formInput" type="text" name="lName" max="50" value={lName}
                          onChange={(e) => setLName(e.target.value)} required pattern = "^[A-Za-z]+$"/>
               </div>
-             <div>
-                  <label>Phone:</label>
-                  <input type="tel" name="phone" value={phone}
+
+              <div className="formDivE">
+                  <label className="formLabel">Phone *</label>
+                  <input className="formInput" type="tel" name="phone" value={phone}
                          onChange={(e) => setPhone(e.target.value)} required pattern="\d{8}" />
               </div>
-             <div>
-                  <label>Email:</label>
-                  <input type="email" name="email" value={email}
+
+              <div className="formDivE">
+                  <label className="formLabel">Email *</label>
+                  <input className="formInput" type="email" name="email" value={email}
                          onChange={(e) => setEmail(e.target.value)} required />
               </div>
-             <div>
-                  <label>Company name:</label>
-                  <input type="text" name="cName" max="40" value={cName}
+
+              <div className="formDivE">
+                  <label className="formLabel">Company name</label>
+                  <input className="formInput" type="text" name="cName" max="40" value={cName}
                          onChange={(e) => setCName(e.target.value)}  />
               </div>
-             <div>
-                  <label>Company VAT:</label>
-                  <input type="text" name="cVat" value={cVat}
+
+              <div className="formDivE">
+                  <label className="formLabel">Company VAT</label>
+                  <input className="formInput" type="text" name="cVat" value={cVat}
                          onChange={(e) => setCVat(e.target.value)} pattern="\d{8}" />
               </div>
-              <button>To payment</button>
+
+              <br/>
+              <button className="formButton">To payment</button>
 
           </form>
        </div>
