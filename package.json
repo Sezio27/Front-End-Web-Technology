@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "tsc && vitest --run --coverage && vite build"
+    "test": "tsc && vitest --run --coverage && vite build",
+    "vitest-preview": "vitest-preview"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -28,6 +29,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.2",
     "typescript": "^4.9.3",
-    "vite": "^4.1.0"
+    "vite": "^4.1.0",
+    "vitest-preview": "^0.0.1"
   }
 }
