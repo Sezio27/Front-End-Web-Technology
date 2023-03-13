@@ -1,18 +1,22 @@
 import "./Checkout.css";
 // import lockLogo from "./assets/lockicon.png"
 import { FaChevronRight } from "react-icons/fa";
+import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
 
 interface ICheckout {
   cartQuantity: number;
-  totalPrice: number | undefined;
+  totalPrice: number;
   currency: string;
+  totalSavings: number;
   totalDiscountActive: boolean;
 }
 
-const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive }: ICheckout) => {
+const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive, totalSavings }: ICheckout) => {
+  
   const promtSavings = () => {
     if (totalPrice == undefined) return;
-    return totalDiscountActive ? `You've shaved 10% of your order!` : `Buy for ${300 - totalPrice},- more to save 10%!`;
+
+    return totalDiscountActive ? `You've shaved an extra 10% (${RoundToNearestHalf((totalPrice*1.1)-totalPrice)},-) off your order!` : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
   return (
@@ -23,10 +27,16 @@ const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive }: I
       </div>
       <div className="textSection">
         Total price of items:
-        <div className="textEnd">{`${totalPrice},- ${currency}`}</div>
+        <div className="textEnd">{`${RoundToNearestHalf(totalPrice)},- ${currency}`}</div>
       </div>
+      {totalSavings > 0 && (
+        <div className="savingsText">
+          <span>Total price savings</span>
+          <div className="savingsTextEnd">{`${totalSavings},-`}</div>
+        </div>
+      )}
       <div>
-        <div className="savingsText"> {promtSavings()} </div>
+        <div className="totalDiscountText"> {promtSavings()} </div>
         <button className="checkoutButton">
           {/* <img src={lockLogo} className="checkoutButtonIcon"/> */}
           Checkout

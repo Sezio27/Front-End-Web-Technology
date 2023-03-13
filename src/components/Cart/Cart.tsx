@@ -1,17 +1,18 @@
 import Basket from "./Basket/Basket";
 import Checkout from "./Checkout/Checkout";
 import products from "../../data/products.json";
-import { Item, BasketTotals } from "../../Types/Types";
-import { ReducerWithoutAction, useEffect, useReducer, useState } from "react";
+import { Item, BasketTotals, SavingsAction, SavingsState, SavingsActionKind } from "../../Types/Types";
+import { ReducerWithoutAction, useEffect, useMemo, useReducer, useState } from "react";
 import "./Cart.css";
-
+import { calculateItemDiscount } from "../Utilities/SavingsUtility";
+import { ICalculateSavings } from "../Utilities/UtilityTypes";
 
 const Cart = () => {
   const [basketItems, setBasketItems] = useState<Item[]>([]);
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [totalDiscountActive, setTotalDiscountActive] = useState<boolean>(false);
   const [totalSavings, setTotalSavings] = useState<number>(0);
+  const [totalDiscountActive, setTotalDiscountActive] = useState<boolean>(false);
 
   useEffect(() => {
     const tempBasketItems = products.map((product) => ({
@@ -32,29 +33,38 @@ const Cart = () => {
   }, [basketItems]);
 
   const calculateTotals = () => {
-    let totals: BasketTotals = { totalQuantity: 0, totalPrice: 0 };
-    basketItems.map(({ price, quantity }: Item) => {
-      totals.totalPrice += price * quantity;
+    let totals: BasketTotals = { totalQuantity: 0, totalPrice: 0, totalSavings: 0 };
+    basketItems.map(({ name, price, quantity, rebatePercent, rebateQuantity }: Item) => {
+      let subTotal: number = price * quantity;
+
+      let basketItemDiscount: number = 0;
+
+      if (!(rebatePercent === null || rebateQuantity === null)) {
+        if (quantity >= rebateQuantity)
+          basketItemDiscount = calculateItemDiscount({
+            subTotal: subTotal,
+            itemQuantity: quantity,
+            rebatePercentage: rebatePercent,
+          });
+      }
+      totals.totalSavings += basketItemDiscount;
+      totals.totalPrice += subTotal;
       totals.totalQuantity += quantity;
     });
 
-    let tempTotalPrice: number = 0;
+    let tempTotalPrice: number = totals.totalPrice;
 
+    // removing item discount before total discount ;-)  
+    tempTotalPrice -= totals.totalSavings;
     if (totals.totalPrice >= 300) {
       setTotalDiscountActive(true);
-      tempTotalPrice = totals.totalPrice * 0.9;
-    } else {
-      setTotalDiscountActive(false);
-      tempTotalPrice = totals.totalPrice;
-    }
-    tempTotalPrice -= totalSavings;
-    console.log(totalPrice)
-    console.log(totalSavings)
-    console.log(tempTotalPrice)
-    
+      tempTotalPrice *= 0.9;
+    } else setTotalDiscountActive(false);
+
     if (tempTotalPrice < 0) return alert("Total price cannot be below zero after discounts are added. Something went wrong");
 
     setTotalPrice(tempTotalPrice);
+    setTotalSavings(totals.totalSavings);
     setTotalQuantity(totals.totalQuantity);
   };
 
@@ -108,8 +118,6 @@ const Cart = () => {
               removeFromCart={removeFromCart}
               changeToUpsell={changeToUpsell}
               getProductName={getProductName}
-              setTotalSavings={setTotalSavings}
-              totalSavings={totalSavings}
             />
           </div>
           <div className="checkoutContainer">
@@ -117,6 +125,7 @@ const Cart = () => {
               cartQuantity={totalQuantity}
               totalPrice={totalPrice}
               currency={""}
+              totalSavings={totalSavings}
               totalDiscountActive={totalDiscountActive}
             />
           </div>

@@ -6,7 +6,7 @@
    margin-right: 2vw;
    margin-left: 2vw;
    /* margin: 0px 10px 0px 10px; */
-   border: 1px solid rgba(0,0,0, 0.8);
+   border: 1px solid rgba(189,195,195, 0.4);
    color: black;
    gap: 20px;
 }
@@ -21,12 +21,30 @@
    text-align: end;
    font-weight: 600;
 }
-
+.savingsTextEnd{
+   flex: 1;
+   text-align: end;
+   font-size: x-small;
+   font-weight: 400;
+}
 .savingsText {
+   display: flex;
+   text-align: center;
+   font-size: x-small;
+   font-weight: 400;
+   width: 100%;
+   color: black;
+   margin-top: -20px;
+   padding: 2px;
+   border-top: 1px solid rgba(189, 195, 195, 0.3);
+}
+
+.totalDiscountText {
    flex: auto;
    text-align: center;
    font-size: small;
-   font-weight: 600;
+   font-weight: 700;
+   color: green
 }
 
 

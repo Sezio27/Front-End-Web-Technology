@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { Item, BasketFunctions } from "../../../Types/Types";
-import { RoundToNearestHalf } from "../../NumberUtitlity";
+import { Item, BasketFunctions, SavingsActionKind } from "../../../Types/Types";
+import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import "./BasketItemTemp.css";
 import "./BasketItem.css";
 import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";
 import NudgeUpSell from "../../NudgeMessage/NudgeUpSell";
-import { SAVINGS } from "../Basket/Basket";
 
 
 const BasketItem = ({
@@ -17,7 +16,7 @@ const BasketItem = ({
   changeToUpsell,
   isProductInBasket,
   getProductName,
-  onSavingsChange,
+
    }: { product: Item } & BasketFunctions) => {
   
   const { id, name, price, currency, quantity, rebateQuantity, rebatePercent, upsellProductId } = product;
@@ -39,13 +38,9 @@ const BasketItem = ({
     activeDiscount = itemQuantity >= rebateQuantity ? true : false
     
     if (activeDiscount) {
-     
       subTotalWithSavings = RoundToNearestHalf(subTotal * (1 - rebatePercent))
       const beforeSavings: number = priceSavings;
       priceSavings = RoundToNearestHalf(subTotal - subTotalWithSavings)
-      console.log(priceSavings)
-      // if(priceSavings > beforeSavings) onSavingsChange(SAVINGS.INCREASE, priceSavings)
-      // else onSavingsChange(SAVINGS.DECREASE, priceSavings)
       
     } else priceSavings = 0
     
