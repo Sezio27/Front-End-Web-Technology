@@ -32,7 +32,9 @@ const BasketItem = ({
   const getSubtotal = () => {
     let subTotal: number = price * itemQuantity;
     let subTotalWithSavings: number = 0;
-    if(rebateQuantity == null || rebatePercent == null) return null;
+    
+    if(rebateQuantity === null || rebatePercent === null)
+      return subTotal
     
     activeDiscount = itemQuantity >= rebateQuantity ? true : false
     
