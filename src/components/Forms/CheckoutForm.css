@@ -1,6 +1,11 @@
-.p {
-    display: table-row;
+
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
 }
+
 .label {
     display: table-cell;
     padding: 7px;

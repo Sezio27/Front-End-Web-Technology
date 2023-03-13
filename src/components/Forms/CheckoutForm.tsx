@@ -4,7 +4,7 @@ import "./CheckoutForm.css";
 
 const CheckoutForm = () => {
 
-    const POSTNUMRE_URL = 'https://api.dataforsyningen.dk/postnumre';
+    const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
 
     const [country, setCountry] = useState('Denmark');
     const [zip, setZip] = useState('');
@@ -12,129 +12,132 @@ const CheckoutForm = () => {
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
     const [fName, setFName] = useState('');
+    const [lName, setLName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [cName, setCName] = useState('');
     const [cVat, setCVat] = useState('');
+    const [validZip, setValidZip] = useState(true);
+    const [zipsAndCities, setZipsAndCities] = useState<{zip: string, city: string}[]>([]);
+
+    
 
     useEffect(() => {
-
-            if (country !== 'Denmark')
-                setCountry('Denmark')
+        if (country !== 'Denmark')
+            setCountry('Denmark')
 
     }, [country])
 
-    //Bruges som en prop så values kan tilgås i useEffect
-    let [byData, setByData] = useState([
-        {
-            "href": "https://api.dataforsyningen.dk/postnumre/1050",
-            "nr": "1050",
-            "navn": "København K",
-            "stormodtageradresser": null,
-            "bbox": [
-                12.5841266,
-                55.67871944,
-                12.58827962,
-                55.68185111
-            ],
-            "visueltcenter": [
-                12.58600133,
-                55.68065246
-            ],
-            "kommuner": [
-                {
-                    "href": "https://api.dataforsyningen.dk/kommuner/0101",
-                    "kode": "0101",
-                    "navn": "København"
-                }
-            ],
-            "ændret": "2018-04-30T15:23:13.528Z",
-            "geo_ændret": "2014-11-04T16:01:00.879Z",
-            "geo_version": 1,
-            "dagi_id": "191050"
-        }])
+    useEffect(() => {
+        if (zip.length === 4) {
+          const existingZipCityIndex = zipsAndCities.findIndex((item: {zip: string, city: string}) => item.zip === zip);
+          if (existingZipCityIndex !== -1) {
+            setValidZip(true);
+            setCity(zipsAndCities[existingZipCityIndex].city)
+          } else {
+            setValidZip(false)
+          }
+        }
+      }, [zip]);
+
 
     useEffect(() => {
 
         const fetchItems = async () => {
+            try {
+                const response = await fetch(DK_ZIP_URL);
 
-            const response = await fetch(POSTNUMRE_URL);
-            byData = (await response.json());
+                const data = await response.json();
 
-            for (let i = 0; i < byData.length; i++) {
-                if (zip === byData[i].nr) {
-                    setCity(byData[i].navn);
-                }
-                //Måske lidt ooga booga måde at validere zip for nu..
-                else if (zip.length > 3 && !byData.some(by => by.nr === zip)) {
-                    setZip('');
-                }
+                setZipsAndCities(data.map((item: {nr: string, navn: string}) => ({zip: item.nr, city: item.navn})))
+
+            } catch (error) {
+                console.log(error)
             }
-        }
-        (async () => await fetchItems())();
-    }, [zip])
+          
+        }; fetchItems()
+    }, [])
+
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-
-        //Et form objekt - til senere?
         const formInfo = { country, zip, city, address1, address2, fName, phone, email, cName, cVat };
     }
 
+
     return (
+       <div className="formContainer">
           <form onSubmit={handleSubmit}>
-              <p>
+              <div>
                   <label>Country:</label>
                   <input type="text" name="country" value={country}
                          onChange={(e) => setCountry(e.target.value)} required pattern="Denmark" />
-              </p>
-              <p>
+              </div>
+              <div>
+                <div>
                   <label>ZIP code:</label>
                   <input type="text" name="zip" value={zip}
                          onChange={(e) => setZip(e.target.value)} required pattern="\d{4}" />
-              </p>
-              <p>
+                   {!validZip &&
+                   <div>
+                    <p>Invalid Zip Code</p>
+                   </div>
+                   }
+
+                </div>
+              </div>
+              <div>
+                   
+
                   <label>City:</label>
                   <input type="text" name="city" value={city}
-                         onChange={(e) => setCity(e.target.value)} required />
-              </p>
-              <p>
+                         onChange={(e) => setCity(e.target.value)} required/>
+              </div>
+              
+              <div>
                   <label>Address line 1:</label>
                   <input type="text" name="address1" value={address1}
                          onChange={(e) => setAddress1(e.target.value)} required />
-              </p>
-              <p>
+              </div>
+             <div>
                   <label>Address line 2:</label>
                   <input type="text" name="address2" value={address2}
                          onChange={(e) => setAddress2(e.target.value)}  />
-              </p>
-              <p>
-                  <label>Name:</label>
+              </div>
+            <div>
+                  <label>First name:</label>
                   <input type="text" name="fName" max="50" value={fName}
-                         onChange={(e) => setFName(e.target.value)} required />
-              </p>
-              <p>
+                         onChange={(e) => setFName(e.target.value)} required pattern = "^[A-Za-z]+$"/>
+              </div>
+             <div>
+                  <label>Last name:</label>
+                  <input type="text" name="lName" max="50" value={lName}
+                         onChange={(e) => setLName(e.target.value)} required pattern = "^[A-Za-z]+$"/>
+              </div>
+             <div>
                   <label>Phone:</label>
                   <input type="tel" name="phone" value={phone}
                          onChange={(e) => setPhone(e.target.value)} required pattern="\d{8}" />
-              </p>
-              <p>
+              </div>
+             <div>
                   <label>Email:</label>
                   <input type="email" name="email" value={email}
                          onChange={(e) => setEmail(e.target.value)} required />
-              </p>
-              <p>
+              </div>
+             <div>
                   <label>Company name:</label>
                   <input type="text" name="cName" max="40" value={cName}
                          onChange={(e) => setCName(e.target.value)}  />
-              </p>
-              <p>
+              </div>
+             <div>
                   <label>Company VAT:</label>
                   <input type="text" name="cVat" value={cVat}
                          onChange={(e) => setCVat(e.target.value)} pattern="\d{8}" />
-              </p>
+              </div>
               <button>To payment</button>
+
           </form>
+       </div>
     )
 }
 
