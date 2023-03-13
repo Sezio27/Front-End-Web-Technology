@@ -64,9 +64,31 @@
    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.checkoutButtonInside {
+   display: flex;
+   text-align:center;
+   align-self: flex-end;
+   gap: 0.2em
+}
+
+.checkoutButtonIcon {
+   place-self: center;
+   
+   height: 1em;
+   max-height: 50%;
+   max-width: 1.5vw;   
+}
+
+.checkoutButtonText {
+   
+}
+
+
+
+
 .checkoutButton:before{
    font: var(--fa-font-solid);
-   content: "\f054";
+   /* content: "\f054"; */
    display: flex;
    align-items: center;
    justify-content: center;
@@ -80,8 +102,9 @@
    transition: all 0.2s linear 0s;
 }
 .checkoutButton:hover {
-   text-indent: 20px;
-   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+   scale: 105%;
+   text-align: right;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
 }
 .checkoutButton:hover::before {
  transform: scale(1,1);

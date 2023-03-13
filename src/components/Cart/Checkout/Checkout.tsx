@@ -3,6 +3,7 @@ import "./Checkout.css";
 import { FaChevronRight } from "react-icons/fa";
 import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
 import { Link } from "react-router-dom";
+import LockIcon from "../../../assets/lockicon.png";
 
 interface ICheckout {
   cartQuantity: number;
@@ -41,8 +42,10 @@ const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive, tot
         <div className="totalDiscountText"> {promtSavings()} </div>
         <Link to="/Checkout">
           <button className="checkoutButton">
-            {/* <img src={lockLogo} className="checkoutButtonIcon"/> */}
-            Checkout
+            <div className="checkoutButtonInside">
+              <img src={LockIcon} className="checkoutButtonIcon" />
+              <span className="checkoutButtonText">Checkout</span>
+            </div>
           </button>
         </Link>
       </div>
