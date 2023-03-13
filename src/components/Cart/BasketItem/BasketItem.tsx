@@ -3,10 +3,9 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Item, BasketFunctions, SavingsActionKind } from "../../../Types/Types";
 import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
-import "./BasketItemTemp.css";
-import "./BasketItem.css";
 import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";
 import NudgeUpSell from "../../NudgeMessage/NudgeUpSell";
+import "./BasketItem.css";
 
 
 const BasketItem = ({
@@ -91,7 +90,7 @@ const BasketItem = ({
         {getSubtotal() + " " + currency}
         { activeDiscount && 
         <div>
-          {`saved ${priceSavings},-`}
+          {`${priceSavings},- Saved!`}
         </div>
         }
       </td>

@@ -50,7 +50,7 @@
   font-size: small;
   font-weight: 700;
   color: green;
-  -webkit-text-stroke: 0.3px black;
+  /* -webkit-text-stroke: 0.1px black; */
   margin: 1px;
   border-top: 1px solid rgba(189, 195, 195, 0.5);
   
