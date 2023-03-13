@@ -2,6 +2,7 @@ import "./Checkout.css";
 // import lockLogo from "./assets/lockicon.png"
 import { FaChevronRight } from "react-icons/fa";
 import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
+import { Link } from "react-router-dom";
 
 interface ICheckout {
   cartQuantity: number;
@@ -12,11 +13,12 @@ interface ICheckout {
 }
 
 const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive, totalSavings }: ICheckout) => {
-  
   const promtSavings = () => {
     if (totalPrice == undefined) return;
 
-    return totalDiscountActive ? `You've shaved an extra 10% (${RoundToNearestHalf((totalPrice*1.1)-totalPrice)},-) off your order!` : `Buy for ${300 - totalPrice},- more to save 10%`;
+    return totalDiscountActive
+      ? `You've shaved an extra 10% (${RoundToNearestHalf(totalPrice * 1.1 - totalPrice)},-) off your order!`
+      : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
   return (
@@ -37,10 +39,12 @@ const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive, tot
       )}
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
-        <button className="checkoutButton">
-          {/* <img src={lockLogo} className="checkoutButtonIcon"/> */}
-          Checkout
-        </button>
+        <Link to="/Checkout">
+          <button className="checkoutButton">
+            {/* <img src={lockLogo} className="checkoutButtonIcon"/> */}
+            Checkout
+          </button>
+        </Link>
       </div>
     </div>
   );
