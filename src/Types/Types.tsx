@@ -11,14 +11,8 @@ export type Product = {
 };
 
 export type Item = {
-  id: string;
+  product: Product
   quantity: number;
-  name: string;
-  price: number;
-  currency: string;
-  rebateQuantity: number | null;
-  rebatePercent: number | null;
-  upsellProductId: string | null;
 };
 
 export type BasketTotals = {

@@ -16,14 +16,8 @@ const Cart = () => {
 
   useEffect(() => {
     const tempBasketItems = products.map((product) => ({
-      id: product.id,
-      quantity: 0,
-      name: product.name,
-      price: product.price,
-      currency: product.currency,
-      rebateQuantity: product.rebateQuantity,
-      rebatePercent: product.rebatePercent,
-      upsellProductId: product.upsellProductId,
+      product: {...product},
+      quantity: 0
     }));
     setBasketItems(tempBasketItems);
   }, []);
@@ -34,7 +28,8 @@ const Cart = () => {
 
   const calculateTotals = () => {
     let totals: BasketTotals = { totalQuantity: 0, totalPrice: 0, totalSavings: 0 };
-    basketItems.map(({ price, quantity, rebatePercent, rebateQuantity }: Item) => {
+    basketItems.map(({ product, quantity }) => {
+      const {price, rebatePercent, rebateQuantity} = product
       let subTotal: number = price * quantity;
 
       let basketItemDiscount: number = 0;
@@ -68,37 +63,31 @@ const Cart = () => {
     setTotalQuantity(totals.totalQuantity);
   };
 
-  const addToCart = (newItem: Item, index: number) => {
-    const updatedCart = basketItems.splice(index, 0, newItem);
-    setBasketItems(updatedCart);
-  };
-
   const removeFromCart = (productId: string) => {
-    const updatedCart = basketItems.filter((item) => item.id !== productId);
+    const updatedCart = basketItems.filter((item) => item.product.id !== productId);
     setBasketItems(updatedCart);
   };
 
   const changeToUpsell = (productId: string) => {
-    const currentProduct = basketItems.find((item) => item.id == productId);
-    console.log(currentProduct);
-    if (currentProduct && currentProduct.upsellProductId != null) {
-      const currentProductIndex = basketItems.indexOf(currentProduct);
-      const newProduct = products.find((item) => item.id === currentProduct.upsellProductId);
+    const currentProductIndex = basketItems.findIndex((item) => item.product.id === productId);
+    
+    if (currentProductIndex !== -1) {
+      const currentProduct = basketItems[currentProductIndex].product;
 
-      if (newProduct) {
-        const item: Item = {
-          id: newProduct.id,
-          quantity: currentProduct.quantity,
-          name: newProduct.name,
-          price: newProduct.price,
-          currency: newProduct.currency,
-          rebateQuantity: newProduct.rebateQuantity,
-          rebatePercent: newProduct.rebatePercent,
-          upsellProductId: newProduct.upsellProductId,
-        };
+      if (currentProduct.upsellProductId) {
+        const newProduct = products.find((product) => product.id === currentProduct.upsellProductId);
 
-        addToCart(item, currentProductIndex);
-        removeFromCart(productId);
+        if (newProduct) {
+          const item: Item = {
+            product: newProduct,
+            quantity: basketItems[currentProductIndex].quantity,
+          };
+
+        const updatedBasketItems = [...basketItems];
+        updatedBasketItems[currentProductIndex] = item;
+        setBasketItems(updatedBasketItems);
+
+        }
       }
     }
   };

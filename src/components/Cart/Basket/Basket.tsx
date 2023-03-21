@@ -1,7 +1,6 @@
 import BasketItem from "../BasketItem/BasketItem";
-import { Item, SavingsAction } from "../../../Types/Types";
+import { Item } from "../../../Types/Types";
 import "./Basket.css";
-import { Dispatch, SetStateAction, useState } from "react";
 
 
 
@@ -16,7 +15,7 @@ interface IBasket {
 const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, getProductName }: IBasket) => {
   
   const onQuantityChange = (productId: string, quantity: number) => {
-    const existingItemIndex = basketItems.findIndex((item) => item.id === productId);
+    const existingItemIndex = basketItems.findIndex((item) => item.product.id === productId);
 
     if (existingItemIndex !== -1) {
       const updatedCart = [...basketItems];
@@ -26,7 +25,7 @@ const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, g
   };
 
   const isProductInBasket = (productId: string) => {
-    return basketItems.some((item) => item.id == productId);
+    return basketItems.some((item) => item.product.id == productId);
   };
 
   return (
@@ -42,8 +41,8 @@ const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, g
       <tbody>
         {basketItems.map((item) => (
           <BasketItem
-            key={item.id}
-            product={item}
+            key={item.product.id}
+            item={item}
             onQuantityChange={onQuantityChange}
             removeFromCart={removeFromCart}
             changeToUpsell={changeToUpsell}

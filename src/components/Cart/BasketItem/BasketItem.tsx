@@ -9,17 +9,17 @@ import "./BasketItem.css";
 
 
 const BasketItem = ({
-  product,
+  item,
   onQuantityChange,
   removeFromCart,
   changeToUpsell,
   isProductInBasket,
   getProductName,
 
-   }: { product: Item } & BasketFunctions) => {
+   }: { item: Item} & BasketFunctions) => {
   
-  const { id, name, price, currency, quantity, rebateQuantity, rebatePercent, upsellProductId } = product;
-  const [itemQuantity, setItemQuantity] = useState(quantity);
+  const { id, name, price, currency, rebateQuantity, rebatePercent, upsellProductId } = item.product;
+  const [itemQuantity, setItemQuantity] = useState(item.quantity);
   let activeDiscount: boolean = false;
   let priceSavings: number = 0;
   
@@ -32,9 +32,7 @@ const BasketItem = ({
   const getSubtotal = () => {
     let subTotal: number = price * itemQuantity;
     let subTotalWithSavings: number = 0;
-    
-    if(rebateQuantity === null || rebatePercent === null)
-      return subTotal
+    if(rebateQuantity == null || rebatePercent == null) return null;
     
     activeDiscount = itemQuantity >= rebateQuantity ? true : false
     
@@ -47,6 +45,9 @@ const BasketItem = ({
     
     return activeDiscount ? subTotalWithSavings : subTotal
   };
+
+
+  
 
   const CloseButton = () => {
     return (
@@ -71,7 +72,7 @@ const BasketItem = ({
               <NudgeQuantityRebate
                 rebateQuantity={rebateQuantity!}
                 rebatePercentDec={rebatePercent!}
-                quantity={quantity}
+                quantity={item.quantity}
                 price={price}
               />
             ) : (
