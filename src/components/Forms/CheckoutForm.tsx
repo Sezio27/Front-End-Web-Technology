@@ -11,6 +11,7 @@ const CheckoutForm = () => {
     const [city, setCity] = useState('');
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
+    const [bAddress, setBAddress] = useState('');
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [phone, setPhone] = useState('');
@@ -61,7 +62,7 @@ const CheckoutForm = () => {
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        const formInfo = { country, zip, city, address1, address2, fName, phone, email, cName, cVat };
+        const formInfo = { country, zip, city, address1, address2, bAddress, fName, phone, email, cName, cVat };
     }
 
 
@@ -102,6 +103,12 @@ const CheckoutForm = () => {
                     <label className="formLabel">Address line 2</label>
                     <input className="formInput" type="text" name="address2" value={address2}
                            onChange={(e) => setAddress2(e.target.value)}  />
+                </div>
+
+                <div className="formDivE">
+                    <label className="formLabel">Billing Address</label>
+                    <input className="formInput" type="text" name="bAddress" value={bAddress}
+                           onChange={(e) => setBAddress(e.target.value)}  />
                 </div>
 
                 <div className="formDivE">
