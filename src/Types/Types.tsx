@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 export type Product = {
   id: string;
   name: string;
@@ -22,17 +20,9 @@ export type BasketTotals = {
   totalDiscountActive: boolean
 };
 
-export type BasketFunctions = {
-  onQuantityChange: (id: string, quantity: number) => void;
-  removeFromCart: (id: string) => void;
-  changeToUpsell: (id: string) => void;
-  isProductInBasket: (id: string) => boolean;
-  getProductName: (id: string) => string | undefined;
-};
-
 export type QuantityPickerProps = {
+  productId: string
   quantity: number;
-  onQuantityChange: (newQuantity: number) => void;
 };
 
 

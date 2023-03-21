@@ -4,8 +4,8 @@ import products from "../../data/products.json";
 import { Item, BasketTotals, SavingsAction, SavingsState, SavingsActionKind } from "../../Types/Types";
 import { ReducerWithoutAction, useEffect, useMemo, useReducer, useState } from "react";
 import "./Cart.css";
-import { calculateItemDiscount } from "../Utilities/SavingsUtility";
-import { ICalculateSavings } from "../Utilities/UtilityTypes";
+import { calculateItemDiscount } from "../../Utilities/SavingsUtility";
+import { ICalculateSavings } from "../../Utilities/UtilityTypes";
 
 const Cart = () => {
   const [basketItems, setBasketItems] = useState<Item[]>([]);

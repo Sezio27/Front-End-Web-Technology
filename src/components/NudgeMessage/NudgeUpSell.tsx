@@ -1,22 +1,20 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { useCartContext } from "../../contexts/CartContext";
 
 interface INudgeUpSell {
     productId: string,
     upSellName: string
-    changeToUpsell: (id: string) => void;
 }
 
-const NudgeUpSell = ({ productId, upSellName, changeToUpsell }: INudgeUpSell) => {
-
-    const handleClick = () => {
-        changeToUpsell(productId)
-    }
+const NudgeUpSell = ({ productId, upSellName }: INudgeUpSell) => {
+    
+    const {changeToUpsell} = useCartContext();
 
     return (
         <div className="upSellContainer">
             <span>Go organic?</span>
             <FaLongArrowAltRight />
-            <button onClick={handleClick} className="upSellButton"> {upSellName} </button>
+            <button onClick={() => changeToUpsell(productId)} className="upSellButton"> {upSellName} </button>
         </div>
     )
 

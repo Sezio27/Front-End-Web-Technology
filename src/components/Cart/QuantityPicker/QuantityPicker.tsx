@@ -2,8 +2,12 @@ import { useState, KeyboardEvent, FocusEvent } from "react";
 import { TextField } from "@mui/material";
 import { QuantityPickerProps } from "../../../Types/Types";
 import "./QuantityPicker.css"
+import { useCartContext } from "../../../contexts/CartContext";
 
-const QuantityPicker = ({ quantity, onQuantityChange }: QuantityPickerProps) => {
+
+const QuantityPicker = ({ productId, quantity}: QuantityPickerProps) => {
+  const {onQuantityChange} = useCartContext()
+  
   const [newQuantityInput, setNewQuantityInput] = useState(String(quantity))
   const [validInput, setValidInput] = useState(true);
 
@@ -11,7 +15,7 @@ const QuantityPicker = ({ quantity, onQuantityChange }: QuantityPickerProps) => 
     const newQuantity = parseInt(newQuantityInput)
     if (!isNaN(newQuantity) && newQuantity >= 0 && newQuantity < 1000) {
       setValidInput(true);
-      onQuantityChange(newQuantity);
+      onQuantityChange(productId, newQuantity);
     } else {
       setValidInput(false);
       setNewQuantityInput(String(quantity))

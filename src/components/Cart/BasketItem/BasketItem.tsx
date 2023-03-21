@@ -1,41 +1,31 @@
-import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { Item, BasketFunctions, SavingsActionKind } from "../../../Types/Types";
-import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
+import { Item } from "../../../Types/Types";
+import { RoundToNearestHalf } from "../../../Utilities/NumberUtitlity";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";
 import NudgeUpSell from "../../NudgeMessage/NudgeUpSell";
 import "./BasketItem.css";
 
+import { useCartContext } from "../../../contexts/CartContext";
 
-const BasketItem = ({
-  item,
-  onQuantityChange,
-  removeFromCart,
-  changeToUpsell,
-  isProductInBasket,
-  getProductName,
 
-   }: { item: Item} & BasketFunctions) => {
-  
+const BasketItem = ({item}: {item: Item}) => {
+
+  const {removeFromCart, isProductInBasket, getProductName} = useCartContext()
+
   const { id, name, price, currency, rebateQuantity, rebatePercent, upsellProductId } = item.product;
-  const [itemQuantity, setItemQuantity] = useState(item.quantity);
+  const quantity = item.quantity
+
   let activeDiscount = false;
   let priceSavings = 0;
-  
-  
-  const handleQuantityChange = (newQuantity: number) => {
-    setItemQuantity(newQuantity);
-    onQuantityChange(id, newQuantity);
-  };
 
   const getSubtotal = () => {
-    let subTotal = price * itemQuantity;
+    let subTotal = price * quantity;
     if(rebateQuantity == null || rebatePercent == null) return subTotal;
 
     let subTotalWithSavings = 0;
     
-    activeDiscount = itemQuantity >= rebateQuantity ? true : false
+    activeDiscount = quantity >= rebateQuantity ? true : false
     
     if (activeDiscount) {
       subTotalWithSavings = RoundToNearestHalf(subTotal * (1 - rebatePercent))
@@ -46,9 +36,6 @@ const BasketItem = ({
     
     return activeDiscount ? subTotalWithSavings : subTotal
   };
-
-
-  
 
   const CloseButton = () => {
     return (
@@ -69,26 +56,22 @@ const BasketItem = ({
         <div className="rowHeaderInnerContainer">
           <div className="rowHeaderSection">{name}</div>
           <div className="rowHeaderSection">
-            {showQuantityRebate ? (
+            {showQuantityRebate && (
               <NudgeQuantityRebate
                 rebateQuantity={rebateQuantity!}
                 rebatePercentDec={rebatePercent!}
-                quantity={item.quantity}
+                quantity={quantity}
                 price={price}
               />
-            ) : (
-              <></>
             )}
-            {showUpSell ? (
-              <NudgeUpSell productId={id} upSellName={getProductName(upsellProductId)!} changeToUpsell={changeToUpsell} />
-            ) : (
-              <></>
+            {showUpSell && (
+              <NudgeUpSell productId={id} upSellName={getProductName(upsellProductId)!}/>
             )}
           </div>
         </div>
       </th>
       <td className="quantityContainer">
-        <QuantityPicker quantity={itemQuantity} onQuantityChange={handleQuantityChange} />
+        <QuantityPicker productId={id} quantity={quantity}/>
       </td>
       <td className="priceContainer">
         {getSubtotal() + " " + currency}

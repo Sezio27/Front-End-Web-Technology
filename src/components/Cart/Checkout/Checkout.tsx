@@ -1,19 +1,22 @@
 import "./Checkout.css";
 // import lockLogo from "./assets/lockicon.png"
 import { FaChevronRight } from "react-icons/fa";
-import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
+import { RoundToNearestHalf } from "../../../Utilities/NumberUtitlity";
 import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/lockicon.png";
 import { BasketTotals } from "../../../Types/Types";
 
+import { useCartContext } from "../../../contexts/CartContext";
+
 interface ICheckout {
   currency: string;
-  totals: BasketTotals
 }
 
-const Checkout = ({ totals, currency, }: ICheckout) => {
+const Checkout = ({ currency }: ICheckout) => {
+  const {calculateTotals} = useCartContext()
 
-  const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = totals
+  const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = calculateTotals()
+  
   const promtSavings = () => {
     if (totalPrice == undefined) return;
 

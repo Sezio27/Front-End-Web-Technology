@@ -1,6 +1,7 @@
 import Cart from "./components/Cart/Cart";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CheckoutForm from "./components/Forms/CheckoutForm";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
                     <h1 className="Subtitle"> Cart </h1>
                   </div>
                   <div className="siteSectionComponent">
-                    <Cart />
+                    <CartProvider>
+                      <Cart/>
+                    </CartProvider>
                   </div>
                 </div>
               </div>
@@ -31,3 +34,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,32 +1,9 @@
 import BasketItem from "../BasketItem/BasketItem";
-import { Item } from "../../../Types/Types";
 import "./Basket.css";
+import { useCartContext } from "../../../contexts/CartContext";
 
-
-
-interface IBasket {
-  basketItems: Item[];
-  setBasketItems: (basketItems: Item[]) => void;
-  removeFromCart: (id: string) => void;
-  changeToUpsell: (id: string) => void;
-  getProductName: (id: string) => string | undefined;
-}
-
-const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, getProductName }: IBasket) => {
-  
-  const onQuantityChange = (productId: string, quantity: number) => {
-    const existingItemIndex = basketItems.findIndex((item) => item.product.id === productId);
-
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...basketItems];
-      updatedCart[existingItemIndex].quantity = quantity;
-      setBasketItems(updatedCart);
-    }
-  };
-
-  const isProductInBasket = (productId: string) => {
-    return basketItems.some((item) => item.product.id == productId);
-  };
+const Basket = () => {
+  const { basketItems } = useCartContext()
 
   return (
     <table className="basketTable">
@@ -43,11 +20,6 @@ const Basket = ({ basketItems, setBasketItems, removeFromCart, changeToUpsell, g
           <BasketItem
             key={item.product.id}
             item={item}
-            onQuantityChange={onQuantityChange}
-            removeFromCart={removeFromCart}
-            changeToUpsell={changeToUpsell}
-            isProductInBasket={isProductInBasket}
-            getProductName={getProductName}
             />
         ))}
       </tbody>
