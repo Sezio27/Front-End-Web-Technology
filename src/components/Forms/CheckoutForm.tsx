@@ -11,6 +11,7 @@ const CheckoutForm = () => {
     const [city, setCity] = useState('');
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
+    const [bAddress, setBAddress] = useState('');
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [phone, setPhone] = useState('');
@@ -61,7 +62,7 @@ const CheckoutForm = () => {
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        const formInfo = { country, zip, city, address1, address2, fName, phone, email, cName, cVat };
+        const formInfo = { country, zip, city, address1, address2, bAddress, fName, phone, email, cName, cVat };
     }
 
 
@@ -105,6 +106,12 @@ const CheckoutForm = () => {
                 </div>
 
                 <div className="formDivE">
+                    <label className="formLabel">Billing Address</label>
+                    <input className="formInput" type="text" name="bAddress" value={bAddress}
+                           onChange={(e) => setBAddress(e.target.value)}  />
+                </div>
+
+                <div className="formDivE">
                     <label className="formLabel">First name *</label>
                     <input className="formInput" type="text" name="fName" max="50" value={fName}
                            onChange={(e) => setFName(e.target.value)} required pattern = "^[A-Za-z]+$"/>
@@ -119,7 +126,7 @@ const CheckoutForm = () => {
                 <div className="formDivE">
                     <label className="formLabel">Phone *</label>
                     <input className="formInput" type="tel" name="phone" value={phone}
-                           onChange={(e) => setPhone(e.target.value)} required pattern="\d{8}" />
+                           onChange={(e) => setPhone(e.target.value)} required pattern="(\+45|45)?[1-9]\d{7}" />
                 </div>
 
                 <div className="formDivE">
