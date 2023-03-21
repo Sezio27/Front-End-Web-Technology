@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent } from "react";
+import { useState, KeyboardEvent, FocusEvent } from "react";
 import { TextField } from "@mui/material";
 import { QuantityPickerProps } from "../../../Types/Types";
 import "./QuantityPicker.css"
@@ -24,6 +24,10 @@ const QuantityPicker = ({ quantity, onQuantityChange }: QuantityPickerProps) => 
     }
   };
 
+  const handleFocusLoss = (e: FocusEvent<HTMLInputElement>) => {
+    handleInputChange()
+  }
+
 
   const inputQuantity = newQuantityInput === "0" ? "0" : newQuantityInput.length > 4 ? newQuantityInput.substring(0,4): newQuantityInput.replace(/^0+/, "");
 
@@ -35,6 +39,7 @@ const QuantityPicker = ({ quantity, onQuantityChange }: QuantityPickerProps) => 
         type="string"
         value={inputQuantity}
         onKeyDown={handleEnterPress}
+        onBlur = {handleFocusLoss}
         onChange={(e) => {setNewQuantityInput(e.target.value)}}
         inputProps={{ style: { textAlign: 'end', maxWidth: "3vw", minWidth: "60px" } }}
         InputLabelProps={{
