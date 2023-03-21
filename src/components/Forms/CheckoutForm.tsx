@@ -126,7 +126,7 @@ const CheckoutForm = () => {
                 <div className="formDivE">
                     <label className="formLabel">Phone *</label>
                     <input className="formInput" type="tel" name="phone" value={phone}
-                           onChange={(e) => setPhone(e.target.value)} required pattern="\d{8}" />
+                           onChange={(e) => setPhone(e.target.value)} required pattern="(\+45|45)?[1-9]\d{7}" />
                 </div>
 
                 <div className="formDivE">
