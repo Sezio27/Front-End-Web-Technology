@@ -1,6 +1,7 @@
 import { IoCloseSharp } from "react-icons/io5";
 import { Item } from "../../../Types/Types";
-import { RoundToNearestHalf } from "../../../Utilities/NumberUtitlity";
+import { RoundToNearestHalf, CutToTwoDecimals } from "../../../Utilities/NumberUtitlity";
+import { calculateItemDiscount } from "../../../Utilities/SavingsUtility";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";
 import NudgeUpSell from "../../NudgeMessage/NudgeUpSell";
@@ -17,24 +18,20 @@ const BasketItem = ({item}: {item: Item}) => {
   const quantity = item.quantity
 
   let activeDiscount = false;
-  let priceSavings = 0;
+  let subTotalWithSavings = 0;
 
   const getSubtotal = () => {
     let subTotal = price * quantity;
     if(rebateQuantity == null || rebatePercent == null) return subTotal;
-
-    let subTotalWithSavings = 0;
     
     activeDiscount = quantity >= rebateQuantity ? true : false
     
     if (activeDiscount) {
-      subTotalWithSavings = RoundToNearestHalf(subTotal * (1 - rebatePercent))
-      const beforeSavings = priceSavings;
-      priceSavings = RoundToNearestHalf(subTotal - subTotalWithSavings)
       
-    } else priceSavings = 0
+      subTotalWithSavings = calculateItemDiscount({subTotal: subTotal, itemQuantity: undefined, rebatePercentage: rebatePercent})
+    } else subTotalWithSavings = 0
     
-    return activeDiscount ? subTotalWithSavings : subTotal
+    return activeDiscount ? subTotal - subTotalWithSavings : subTotal
   };
 
   const CloseButton = () => {
@@ -77,7 +74,7 @@ const BasketItem = ({item}: {item: Item}) => {
         {getSubtotal() + " " + currency}
         { activeDiscount && 
         <div>
-          {`${priceSavings},- Saved!`}
+          {`${subTotalWithSavings},- Saved!`}
         </div>
         }
       </td>

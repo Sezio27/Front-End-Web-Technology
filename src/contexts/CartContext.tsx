@@ -18,6 +18,7 @@ interface ICartContext{
   isProductInBasket: (productId: string) => boolean
 }
 
+//DEFINING CART CONTEXT AND CREATING IT
 const CartContext = createContext<ICartContext>({
     basketItems: [],
     setBasketItems: () => {},
@@ -34,10 +35,12 @@ const CartContext = createContext<ICartContext>({
     isProductInBasket: () => false
   });
 
+//RETURN CART CONTEXT FOR USE
   export const useCartContext = () => {
     return useContext(CartContext);
   };
 
+//CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
   export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     const [basketItems, setBasketItems] = useState<Item[]>([]);
   
