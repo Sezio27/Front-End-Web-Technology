@@ -20,8 +20,8 @@ const BasketItem = ({
   
   const { id, name, price, currency, rebateQuantity, rebatePercent, upsellProductId } = item.product;
   const [itemQuantity, setItemQuantity] = useState(item.quantity);
-  let activeDiscount: boolean = false;
-  let priceSavings: number = 0;
+  let activeDiscount = false;
+  let priceSavings = 0;
   
   
   const handleQuantityChange = (newQuantity: number) => {
@@ -30,15 +30,16 @@ const BasketItem = ({
   };
 
   const getSubtotal = () => {
-    let subTotal: number = price * itemQuantity;
-    let subTotalWithSavings: number = 0;
-    if(rebateQuantity == null || rebatePercent == null) return null;
+    let subTotal = price * itemQuantity;
+    if(rebateQuantity == null || rebatePercent == null) return subTotal;
+
+    let subTotalWithSavings = 0;
     
     activeDiscount = itemQuantity >= rebateQuantity ? true : false
     
     if (activeDiscount) {
       subTotalWithSavings = RoundToNearestHalf(subTotal * (1 - rebatePercent))
-      const beforeSavings: number = priceSavings;
+      const beforeSavings = priceSavings;
       priceSavings = RoundToNearestHalf(subTotal - subTotalWithSavings)
       
     } else priceSavings = 0

@@ -9,10 +9,6 @@ import { ICalculateSavings } from "../Utilities/UtilityTypes";
 
 const Cart = () => {
   const [basketItems, setBasketItems] = useState<Item[]>([]);
-  const [totalQuantity, setTotalQuantity] = useState<number>(0);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [totalSavings, setTotalSavings] = useState<number>(0);
-  const [totalDiscountActive, setTotalDiscountActive] = useState<boolean>(false);
 
   useEffect(() => {
     const tempBasketItems = products.map((product) => ({
@@ -22,45 +18,50 @@ const Cart = () => {
     setBasketItems(tempBasketItems);
   }, []);
 
-  useEffect(() => {
-    calculateTotals();
-  }, [basketItems]);
-
+  
   const calculateTotals = () => {
-    let totals: BasketTotals = { totalQuantity: 0, totalPrice: 0, totalSavings: 0 };
-    basketItems.map(({ product, quantity }) => {
-      const {price, rebatePercent, rebateQuantity} = product
-      let subTotal: number = price * quantity;
+    const totals: BasketTotals = {
+      totalQuantity: 0,
+      totalPrice: 0,
+      totalSavings: 0,
+      totalDiscountActive: false,
+    };
 
-      let basketItemDiscount: number = 0;
+    basketItems.forEach(({ product, quantity }) => {
+      const { price, rebatePercent, rebateQuantity } = product;
+      const subTotal = price * quantity;
 
-      if (!(rebatePercent === null || rebateQuantity === null)) {
-        if (quantity >= rebateQuantity)
-          basketItemDiscount = calculateItemDiscount({
-            subTotal: subTotal,
-            itemQuantity: quantity,
-            rebatePercentage: rebatePercent,
-          });
-      }
+      const basketItemDiscount =
+        rebatePercent !== null &&
+        rebateQuantity !== null &&
+        quantity >= rebateQuantity
+          ? calculateItemDiscount({
+              subTotal,
+              itemQuantity: quantity,
+              rebatePercentage: rebatePercent,
+            })
+          : 0;
+      
       totals.totalSavings += basketItemDiscount;
       totals.totalPrice += subTotal;
       totals.totalQuantity += quantity;
     });
 
-    let tempTotalPrice: number = totals.totalPrice;
-
-    // removing item discount before total discount ;-)  
-    tempTotalPrice -= totals.totalSavings;
+ 
+    // Apply total discount
     if (totals.totalPrice >= 300) {
-      setTotalDiscountActive(true);
-      tempTotalPrice *= 0.9;
-    } else setTotalDiscountActive(false);
+      totals.totalDiscountActive = true;
+      totals.totalPrice = (totals.totalPrice - totals.totalSavings) * 0.9
+    } else {
+      totals.totalDiscountActive = false;
+    }
 
-    if (tempTotalPrice < 0) return alert("Total price cannot be below zero after discounts are added. Something went wrong");
+    if (totals.totalPrice < 0) {
+      alert("Total price cannot be below zero after discounts are added. Something went wrong");
+      totals.totalPrice = 0;
+    }
 
-    setTotalPrice(tempTotalPrice);
-    setTotalSavings(totals.totalSavings);
-    setTotalQuantity(totals.totalQuantity);
+    return totals;
   };
 
   const removeFromCart = (productId: string) => {
@@ -96,6 +97,7 @@ const Cart = () => {
     return products.find((item) => item.id == productId)?.name;
   };
 
+
   return (
     <div className="cartContainer">
       {basketItems.length > 0 ? (
@@ -111,11 +113,8 @@ const Cart = () => {
           </div>
           <div className="checkoutContainer">
             <Checkout
-              cartQuantity={totalQuantity}
-              totalPrice={totalPrice}
+              totals={calculateTotals()}
               currency={""}
-              totalSavings={totalSavings}
-              totalDiscountActive={totalDiscountActive}
             />
           </div>
         </div>

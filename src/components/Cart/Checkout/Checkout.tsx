@@ -4,16 +4,16 @@ import { FaChevronRight } from "react-icons/fa";
 import { RoundToNearestHalf } from "../../Utilities/NumberUtitlity";
 import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/lockicon.png";
+import { BasketTotals } from "../../../Types/Types";
 
 interface ICheckout {
-  cartQuantity: number;
-  totalPrice: number;
   currency: string;
-  totalSavings: number;
-  totalDiscountActive: boolean;
+  totals: BasketTotals
 }
 
-const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive, totalSavings }: ICheckout) => {
+const Checkout = ({ totals, currency, }: ICheckout) => {
+
+  const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = totals
   const promtSavings = () => {
     if (totalPrice == undefined) return;
 
@@ -26,7 +26,7 @@ const Checkout = ({ cartQuantity, totalPrice, currency, totalDiscountActive, tot
     <div className="primaryContainer">
       <div className="textSection">
         Items in cart:
-        <div className="textEnd">{cartQuantity}</div>
+        <div className="textEnd">{totalQuantity}</div>
       </div>
       <div className="textSection">
         Total price of items:

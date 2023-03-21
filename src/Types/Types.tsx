@@ -19,6 +19,7 @@ export type BasketTotals = {
   totalQuantity: number;
   totalPrice: number;
   totalSavings: number
+  totalDiscountActive: boolean
 };
 
 export type BasketFunctions = {
