@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./CheckoutForm.css";
-
+import { Link } from "react-router-dom";
 
 const CheckoutForm = () => {
 
@@ -148,8 +148,10 @@ const CheckoutForm = () => {
                 </div>
 
                 <br/>
-                <button className="formButton">To payment</button>
 
+                <Link to="/Checkout/Payment">
+                    <button className="formButton">To payment</button>
+                </Link>
             </form>
         </div>
     )

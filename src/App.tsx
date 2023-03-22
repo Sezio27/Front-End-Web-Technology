@@ -2,6 +2,7 @@ import Cart from "./components/Cart/Cart";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CheckoutForm from "./components/Forms/CheckoutForm";
 import { CartProvider } from "./contexts/CartContext";
+import Payment from "./components/Payment/Payment";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             }
           />
           <Route path="/Checkout" element={<CheckoutForm/>} />
+          <Route path="/Checkout/Payment" element={<Payment/>} />
       </Routes>
     </BrowserRouter>
   );
