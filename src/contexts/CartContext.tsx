@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode, FC} from "re
 import products from "../data/products.json";
 import { Item,  BasketTotals } from "../Types/Types";
 import { calculateItemDiscount } from "../Utilities/SavingsUtility";
+import { fetchProductList } from "../components/Utility/fetchProducts";
 
 interface CartProviderProps {
     children: ReactNode;
@@ -45,13 +46,10 @@ const CartContext = createContext<ICartContext>({
     const [basketItems, setBasketItems] = useState<Item[]>([]);
   
     useEffect(() => {
-      const tempBasketItems = products.map((product) => ({
-        product: { ...product },
-        quantity: 0,
-      }));
-      setBasketItems(tempBasketItems);
+      
+      
     }, []);
-
+    
     const removeFromCart = (productId: string) => {
       const updatedCart = basketItems.filter((item) => item.product.id !== productId);
       setBasketItems(updatedCart);
