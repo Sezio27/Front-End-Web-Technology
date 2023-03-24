@@ -1,0 +1,18 @@
+.loading-logo {
+   width: 3em;
+   height: 3em;
+   align-self: center;
+   margin-right: 7px;
+   top: 2px;
+   animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+   from {
+       transform: scale(1) rotate(0deg);
+   }
+   to {
+       transform: scale(1) rotate(360deg);
+   }
+}
+/* https://stackoverflow.com/questions/65298589/how-to-make-an-icon-spin-in-react */
