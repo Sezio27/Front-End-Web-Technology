@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, useEffect, ReactNode, FC} from "react";
 import products from "../data/products.json";
-import { Item,  BasketTotals } from "../Types/Types";
+import { Item,  BasketTotals, UserInfo } from "../Types/Types";
 import { calculateItemDiscount } from "../Utilities/SavingsUtility";
 
 interface CartProviderProps {
     children: ReactNode;
+   
   }
 
 interface ICartContext{
@@ -16,7 +17,26 @@ interface ICartContext{
   getProductName: (productId: string) => string | undefined;
   onQuantityChange: (productId: string, quantity: number) => void;
   isProductInBasket: (productId: string) => boolean
+
+  userInfo: UserInfo;
+  setUserInfo: (userInfo: UserInfo) => void;
+
 }
+const initialUserInfo: UserInfo = {
+  country: "Denmark",
+  zipCode: "",
+  city: "",
+  address1: "",
+  address2: "",
+  billingAddress: "",
+  firstName: "",
+  lastName: "",
+  phone: "",
+  email: "",
+  companyName: "",
+  companyVAT: "",
+};
+
 
 //DEFINING CART CONTEXT AND CREATING IT
 const CartContext = createContext<ICartContext>({
@@ -32,7 +52,10 @@ const CartContext = createContext<ICartContext>({
     }),
     getProductName: () => undefined,
     onQuantityChange: () => {},
-    isProductInBasket: () => false
+    isProductInBasket: () => false,
+    userInfo: initialUserInfo,
+  
+    setUserInfo: () => {}
   });
 
 //RETURN CART CONTEXT FOR USE
@@ -41,16 +64,25 @@ const CartContext = createContext<ICartContext>({
   };
 
 //CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
-  export const CartProvider: FC<CartProviderProps> = ({ children }) => {
+  export const CartProvider: FC<CartProviderProps> = ({ children}) => {
+
+    const LOAD_ALL_PRODUCTS = true
+
     const [basketItems, setBasketItems] = useState<Item[]>([]);
-  
+    const  [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
+    
     useEffect(() => {
-      const tempBasketItems = products.map((product) => ({
-        product: { ...product },
-        quantity: 0,
-      }));
-      setBasketItems(tempBasketItems);
+      if(LOAD_ALL_PRODUCTS) {
+        const tempBasketItems = products.map((product) => ({
+          product: { ...product },
+          quantity: 0,
+        }));
+        setBasketItems(tempBasketItems);
+      }
     }, []);
+
+
+  
 
     const removeFromCart = (productId: string) => {
       const updatedCart = basketItems.filter((item) => item.product.id !== productId);
@@ -143,7 +175,7 @@ const CartContext = createContext<ICartContext>({
     };
 
     return (
-      <CartContext.Provider value={{ basketItems, setBasketItems, removeFromCart, changeToUpsell, calculateTotals, getProductName, onQuantityChange, isProductInBasket }}>
+      <CartContext.Provider value={{ basketItems, setBasketItems, removeFromCart, changeToUpsell, calculateTotals, getProductName, onQuantityChange, isProductInBasket, userInfo, setUserInfo }}>
         {children}
       </CartContext.Provider>
     );

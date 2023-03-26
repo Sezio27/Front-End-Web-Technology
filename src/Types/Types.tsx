@@ -26,7 +26,20 @@ export type QuantityPickerProps = {
 };
 
 
-
+export type UserInfo = {
+    country: string 
+    zipCode: string
+    city: string
+    address1: string
+    address2: string
+    billingAddress: string
+    firstName: string
+    lastName: string
+    phone: string
+    email: string
+    companyName: string
+    companyVAT: string
+}
 export enum SavingsActionKind {
     INCREASE = "INCREASE",
     DECREASE = "DECREASE",
