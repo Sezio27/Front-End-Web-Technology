@@ -63,6 +63,13 @@ const CheckoutForm = () => {
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         const formInfo = { country, zip, city, address1, address2, bAddress, fName, phone, email, cName, cVat };
+        localStorage.setItem('email', email);
+        window.location.href = '/Checkout/Payment';
+        localStorage.setItem('name', fName);
+        // use Link to navigate to another page
+        return (
+            <Link to="/Checkout/Payment" />
+        )
     }
 
 
