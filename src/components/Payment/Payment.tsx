@@ -16,7 +16,7 @@ const Payment = () => {
             <div>
               <label>
                 <input type="checkbox" />
-                Please accept our Terms and conditions
+                //Please accept our Terms and conditions
               </label>
             </div>
             <div>

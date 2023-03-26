@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./CheckoutForm.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
 
@@ -21,7 +21,7 @@ const CheckoutForm = () => {
     const [validZip, setValidZip] = useState(true);
     const [zipsAndCities, setZipsAndCities] = useState<{zip: string, city: string}[]>([]);
 
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (country !== 'Denmark')
@@ -64,12 +64,10 @@ const CheckoutForm = () => {
         e.preventDefault();
         const formInfo = { country, zip, city, address1, address2, bAddress, fName, phone, email, cName, cVat };
         localStorage.setItem('email', email);
-        window.location.href = '/Checkout/Payment';
+       // window.location.href = '/Checkout/Payment';
         localStorage.setItem('name', fName);
-        // use Link to navigate to another page
-        return (
-            <Link to="/Checkout/Payment" />
-        )
+       // use usenavigate to  another page
+        navigate("/Checkout/Payment");
     }
 
 
@@ -155,10 +153,8 @@ const CheckoutForm = () => {
                 </div>
 
                 <br/>
-
-                <Link to="/Checkout/Payment">
                     <button className="formButton">To payment</button>
-                </Link>
+
             </form>
         </div>
     )
