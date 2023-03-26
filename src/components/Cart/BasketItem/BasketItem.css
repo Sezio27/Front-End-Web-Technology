@@ -76,6 +76,9 @@
 .rowHeaderImage {
   flex: 1;
 }
-
+.image {
+  height: 100%;
+  width: 100%;
+}
 
 

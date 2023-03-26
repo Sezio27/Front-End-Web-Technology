@@ -6,6 +6,7 @@ export type Product = {
   rebateQuantity: number | null;
   rebatePercent: number | null;
   upsellProductId: string | null;
+  imageUrl: string | undefined
 };
 
 export type Item = {

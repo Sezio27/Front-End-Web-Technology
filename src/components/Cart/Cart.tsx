@@ -8,10 +8,7 @@ import { useCartContext } from "../../contexts/CartContext";
 import { useEffect, useState } from "react";
 import { fetchProductList } from "../Utility/fetchProducts";
 
-// Custom wait method to showcase icon spinning
-const delay = (ms: number) => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
+
 
 const Cart = () => {
   const { basketItems, setBasketItems } = useCartContext();
@@ -19,15 +16,8 @@ const Cart = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Fetching items from custom build method. 
-    const fetchItems = async () => {
-      const items = await fetchProductList()
-      setBasketItems(items)
-      await delay(3000)
-      setLoading(false)
-    }
-    fetchItems()
-  }, []);
+    if(basketItems.length > 0 ) setLoading(false)
+  }, [basketItems]);
 
   return (
     
