@@ -25,10 +25,4 @@ export const fetchProductList = async (): Promise<Product[]> => {
   
   const data: Product[] = await response.json();
   return data
-  
-  // // CREATES THE ITEMS WITH QUANTITY 0
-  // const items: Item[] = data.map((e) => {
-  //   return { product: e, quantity: 0 };
-  // });
-  // return items;
 };
