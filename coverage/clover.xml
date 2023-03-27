@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679922243552" clover="3.2.0">
-  <project timestamp="1679922243552" name="All files">
+<coverage generated="1679923781635" clover="3.2.0">
+  <project timestamp="1679923781635" name="All files">
     <metrics statements="769" coveredstatements="260" conditionals="15" coveredconditionals="11" methods="37" coveredmethods="9" elements="821" coveredelements="280" complexity="0" loc="769" ncloc="769" packages="12" files="14" classes="14"/>
     <package name="src">
       <metrics statements="38" coveredstatements="38" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-      <file name="App.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\App.tsx">
+      <file name="App.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\App.tsx">
         <metrics statements="38" coveredstatements="38" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -48,7 +48,7 @@
     </package>
     <package name="src.Utilities">
       <metrics statements="14" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="NumberUtitlity.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\Utilities\NumberUtitlity.tsx">
+      <file name="NumberUtitlity.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\Utilities\NumberUtitlity.tsx">
         <metrics statements="7" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -58,7 +58,7 @@
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
       </file>
-      <file name="SavingsUtility.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\Utilities\SavingsUtility.tsx">
+      <file name="SavingsUtility.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\Utilities\SavingsUtility.tsx">
         <metrics statements="7" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -71,7 +71,7 @@
     </package>
     <package name="src.components.Cart">
       <metrics statements="40" coveredstatements="29" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
-      <file name="Cart.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Cart\Cart.tsx">
+      <file name="Cart.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Cart\Cart.tsx">
         <metrics statements="40" coveredstatements="29" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -117,7 +117,7 @@
     </package>
     <package name="src.components.Cart.Basket">
       <metrics statements="31" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Basket.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Cart\Basket\Basket.tsx">
+      <file name="Basket.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Cart\Basket\Basket.tsx">
         <metrics statements="31" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -154,7 +154,7 @@
     </package>
     <package name="src.components.Cart.BasketItem">
       <metrics statements="83" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="BasketItem.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Cart\BasketItem\BasketItem.tsx">
+      <file name="BasketItem.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Cart\BasketItem\BasketItem.tsx">
         <metrics statements="83" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -243,7 +243,7 @@
     </package>
     <package name="src.components.Cart.Checkout">
       <metrics statements="58" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Checkout.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Cart\Checkout\Checkout.tsx">
+      <file name="Checkout.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Cart\Checkout\Checkout.tsx">
         <metrics statements="58" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -307,7 +307,7 @@
     </package>
     <package name="src.components.Cart.QuantityPicker">
       <metrics statements="63" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="QuantityPicker.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Cart\QuantityPicker\QuantityPicker.tsx">
+      <file name="QuantityPicker.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Cart\QuantityPicker\QuantityPicker.tsx">
         <metrics statements="63" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -376,7 +376,7 @@
     </package>
     <package name="src.components.Forms">
       <metrics statements="160" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="CheckoutForm.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Forms\CheckoutForm.tsx">
+      <file name="CheckoutForm.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Forms\CheckoutForm.tsx">
         <metrics statements="160" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -542,7 +542,7 @@
     </package>
     <package name="src.components.NudgeMessage">
       <metrics statements="54" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="NudgeQuantityRebate.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\NudgeMessage\NudgeQuantityRebate.tsx">
+      <file name="NudgeQuantityRebate.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\NudgeMessage\NudgeQuantityRebate.tsx">
         <metrics statements="31" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -576,7 +576,7 @@
         <line num="30" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
       </file>
-      <file name="NudgeUpSell.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\NudgeMessage\NudgeUpSell.tsx">
+      <file name="NudgeUpSell.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\NudgeMessage\NudgeUpSell.tsx">
         <metrics statements="23" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -605,7 +605,7 @@
     </package>
     <package name="src.components.Payment">
       <metrics statements="27" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="Payment.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Payment\Payment.tsx">
+      <file name="Payment.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Payment\Payment.tsx">
         <metrics statements="27" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -638,7 +638,7 @@
     </package>
     <package name="src.components.Utility">
       <metrics statements="28" coveredstatements="19" conditionals="3" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="fetchProducts.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\components\Utility\fetchProducts.tsx">
+      <file name="fetchProducts.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\components\Utility\fetchProducts.tsx">
         <metrics statements="28" coveredstatements="19" conditionals="3" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -672,7 +672,7 @@
     </package>
     <package name="src.contexts">
       <metrics statements="173" coveredstatements="85" conditionals="7" coveredconditionals="6" methods="19" coveredmethods="5"/>
-      <file name="CartContext.tsx" path="C:\Users\2100m\repos\Front-End-Web-Technology\src\contexts\CartContext.tsx">
+      <file name="CartContext.tsx" path="C:\Users\flere\IdeaProjects\Front-End-Web-Technology\src\contexts\CartContext.tsx">
         <metrics statements="173" coveredstatements="85" conditionals="7" coveredconditionals="6" methods="19" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
