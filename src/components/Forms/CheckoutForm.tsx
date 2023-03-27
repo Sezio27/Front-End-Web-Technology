@@ -42,11 +42,9 @@ const CheckoutForm = () => {
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-
         if(validZip) {
             navigate("/Checkout/Payment");
         }
-       
     }
 
 

@@ -4,7 +4,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { RoundToNearestHalf, CutToTwoDecimals } from "../../../Utilities/NumberUtitlity";
 import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/lockicon.png";
-import { BasketTotals } from "../../../Types/Types";
+
 
 import { useCartContext } from "../../../contexts/CartContext";
 
