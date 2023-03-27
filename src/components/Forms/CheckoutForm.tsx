@@ -22,6 +22,9 @@ const CheckoutForm = () => {
     });
   };
 
+
+
+  //TODO - update city immediately, and not on re-render
   useEffect(() => {
     if (userInfo.zipCode.length === 4) {
       console.log(zipsAndCities);
@@ -53,11 +56,12 @@ const CheckoutForm = () => {
     <div className="formContainer">
       <form className="theForm" onSubmit={handleSubmit}>
         <div className="formDivE">
-          <label className="formLabel">Country *</label>
+          <label className="formLabel" htmlFor="country">Country *</label>
           <input
             className="formInput"
             type="text"
             name="country"
+            id = "country"
             value={userInfo.country}
             onChange={(e) => updateUserInfo("country", e.target.value)}
             required
@@ -67,11 +71,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">ZIP code *</label>
+          <label className="formLabel" htmlFor="zip">ZIP code *</label>
           <input
             className="formInput"
             type="text"
             name="zip"
+            id = "zip"
             value={userInfo.zipCode}
             onChange={(e) => updateUserInfo("zipCode", e.target.value)}
             required
@@ -85,11 +90,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">City *</label>
+          <label className="formLabel" htmlFor="city">City *</label>
           <input
             className="formInput"
             type="text"
             name="city"
+            id = "city"
             value={userInfo.city}
             onChange={(e) => updateUserInfo("city", e.target.value)}
             required
@@ -98,11 +104,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Address line 1 *</label>
+          <label className="formLabel" htmlFor="address1" >Address line 1 *</label>
           <input
             className="formInput"
             type="text"
             name="address1"
+            id = "address1"
             value={userInfo.address1}
             onChange={(e) => updateUserInfo("address1", e.target.value)}
             required
@@ -110,33 +117,36 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Address line 2</label>
+          <label className="formLabel" htmlFor="address2" >Address line 2</label>
           <input
             className="formInput"
             type="text"
             name="address2"
+            id = "address2"
             value={userInfo.address2}
             onChange={(e) => updateUserInfo("address2", e.target.value)}
           />
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Billing Address</label>
+          <label className="formLabel" htmlFor="billingAddress">Billing Address</label>
           <input
             className="formInput"
             type="text"
-            name="bAddress"
+            name="billingAddress"
+            id = "billingAddress"
             value={userInfo.billingAddress}
             onChange={(e) => updateUserInfo("billingAddress", e.target.value)}
           />
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">First name *</label>
+          <label className="formLabel" htmlFor="firstName">First name *</label>
           <input
             className="formInput"
             type="text"
-            name="fName"
+            name="firstName"
+            id = "firstName"
             max="50"
             value={userInfo.firstName}
             onChange={(e) => updateUserInfo("firstName", e.target.value)}
@@ -146,11 +156,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Last name *</label>
+          <label className="formLabel" htmlFor="lastName">Last name *</label>
           <input
             className="formInput"
             type="text"
-            name="lName"
+            name="lastName"
+            id = "lastName"
             max="50"
             value={userInfo.lastName}
             onChange={(e) => updateUserInfo("lastName", e.target.value)}
@@ -160,11 +171,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Phone *</label>
+          <label className="formLabel" htmlFor="phone">Phone *</label>
           <input
             className="formInput"
             type="tel"
             name="phone"
+            id = "phone"
             value={userInfo.phone}
             onChange={(e) => updateUserInfo("phone", e.target.value)}
             required
@@ -173,11 +185,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Email *</label>
+          <label className="formLabel" htmlFor="email">Email *</label>
           <input
             className="formInput"
             type="email"
             name="email"
+            id = "email"
             value={userInfo.email}
             onChange={(e) => updateUserInfo("email", e.target.value)}
             required
@@ -185,11 +198,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Company name</label>
+          <label className="formLabel" htmlFor="companyName">Company name</label>
           <input
             className="formInput"
             type="text"
-            name="cName"
+            name="companyName"
+            id = "companyName"
             max="40"
             value={userInfo.companyName}
             onChange={(e) => updateUserInfo("companyName", e.target.value)}
@@ -197,11 +211,12 @@ const CheckoutForm = () => {
         </div>
 
         <div className="formDivE">
-          <label className="formLabel">Company VAT</label>
+          <label className="formLabel" htmlFor="companyVat">Company VAT</label>
           <input
             className="formInput"
             type="text"
-            name="cVat"
+            name="companyVat"
+            id = "companyVat"
             value={userInfo.companyVAT}
             onChange={(e) => updateUserInfo("companyVAT", e.target.value)}
             pattern="\d{8}"
