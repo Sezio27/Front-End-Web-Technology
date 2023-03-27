@@ -43,7 +43,7 @@ const BasketItem = ({ item }: { item: Item }) => {
     );
   };
 
-  const showQuantityRebate = rebateQuantity && rebatePercent;
+  const showQuantityRebate = rebateQuantity !== 0 && rebateQuantity && rebatePercent;
 
   const showUpSell = upsellProductId && !isProductInBasket(upsellProductId);
 
@@ -56,7 +56,7 @@ const BasketItem = ({ item }: { item: Item }) => {
         <div className="rowHeaderInnerContainer">
           <div className="rowHeaderSection">{name}</div>
           <div className="rowHeaderSection">
-            {showQuantityRebate && (
+          {showQuantityRebate && (
               <NudgeQuantityRebate
                 rebateQuantity={rebateQuantity!}
                 rebatePercentDec={rebatePercent!}
@@ -73,7 +73,7 @@ const BasketItem = ({ item }: { item: Item }) => {
       </td>
       <td className="priceContainer">
         {getSubtotal() + " " + currency}
-        {activeDiscount && <div>{`${subTotalWithSavings},- Saved!`}</div>}
+        {(activeDiscount && subTotalWithSavings !==0) && <div>{`${subTotalWithSavings},- Saved!`}</div>}
       </td>
       <td className="removeItemContainer">{CloseButton()}</td>
     </tr>
