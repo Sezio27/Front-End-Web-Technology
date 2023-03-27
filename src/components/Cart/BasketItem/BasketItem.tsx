@@ -1,6 +1,6 @@
 import { IoCloseSharp } from "react-icons/io5";
 import { Item } from "../../../Types/Types";
-import { RoundToNearestHalf, CutToTwoDecimals } from "../../../Utilities/NumberUtitlity";
+import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
 import { calculateItemDiscount } from "../../../Utilities/SavingsUtility";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";

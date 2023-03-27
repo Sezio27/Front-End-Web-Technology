@@ -3,15 +3,13 @@ import Checkout from "./Checkout/Checkout";
 import "./Cart.css";
 import "../../css/LoadingLogo.css"
 import reload from "../../assets/reload.png"
-import { calculateItemDiscount } from "../../Utilities/SavingsUtility";
 import { useCartContext } from "../../contexts/CartContext";
 import { useEffect, useState } from "react";
-import { fetchProductList } from "../Utility/fetchProducts";
 
 
 
 const Cart = () => {
-  const { basketItems, setBasketItems } = useCartContext();
+  const { basketItems } = useCartContext();
 
   const [loading, setLoading] = useState<boolean>(true);
 

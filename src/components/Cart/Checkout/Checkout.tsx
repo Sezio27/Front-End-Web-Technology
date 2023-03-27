@@ -1,7 +1,7 @@
 import "./Checkout.css";
 // import lockLogo from "./assets/lockicon.png"
 import { FaChevronRight } from "react-icons/fa";
-import { RoundToNearestHalf, CutToTwoDecimals } from "../../../Utilities/NumberUtitlity";
+import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
 import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/lockicon.png";
 import { BasketTotals } from "../../../Types/Types";
@@ -20,7 +20,7 @@ const Checkout = ({ currency }: ICheckout) => {
   const promtSavings = () => {
     if (totalPrice == undefined) return; 
     return totalDiscountActive
-    ? `You've shaved an extra 10% off your order!`
+    ? `You've shaved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
@@ -32,11 +32,11 @@ const Checkout = ({ currency }: ICheckout) => {
       </div>
       <div className="textSection">
         Total price of items:
-        <div className="textEnd">{`${CutToTwoDecimals(totalPrice)},- ${currency}`}</div>
+        <div className="textEnd">{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
       </div>
       {totalSavings > 0 && (
         <div className="savingsText">
-          <span>Total price savings</span>
+          <span>Price savings of items</span>
           <div className="savingsTextEnd">{`${totalSavings},-`}</div>
         </div>
       )}

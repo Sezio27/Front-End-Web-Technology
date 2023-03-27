@@ -32,6 +32,7 @@
 }
 
 .quantityContainer {
+  place-content: center;
 }
 
 .priceContainer {
