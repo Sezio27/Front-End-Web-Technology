@@ -72,7 +72,7 @@ export const useCartContext = () => {
 
 //CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
-  let products: Product[];
+  const [products, setProducts] = useState<Product[]>([])
   const [basketItems, setBasketItems] = useState<Item[]>([]);
   const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
   const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>([]);
@@ -82,27 +82,29 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     // Fetching items from custom build method.
     const fetchItems = async () => {
       console.log("FETCHING")
-      const productList = await fetchProductList();
-      products = productList;
-      const items: Item[] = products.map((e) => {
-        return { product: e, quantity: 0 };
-      });
-      console.log(items)
-      console.log("SETTING ITEMS")
-      await delay(2000);
-      setBasketItems(items);
+      const productList: Product[] = await fetchProductList();
+      await delay(1000)
+      setProducts(productList);
     };
     fetchItems();
   }, []);
 
+  useEffect(() => {
+      const tempBasketItems = products.map((product) => ({
+        product: { ...product },
+        quantity: 0,
+      }));
+      setBasketItems(tempBasketItems);
+    }, [products]);
+
+
+ 
   const fetchZips = async () => {
     try {
       const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
       const response = await fetch(DK_ZIP_URL);
       const data = await response.json();
-      console.log(data)
       setZipsAndCities(data.map((item: { nr: string, navn: string }) => ({ zip: item.nr, city: item.navn })))
-      console.log("done", zipsAndCities)
     } catch (error) {
       console.log(error)
     }
@@ -179,7 +181,8 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   };
 
   const getProductName = (productId: string) => {
-    return products.find((item) => item.id == productId)?.name;
+    console.log(products)
+      return products.find((item) => item.id == productId)?.name;
   };
 
   const onQuantityChange = (productId: string, quantity: number) => {

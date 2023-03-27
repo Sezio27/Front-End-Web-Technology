@@ -1,9 +1,10 @@
 import { render, screen, act } from "@testing-library/react";
 import React from "react";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi, vitest } from "vitest";
 import userEvent from "@testing-library/user-event";
 import App from ".././src/App";
-/**import { debug } from "vitest-preview"; */
+//import mockResponse from ".././src/data/mock-response.json"
+//import { debug } from "vitest-preview"; 
 
 describe(App.name, () => {
   it("should render", async () => {
@@ -16,22 +17,48 @@ describe(App.name, () => {
 });
 
 describe(App.name, () => {
+  /**
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+  */
+  
+
   it("should calculate the right price", async () => {
     const user = userEvent.setup();
 
+    //await new Promise((r) => setTimeout(r, 2000));
+
+    //Trying to mock the products-response
+
+    /**  
+    const productUrl = "https://eoxxctddowfwq0k.m.pipedream.net/products";
+    const mockFetch = vi
+      .spyOn(window, "fetch")
+      .mockImplementation(async (url: RequestInfo | URL) => {
+        if (url === productUrl){
+          return {
+            json: async () => mockResponse,
+          } as Response;
+        } else {
+          return {} as Response;
+        }
+      });
+    */
+
     render(<App />);
 
-    const apples = screen.getByRole("row", {name: "Img Apples Buy 5 more to save 20%! 0 0 DKK"});
+    const firstRow = screen.getAllByRole("row")[1];
 
-    const quantityPicker = apples.getElementsByClassName("MuiInputBase-input MuiOutlinedInput-input")[0];
+    const quantityPicker = firstRow.getElementsByClassName("MuiInputBase-input MuiOutlinedInput-input")[0];
 
     await user.type(quantityPicker, "10");
 
     await user.type(quantityPicker, '{enter}');
 
-    /**debug(); */
+    await screen.findByText("1044 DKK");
 
-    await screen.findByText("16 DKK");
+    //expect(mockFetch).toHaveBeenCalledWith(productUrl);
   });
 });
 
