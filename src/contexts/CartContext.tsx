@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, FC } from "react";
-import products from "../data/products.json";
-import { Item, BasketTotals, Product } from "../Types/Types";
+import { Item, BasketTotals, UserInfo, Product } from "../Types/Types";
 import { calculateItemDiscount } from "../Utilities/SavingsUtility";
 import { fetchProductList } from "../components/Utility/fetchProducts";
 
@@ -11,13 +10,34 @@ interface CartProviderProps {
 interface ICartContext {
   basketItems: Item[];
   setBasketItems: (basketItems: Item[]) => void;
+  zipsAndCities: { zip: string, city: string }[];
+  setZipsAndCities: (zipsAndCities: { zip: string, city: string }[]) => void
+  fetchZips: () => void;
   removeFromCart: (productId: string) => void;
   changeToUpsell: (productId: string) => void;
   calculateTotals: () => BasketTotals;
   getProductName: (productId: string) => string | undefined;
   onQuantityChange: (productId: string, quantity: number) => void;
-  isProductInBasket: (productId: string) => boolean;
+  isProductInBasket: (productId: string) => boolean
+  userInfo: UserInfo;
+  setUserInfo: (userInfo: UserInfo) => void;
+
 }
+const initialUserInfo: UserInfo = {
+  country: "Denmark",
+  zipCode: "",
+  city: "",
+  address1: "",
+  address2: "",
+  billingAddress: "",
+  firstName: "",
+  lastName: "",
+  phone: "",
+  email: "",
+  companyName: "",
+  companyVAT: "",
+};
+
 
 // Custom wait method to showcase icon spinning
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -25,9 +45,12 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 //DEFINING CART CONTEXT AND CREATING IT
 const CartContext = createContext<ICartContext>({
   basketItems: [],
-  setBasketItems: () => {},
-  removeFromCart: () => {},
-  changeToUpsell: () => {},
+  setBasketItems: () => { },
+  zipsAndCities: [],
+  setZipsAndCities: () => { },
+  fetchZips: () => { },
+  removeFromCart: () => { },
+  changeToUpsell: () => { },
   calculateTotals: () => ({
     totalQuantity: 0,
     totalPrice: 0,
@@ -37,7 +60,10 @@ const CartContext = createContext<ICartContext>({
   getProductName: () => undefined,
   onQuantityChange: () => {},
   isProductInBasket: () => false,
+  userInfo: initialUserInfo,
+  setUserInfo: () => { }
 });
+
 
 //RETURN CART CONTEXT FOR USE
 export const useCartContext = () => {
@@ -48,10 +74,12 @@ export const useCartContext = () => {
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   let products: Product[];
   const [basketItems, setBasketItems] = useState<Item[]>([]);
+  const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
+  const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>([]);
+
 
   useEffect(() => {
     // Fetching items from custom build method.
-    
     const fetchItems = async () => {
       console.log("FETCHING")
       const productList = await fetchProductList();
@@ -66,6 +94,20 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     };
     fetchItems();
   }, []);
+
+  const fetchZips = async () => {
+    try {
+      const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
+      const response = await fetch(DK_ZIP_URL);
+      const data = await response.json();
+      console.log(data)
+      setZipsAndCities(data.map((item: { nr: string, navn: string }) => ({ zip: item.nr, city: item.navn })))
+      console.log("done", zipsAndCities)
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
   const removeFromCart = (productId: string) => {
     const updatedCart = basketItems.filter((item) => item.product.id !== productId);
@@ -157,17 +199,24 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        basketItems,
-        setBasketItems,
-        removeFromCart,
-        changeToUpsell,
-        calculateTotals,
-        getProductName,
-        onQuantityChange,
-        isProductInBasket,
+        basketItems, 
+        setBasketItems, 
+        zipsAndCities, 
+        setZipsAndCities, 
+        fetchZips, 
+        removeFromCart, 
+        changeToUpsell, 
+        calculateTotals, 
+        getProductName, 
+        onQuantityChange, 
+        isProductInBasket, 
+        userInfo, 
+        setUserInfo
       }}
     >
       {children}
     </CartContext.Provider>
   );
 };
+  
+
