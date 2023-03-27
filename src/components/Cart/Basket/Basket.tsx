@@ -1,6 +1,7 @@
 import BasketItem from "../BasketItem/BasketItem";
 import "./Basket.css";
 import { useCartContext } from "../../../contexts/CartContext";
+import { Item } from "../../../Types/Types";
 
 const Basket = () => {
   const { basketItems } = useCartContext()
@@ -16,7 +17,7 @@ const Basket = () => {
         </tr>
       </thead>
       <tbody>
-        {basketItems.map((item) => (
+        {basketItems.map((item:Item) => (
           <BasketItem
             key={item.product.id}
             item={item}

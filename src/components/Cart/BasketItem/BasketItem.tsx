@@ -9,29 +9,30 @@ import "./BasketItem.css";
 
 import { useCartContext } from "../../../contexts/CartContext";
 
-
-const BasketItem = ({item}: {item: Item}) => {
-
-  const {removeFromCart, isProductInBasket, getProductName} = useCartContext()
+const BasketItem = ({ item }: { item: Item }) => {
+  const { removeFromCart, isProductInBasket, getProductName } = useCartContext();
 
   const { id, name, price, currency, rebateQuantity, rebatePercent, upsellProductId } = item.product;
-  const quantity = item.quantity
+  const quantity = item.quantity;
 
   let activeDiscount = false;
   let subTotalWithSavings = 0;
 
   const getSubtotal = () => {
     let subTotal = price * quantity;
-    if(rebateQuantity == null || rebatePercent == null) return subTotal;
-    
-    activeDiscount = quantity >= rebateQuantity ? true : false
-    
+    if (rebateQuantity == null || rebatePercent == null) return subTotal;
+
+    activeDiscount = quantity >= rebateQuantity ? true : false;
+
     if (activeDiscount) {
-      
-      subTotalWithSavings = calculateItemDiscount({subTotal: subTotal, itemQuantity: undefined, rebatePercentage: rebatePercent})
-    } else subTotalWithSavings = 0
-    
-    return activeDiscount ? subTotal - subTotalWithSavings : subTotal
+      subTotalWithSavings = calculateItemDiscount({
+        subTotal: subTotal,
+        itemQuantity: undefined,
+        rebatePercentage: rebatePercent,
+      });
+    } else subTotalWithSavings = 0;
+
+    return activeDiscount ? subTotal - subTotalWithSavings : subTotal;
   };
 
   const CloseButton = () => {
@@ -49,7 +50,9 @@ const BasketItem = ({item}: {item: Item}) => {
   return (
     <tr key={id} className="rowWrapper">
       <th className="productContainer">
-        <div className="rowHeaderImage"> Img </div>
+        <div className="rowHeaderImage">
+          <img className="image" src={item.product.imageUrl} />
+        </div>
         <div className="rowHeaderInnerContainer">
           <div className="rowHeaderSection">{name}</div>
           <div className="rowHeaderSection">
@@ -61,22 +64,16 @@ const BasketItem = ({item}: {item: Item}) => {
                 price={price}
               />
             )}
-            {showUpSell && (
-              <NudgeUpSell productId={id} upSellName={getProductName(upsellProductId)!}/>
-            )}
+            {showUpSell && <NudgeUpSell productId={id} upSellName={getProductName(upsellProductId)!} />}
           </div>
         </div>
       </th>
       <td className="quantityContainer">
-        <QuantityPicker productId={id} quantity={quantity}/>
+        <QuantityPicker productId={id} quantity={quantity} />
       </td>
       <td className="priceContainer">
         {getSubtotal() + " " + currency}
-        { activeDiscount && 
-        <div>
-          {`${subTotalWithSavings},- Saved!`}
-        </div>
-        }
+        {activeDiscount && <div>{`${subTotalWithSavings},- Saved!`}</div>}
       </td>
       <td className="removeItemContainer">{CloseButton()}</td>
     </tr>

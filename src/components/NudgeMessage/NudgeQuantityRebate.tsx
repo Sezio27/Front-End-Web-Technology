@@ -8,9 +8,10 @@ interface INudgeQuantityRebate {
 const NudgeQuantityRebate = ({ rebateQuantity, rebatePercentDec, quantity, price }: INudgeQuantityRebate) => {
 
     const rebateApplicable = rebateQuantity > quantity
-    const rebatePercent = rebatePercentDec * 100
+    // const rebatePercent = rebatePercentDec * 100
+    const rebatePercent = rebatePercentDec
     const savedAmount = price * rebateQuantity * (1 - rebatePercentDec)
-
+    console.log("REBATE PERCENT: " + rebatePercent, "\nBASE PERCENT: " + rebatePercentDec)
     return (
         <>
             {rebateApplicable ?
