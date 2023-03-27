@@ -8,7 +8,7 @@ interface INudgeMessage {
   isProductInBasket: (id: string) => boolean
   getProductName: (id: string) => string | null
 }
-
+/*
 const NudgeMessage = ({ product, quantity, changeToUpsell, isProductInBasket, getProductName }: INudgeMessage) => {
 
   const rebateQuantity = product.rebateQuantity!
@@ -16,7 +16,7 @@ const NudgeMessage = ({ product, quantity, changeToUpsell, isProductInBasket, ge
 
 
 
-  /*
+
    const quantityRebateOption = () => {
 
     const rebatePercent = rebatePercentDec * 100
@@ -38,7 +38,7 @@ const NudgeMessage = ({ product, quantity, changeToUpsell, isProductInBasket, ge
     )
    
   }
-*/
+
   const quantityRebateOption = () => {
 
     const rebatePercent = rebatePercentDec * 100
@@ -91,4 +91,4 @@ const NudgeMessage = ({ product, quantity, changeToUpsell, isProductInBasket, ge
 
 }
 
-export default NudgeMessage;
+export default NudgeMessage;*/
