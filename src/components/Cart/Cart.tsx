@@ -3,11 +3,21 @@ import Checkout from "./Checkout/Checkout";
 import "./Cart.css";
 import { calculateItemDiscount } from "../../Utilities/SavingsUtility";
 import { useCartContext } from "../../contexts/CartContext";
+import { useState } from "react";
 
 
 const Cart = () => {
-  const { basketItems } = useCartContext();
+  const { basketItems, fetchZips } = useCartContext();
+ 
+  const [firstTime, setFirstTime] = useState(true)
 
+  // cart (sand) -> checkout (falsk) -> user klikker tilbage, bliver sand igen
+
+  if (firstTime) {
+    fetchZips()
+    setFirstTime(false)
+  }
+  
   return (
     <div className="cartContainer">
       {basketItems.length > 0 ? (

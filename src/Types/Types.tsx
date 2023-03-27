@@ -40,6 +40,11 @@ export type UserInfo = {
     companyName: string
     companyVAT: string
 }
+
+export type ZipCity = {
+  code: string
+  name: string
+}
 export enum SavingsActionKind {
     INCREASE = "INCREASE",
     DECREASE = "DECREASE",

@@ -32,6 +32,7 @@ function App() {
                 </div>
               }
             />
+            
             <Route path="/Checkout" element={<CheckoutForm />} />
             <Route path="/Checkout/Payment" element={<Payment/>} />
             
