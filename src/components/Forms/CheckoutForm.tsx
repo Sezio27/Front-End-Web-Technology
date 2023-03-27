@@ -66,7 +66,7 @@ const CheckoutForm = () => {
         localStorage.setItem('email', email);
        // window.location.href = '/Checkout/Payment';
         localStorage.setItem('name', fName);
-       // use usenavigate to  another page
+       // 
         navigate("/Checkout/Payment");
     }
 

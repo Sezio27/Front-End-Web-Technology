@@ -11,19 +11,20 @@ const Payment = () => {
     <div className="PaymentContainer">
       <div className="ContentContainer">
         <h1>Payment</h1>
-        <form>
-          <div className="checkboxes">
-            <div>
+          <form className="checkboxValue">
+            <div className="checkboxes">
+              <div>
               <label>
-                <input type="checkbox" />
-                //Please accept our Terms and conditions
-              </label>
-            </div>
-            <div>
-              <label>
+                <input type="checkbox" required />
+                  Please accept our Terms and conditions
+                </label>
+              </div>
+              <div>
+                 <label>
                 <input type="checkbox" />
                 Would you like to recieve our newsletter?
               </label>
+              
             </div>
           </div>
 
@@ -33,14 +34,28 @@ const Payment = () => {
               <textarea rows="8" cols="50"></textarea>
             </label>
           </div>
-          
+
           <div className="submit">
             <button type="submit">Submit</button>
           </div>
-        </form>
+          </form>
+
       </div>
     </div> 
   );
+/*   const checkboxValue = document.querySelector('from');
+
+        checkboxValue.addEventListner('submit', (e) => {
+           e.preventDefault();
+
+          document.querySelectorAll('[type="checkbox"]').forEach(item => {
+            if (item.checked === true ){
+                checkboxes.push(itemsValue);
+      }
+
+  })
+      consol.log(checkboxes); */
 };
+/* }; */
 
 export default Payment;
