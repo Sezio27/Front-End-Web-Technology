@@ -27,7 +27,6 @@ const CheckoutForm = () => {
   //TODO - update city immediately, and not on re-render
   useEffect(() => {
     if (userInfo.zipCode.length === 4) {
-      console.log(zipsAndCities);
       const existingZipCityIndex = zipsAndCities.findIndex(
         (item: { zip: string; city: string }) => item.zip === userInfo.zipCode
       );

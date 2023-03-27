@@ -31,7 +31,7 @@ const Payment = () => {
           <div className="comment">
             <label>
               <h2>Comments:</h2>
-              <textarea rows="8" cols="50"></textarea>
+              <textarea rows={8} cols={50}></textarea>
             </label>
           </div>
 
