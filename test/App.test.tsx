@@ -3,6 +3,7 @@ import React from "react";
 import { afterEach, describe, expect, it, vi, vitest } from "vitest";
 import userEvent from "@testing-library/user-event";
 import App from ".././src/App";
+import CheckoutForm from "../src/components/Forms/CheckoutForm";
 //import mockResponse from ".././src/data/mock-response.json"
 //import { debug } from "vitest-preview"; 
 

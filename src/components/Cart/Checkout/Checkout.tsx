@@ -16,13 +16,17 @@ const Checkout = ({ currency }: ICheckout) => {
   const {calculateTotals} = useCartContext()
 
   const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = calculateTotals()
-  
-  const promtSavings = () => {
+
+    const promtSavings = () => {
     if (totalPrice == undefined) return; 
     return totalDiscountActive
     ? `You've shaved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
+
+    const handleCheckout = () => {
+        localStorage.setItem("totalPrice", String(totalPrice));
+    };
 
   return (
     <div className="primaryContainer">
@@ -43,7 +47,7 @@ const Checkout = ({ currency }: ICheckout) => {
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
         <Link to="/Checkout">
-          <button className="checkoutButton">
+          <button className="checkoutButton" onClick={handleCheckout}>
             <div className="checkoutButtonInside">
               <img src={LockIcon} className="checkoutButtonIcon" />
               <span className="checkoutButtonText">Checkout</span>
