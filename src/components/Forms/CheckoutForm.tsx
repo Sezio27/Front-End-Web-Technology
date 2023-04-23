@@ -47,6 +47,7 @@ const CheckoutForm = () => {
 
       localStorage.setItem("email", userInfo.email);
       localStorage.setItem("name", userInfo.firstName);
+      localStorage.setItem("name2", userInfo.lastName);
       localStorage.setItem("address1", userInfo.address1);
 
       navigate("/Checkout/Payment");
