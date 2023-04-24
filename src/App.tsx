@@ -11,7 +11,7 @@ function App() {
 
  
   return (
-    <CartProvider>
+    <CartProvider value={[]}>
       <BrowserRouter>
         <Routes>
             <Route
