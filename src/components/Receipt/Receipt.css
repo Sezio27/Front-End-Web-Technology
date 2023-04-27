@@ -17,6 +17,11 @@
     position: relative;
 }
 
+.rabat {
+    font-size: 1em;
+    text-align: right;
+}
+
 .total {
     font-size: 1.1em;
     text-align: right;
@@ -57,12 +62,10 @@ p {
 .ItemsTable td {
     padding: 10px;
     text-align: left;
+    border-bottom: 1px solid #ccc;
+
 }
 
 .ItemsTable th {
     background-color: #4CAF50;
-}
-
-.ItemsTable td {
-    border-bottom: 1px solid #ccc;
 }

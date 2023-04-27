@@ -55,6 +55,7 @@ const BasketItem = ({ item }: { item: Item }) => {
 
     if (existingItem) {
       existingItem.quantity = quantity;
+      existingItem.price = price;
     } else {
       itemsInCart.push({
         id,
@@ -65,7 +66,7 @@ const BasketItem = ({ item }: { item: Item }) => {
     }
 
     localStorage.setItem("itemsInCart", JSON.stringify(itemsInCart));
-  }, [quantity, price]);
+  }, [quantity]);
 
   return (
     <tr key={id} className="rowWrapper">

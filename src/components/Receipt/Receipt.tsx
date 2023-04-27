@@ -19,6 +19,14 @@ const Receipt = () => {
 
     const itemsInCart = JSON.parse(localStorage.getItem("itemsInCart") || "[]");
 
+    const itemsPrice = itemsInCart
+        .filter((item: any) => item.quantity > 0)
+        .reduce((total: number, item: any) => {
+            return total + item.price * item.quantity;
+        }, 0);
+
+    const rebate = totalPrice - itemsPrice;
+
     return (
         <div className="ReceiptContainer">
 
@@ -51,6 +59,7 @@ const Receipt = () => {
                     </tbody>
                 </table>
 
+                <p className="rabat">Rebate: {rebate.toFixed(1)} DKK</p>
                 <p className="total">Total price paid: {totalPrice} DKK</p>
                 <p className="date">Date of receipt: {date}</p>
             </div>
