@@ -1,7 +1,11 @@
 import { createContext, useContext, useState, useEffect, ReactNode, FC } from "react";
 import { Item, BasketTotals, UserInfo, Product } from "../Types/Types";
 import { calculateItemDiscount } from "../Utilities/SavingsUtility";
-import { fetchProductList } from "../components/Utility/fetchProducts";
+import { fetchProductList} from "../components/Utility/fetchProducts";
+
+
+import { fetchData } from "../components/Utility/fetchData";
+
 import oldProductList from "../data/products.json"
 
 
@@ -15,7 +19,7 @@ interface ICartContext {
   setBasketItems: (basketItems: Item[]) => void;
   zipsAndCities: { zip: string, city: string }[];
   setZipsAndCities: (zipsAndCities: { zip: string, city: string }[]) => void
-  fetchZips: () => void;
+  fetchZips: () => void
   removeFromCart: (productId: string) => void;
   changeToUpsell: (productId: string) => void;
   calculateTotals: () => BasketTotals;
@@ -76,45 +80,89 @@ export const useCartContext = () => {
 //CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
 export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
   const [products, setProducts] = useState<Product[]>([])
-  const [basketItems, setBasketItems] = useState<Item[]>(value);
-  const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
-  const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>([]);
 
+  const [basketItems, setBasketItems] = useState<Item[]>(() => {
+    const items = localStorage.getItem("basketItems"); 
+    return items ? JSON.parse(items) : value;
+  });
+
+  const [userInfo, setUserInfo] = useState<UserInfo>(() => {
+    const info = localStorage.getItem("userInfo");
+    return info ? JSON.parse(info) : initialUserInfo;
+  });
+
+  const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>(() => {
+    const zipCities = localStorage.getItem("ZipCities"); 
+    return zipCities ? JSON.parse(zipCities) : [];
+  });;
+
+
+  //Save userInfo in localStorage
+  useEffect (() => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+  }, [userInfo])
+
+  //Save BasketItems in localStorage
+  useEffect (() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems])
+
+  const [zipCodesFetched, setZipCodesFetched] = useState(false);
+
+
+  useEffect (() => {
+    setZipsAndCities(zipsAndCities)
+  }, [zipsAndCities])
 
   useEffect(() => {
     // Fetching items from custom build method.
-    const fetchItems = async () => {
+    const fetchProducts = async () => {
       console.log("FETCHING PRODUCTS")
-      const productList: Product[] = await fetchProductList();
-      // const productList: Product[] = oldProductList
-      // await delay(1000)
-      console.log("LENGTH OF PRODUCTS" + productList.length)
-      
+      const productList = await fetchData("https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json");
       setProducts(productList);
+    
     };
-    fetchItems();
+    fetchProducts();
   }, []);
 
+
+  //Initializing basketItems - to default if not saved in localStorage
   useEffect(() => {
-      const tempBasketItems = products.map((product) => ({
-        product: { ...product },
-        quantity: 0,
-      }));
-      setBasketItems(tempBasketItems);
+      if (JSON.stringify(basketItems) === JSON.stringify(value)) {
+        const tempBasketItems = products.map((product) => ({
+          product: { ...product },
+          quantity: 0,
+        }));
+        setBasketItems(tempBasketItems);
+      } 
     }, [products]);
 
 
- 
-  const fetchZips = async () => {
-    try {
-      const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
-      const response = await fetch(DK_ZIP_URL);
-      const data = await response.json();
-      setZipsAndCities(data.map((item: { nr: string, navn: string }) => ({ zip: item.nr, city: item.navn })))
-    } catch (error) {
-      console.log(error)
-    }
+    useEffect(() => {
 
+        const fetchZips = async () => {
+          try {
+            console.log("FETCHING ZIP")
+            const data = await fetchData("https://api.dataforsyningen.dk/postnumre");
+            const zipcity = data.map((item: { nr: string, navn: string }) => ({ zip: item.nr, city: item.navn }))
+            localStorage.setItem("ZipCities", JSON.stringify(zipcity))
+
+            setZipsAndCities(zipcity)
+            setZipCodesFetched(true);
+          } catch (error) {
+            console.log(error)
+          }
+        }
+
+        if (!zipCodesFetched) {
+          fetchZips();
+        }
+
+    }, [zipCodesFetched]);
+
+
+  const fetchZips = () => {
+    setZipCodesFetched(false);
   }
 
   const removeFromCart = (productId: string) => {
@@ -212,7 +260,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
         setBasketItems, 
         zipsAndCities, 
         setZipsAndCities, 
-        fetchZips, 
+        fetchZips,
         removeFromCart, 
         changeToUpsell, 
         calculateTotals, 

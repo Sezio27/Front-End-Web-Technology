@@ -9,6 +9,11 @@ export type Product = {
   imageUrl: string | undefined
 };
 
+export type ZipData = {
+    nr: string,
+    navn: string,
+}
+
 export type Item = {
   product: Product
   quantity: number;

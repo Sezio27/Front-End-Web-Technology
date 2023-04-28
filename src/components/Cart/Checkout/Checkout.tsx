@@ -2,8 +2,8 @@ import "./Checkout.css";
 // import lockLogo from "./assets/lockicon.png"
 import { FaChevronRight } from "react-icons/fa";
 import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
-import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/lockicon.png";
+import {handleNavigation} from "../../../Navigate";
 
 
 import { useCartContext } from "../../../contexts/CartContext";
@@ -13,6 +13,7 @@ interface ICheckout {
 }
 
 const Checkout = ({ currency }: ICheckout) => {
+ 
   const {calculateTotals} = useCartContext()
 
   const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = calculateTotals()
@@ -42,14 +43,21 @@ const Checkout = ({ currency }: ICheckout) => {
       )}
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
-        <Link to="/Checkout">
-          <button className="checkoutButton">
-            <div className="checkoutButtonInside">
-              <img src={LockIcon} className="checkoutButtonIcon" />
-              <span className="checkoutButtonText">Checkout</span>
-            </div>
-          </button>
-        </Link>
+          
+            <button className="checkoutButton" onClick={() => handleNavigation("/Checkout")}>
+              <div className="checkoutButtonInside">
+                <img src={LockIcon} className="checkoutButtonIcon" />
+                <span className="checkoutButtonText">Checkout</span>
+              </div>
+            </button>
+         
+
+          
+            <button className="checkoutButton" onClick={() => handleNavigation("/Payment")}>
+              yo
+            </button>
+        
+        
       </div>
     </div>
   );

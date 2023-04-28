@@ -1,20 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent } from "react";
 import "./CheckoutForm.css";
-import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext";
 import { UserInfo } from "../../Types/Types";
+import {handleNavigation} from "../../Navigate";
+import reload from "../../assets/reload.png"
 
 const CheckoutForm = () => {
   const { userInfo, setUserInfo, zipsAndCities, fetchZips } = useCartContext();
-  const navigate = useNavigate();
   const [validZip, setValidZip] = useState(true);
-  const [firstTime, setFirstTime] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  if (firstTime) {
-    fetchZips();
-    setFirstTime(false);
-  }
 
+    
+  useEffect(() => {
+    if(zipsAndCities.length > 0 ) {
+      setLoading(false)
+    } else {
+      fetchZips
+    }
+  }, [zipsAndCities]);
+
+  
   const updateUserInfo = (key: keyof UserInfo, value: string) => {
     setUserInfo({
       ...userInfo,
@@ -23,11 +29,10 @@ const CheckoutForm = () => {
   };
 
 
-
   //TODO - update city immediately, and not on re-render
   useEffect(() => {
     if (userInfo.zipCode.length === 4) {
-      console.log(zipsAndCities);
+     
       const existingZipCityIndex = zipsAndCities.findIndex(
         (item: { zip: string; city: string }) => item.zip === userInfo.zipCode
       );
@@ -38,22 +43,22 @@ const CheckoutForm = () => {
         setValidZip(false);
       }
     }
-  }, [userInfo.zipCode]);
+  }, [userInfo.zipCode, zipsAndCities]);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-
-    //
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault()
     if (validZip) {
       localStorage.setItem("email", userInfo.email);
-      // window.location.href = '/Checkout/Payment';
+      //window.location.href = '/Checkout/Payment';
       localStorage.setItem("name", userInfo.firstName);
-      navigate("/Checkout/Payment");
+      
+      handleNavigation("/Payment")
     }
   };
 
   return (
     <div className="formContainer">
+      {loading ? <img src={reload} className="loading-logo"/> :
       <form className="theForm" onSubmit={handleSubmit}>
         <div className="formDivE">
           <label className="formLabel" htmlFor="country">Country *</label>
@@ -224,10 +229,14 @@ const CheckoutForm = () => {
         </div>
 
         <br />
-
         <button className="formButton">To payment</button>
+        
       </form>
+            
+          }
     </div>
+    
+    
   );
 };
 

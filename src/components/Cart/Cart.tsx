@@ -12,6 +12,7 @@ const Cart = () => {
 
   const [loading, setLoading] = useState<boolean>(true);
 
+  console.log(basketItems.length)
   useEffect(() => {
     if(basketItems.length > 0 ) setLoading(false)
   }, [basketItems]);
