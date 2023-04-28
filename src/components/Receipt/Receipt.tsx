@@ -59,8 +59,8 @@ const Receipt = () => {
                     </tbody>
                 </table>
 
-                <p className="rabat">Rebate: {rebate.toFixed(1)} DKK</p>
-                <p className="total">Total price paid: {totalPrice} DKK</p>
+                <p className="rabat">Rebate: {rebate.toFixed(2)} DKK</p>
+                <p className="total">Total price paid: {totalPrice.toFixed(2)} DKK</p>
                 <p className="date">Date of receipt: {date}</p>
             </div>
 
