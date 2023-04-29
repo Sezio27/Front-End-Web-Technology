@@ -3,10 +3,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CheckoutForm from "./components/Forms/CheckoutForm";
 import { CartProvider } from "./contexts/CartContext";
 import Payment from "./components/Payment/Payment";
+import Receipt from "./components/Receipt/Receipt";
 import products from "./data/products.json";
 import { Item } from "./Types/Types";
 import {useState, useEffect} from "react"
 import CheckoutResponsive from "./components/Cart/Checkout/CheckoutResponsive";
+
 
 function App() {
 
@@ -37,6 +39,7 @@ function App() {
             
             <Route path="/Checkout" element={<CheckoutForm />} />
             <Route path="/Checkout/Payment" element={<Payment/>} />
+            <Route path="/Checkout/Receipt" element={<Receipt/>} />
             
         </Routes>
       </BrowserRouter>

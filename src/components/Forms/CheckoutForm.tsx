@@ -47,11 +47,13 @@ const CheckoutForm = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    //
     if (validZip) {
+
       localStorage.setItem("email", userInfo.email);
-      // window.location.href = '/Checkout/Payment';
       localStorage.setItem("name", userInfo.firstName);
+      localStorage.setItem("name2", userInfo.lastName);
+      localStorage.setItem("address1", userInfo.address1);
+
       navigate("/Checkout/Payment");
     }
   };

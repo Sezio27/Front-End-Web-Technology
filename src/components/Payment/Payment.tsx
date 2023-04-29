@@ -1,21 +1,25 @@
-import { Form } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Payment.css";
 
-const email = localStorage.getItem('email');
-console.log(email);
-
-
 const Payment = () => {
+
+  const navigate = useNavigate();
 
   const goBack = () => {
     window.history.back();
   }
 
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    navigate("/Checkout/Receipt");
+  };
+
   return (
     <div className="PaymentContainer">
       <div className="ContentContainer">
         <h1>Payment</h1>
-          <form className="checkboxValue">
+          <form className="checkboxValue" onSubmit={handleSubmit}>
             <div className="checkboxes">
               <div>
               <label>
@@ -26,7 +30,7 @@ const Payment = () => {
               <div>
                  <label>
                 <input type="checkbox" />
-                Would you like to recieve our newsletter?
+                Would you like to receive our newsletter?
               </label>
               
             </div>
@@ -35,7 +39,7 @@ const Payment = () => {
           <div className="comment">
             <label>
               <h2>Comments:</h2>
-              <textarea rows="8" cols="50"></textarea>
+              <textarea rows={8} cols={50}></textarea>
             </label>
           </div>
 
@@ -43,7 +47,7 @@ const Payment = () => {
           <table>
             <button className="backButton" type="button" onClick={goBack}>Back</button>
             
-            <button className="submit" type="submit">Submit</button>
+            <button className="submit">Submit</button>
           </table>
           
           </form>
