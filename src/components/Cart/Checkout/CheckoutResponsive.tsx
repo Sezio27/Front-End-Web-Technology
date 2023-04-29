@@ -36,12 +36,13 @@ const CheckoutResponsive = ({ currency }: ICheckout) => {
                             }}/>}
                     modal
                     nested
-                >{close => (
+                >{close => {
+                return (
                     <div className="modal">
                         <button className="close" onClick={close}>
                             &times;
                         </button>
-                        <div className="header"> Checkout </div>
+                        <div className="header"> Checkout</div>
                         <div className="content">
                             <div className="primaryContainer">
                                 <div className="textSection">
@@ -63,7 +64,7 @@ const CheckoutResponsive = ({ currency }: ICheckout) => {
                                     <Link to="/Checkout">
                                         <button className="checkoutButton">
                                             <div className="checkoutButtonInside">
-                                                <img src={LockIcon} className="checkoutButtonIcon" />
+                                                <img src={LockIcon} className="checkoutButtonIcon"/>
                                                 <span className="checkoutButtonText">Checkout</span>
                                             </div>
                                         </button>
@@ -72,7 +73,8 @@ const CheckoutResponsive = ({ currency }: ICheckout) => {
                             </div>
                         </div>
                     </div>
-                )}
+                );
+            }}
                 </Popup>
         </div>
     </div>
