@@ -2,9 +2,12 @@ import { createContext, useContext, useState, useEffect, ReactNode, FC } from "r
 import { Item, BasketTotals, UserInfo, Product } from "../Types/Types";
 import { calculateItemDiscount } from "../Utilities/SavingsUtility";
 import { fetchProductList } from "../components/Utility/fetchProducts";
+import oldProductList from "../data/products.json"
+
 
 interface CartProviderProps {
   children: ReactNode;
+  value: any;
 }
 
 interface ICartContext {
@@ -71,9 +74,9 @@ export const useCartContext = () => {
 };
 
 //CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
-export const CartProvider: FC<CartProviderProps> = ({ children }) => {
+export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
   const [products, setProducts] = useState<Product[]>([])
-  const [basketItems, setBasketItems] = useState<Item[]>([]);
+  const [basketItems, setBasketItems] = useState<Item[]>(value);
   const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
   const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>([]);
 
@@ -81,9 +84,12 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   useEffect(() => {
     // Fetching items from custom build method.
     const fetchItems = async () => {
-      console.log("FETCHING")
+      console.log("FETCHING PRODUCTS")
       const productList: Product[] = await fetchProductList();
-      await delay(1000)
+      // const productList: Product[] = oldProductList
+      // await delay(1000)
+      console.log("LENGTH OF PRODUCTS" + productList.length)
+      
       setProducts(productList);
     };
     fetchItems();

@@ -6,12 +6,13 @@ import Payment from "./components/Payment/Payment";
 import products from "./data/products.json";
 import { Item } from "./Types/Types";
 import {useState, useEffect} from "react"
+import CheckoutResponsive from "./components/Cart/Checkout/CheckoutResponsive";
 
 function App() {
 
  
   return (
-    <CartProvider>
+    <CartProvider value={[]}>
       <BrowserRouter>
         <Routes>
             <Route
@@ -19,6 +20,7 @@ function App() {
               element={
                 <div className="App">
                   <div className="siteContainer">
+                      <CheckoutResponsive currency={""}></CheckoutResponsive>
                     <div className="siteSection">
                       <h1 className="Title"> Checkout Flow </h1>
                     </div>
