@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     css: true,
+    globals: true,
     environment: "jsdom",
     setupFiles: ["vitest.setup.ts"],
   },

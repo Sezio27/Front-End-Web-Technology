@@ -23,23 +23,5 @@ describe(Basket.name, () => {
 });
 
 describe(App.name, () => {
-  it("should remove apples from basket", async () => {
-    const user = userEvent.setup();
-
-    const dom = customRender(<Basket />, false);
-    const container = dom.container;
-    screen.debug(undefined, Infinity);
-
-    await waitFor(() => {
-      const buttons = container.getElementsByClassName('removeItemContainer')
-
-      const result = screen.queryByText("Apples");
-      expect(result).toBeVisible();
-
-      const cButton = buttons[0];
-      user.click(cButton);
-
-      expect(result).toBeNull();
-    });
-  });
+  
 });

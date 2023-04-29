@@ -2,60 +2,96 @@ import React from "react";
 import App from "../src/App";
 import products from "./mocks/product-mock.json";
 import Cart from "../src/components/Cart/Cart";
-import { Product } from "../src/Types/Types";
-import { CartProvider } from "../src/contexts/CartContext";
 
-import { render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, it, vi, afterEach } from "vitest";
-import { MemoryRouter } from "react-router-dom";
+import { cleanup, findByTestId, findByText, render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi, afterEach, Vitest, MockedFunction, Mock } from "vitest";
 import { fetchProductList } from "../src/components/Utility/fetchProducts";
 import { customRender } from "./commonTestFunctions";
+import userEvent from "@testing-library/user-event";
 
-const fn = vi.fn();
+// //mocking global fetch.. dont know how to mock locally.
+function createFetchResponse(data) {
+  return { ok: true, json: () => new Promise((resolve) => resolve(data)) };
+}
 
-// const mockCheckout = vi.fn();
+global.fetch = vi.fn();
 
-// vi.fn(fetchProductList).mockResolvedValue(products);
+describe("Cart : Empty", () => {
+  // global.fetch = vi.fn().mockResolvedValueOnce(createFetchResponse([]));
+  fetch.mockResolvedValueOnce(createFetchResponse([]));
+  it("Should show empty basket if no basket items have rendered", async () => {
+    customRender(<Cart />, true);
 
-
-describe(App.name, () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-    vi.resetAllMocks();
-  })
-  it("Should render the box containing price of products and checkout-button", async () => {
-    const dom = customRender(<Cart />, false);
-    const container = dom.container;
-
+    const text = await screen.findByText("Your basket is empty.");
     screen.debug(undefined, Infinity);
-
     await waitFor(() => {
-      const text = screen.getByText("Items in cart:");
-      const button = container.getElementsByClassName("checkoutButton");
       expect(text).toBeInTheDocument();
-      expect(button.length).toBe(1);
     });
   });
-  
-  it("Should render the basket", async () => {
-    const dom = customRender(<Cart />, false);
-    const container = dom.container;
+});
+
+describe("Cart : With Items", () => {
+  fetch.mockResolvedValue(createFetchResponse(products));
+  it("Should render the box containing price of products and checkout-button", async () => {
+    customRender(<Cart />, true);
 
     // screen.debug(undefined, Infinity);
 
+    const text = await screen.findByText("Items in cart:");
     await waitFor(() => {
-      const basket = container.getElementsByClassName("basketTable");
-      expect(basket.length).toBe(1);
+      expect(text).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(text).toBeVisible();
+    });
+    // await waitFor(() => { })
+
+    const but = await screen.findByRole("button", { name: /checkout/i });
+    await waitFor(() => {
+      expect(but).toBeVisible();
     });
   });
-  
-  it("Should show empty basket if no basket items have rendered", async () => {
+
+  it("should remove APPLES from basket when clicking on the remove button", async () => {
+    const user = userEvent.setup();
     customRender(<Cart />, true);
-    screen.debug(undefined, Infinity);
+
+    // const removeBut = await screen.findByRole('button', { name: /close/i });
+    const removeBut = (await screen.findAllByTestId("remove-button"))[0];
+    const itemToRemove = await screen.findByText("Apples");
 
     await waitFor(() => {
-      const text = screen.getByText("Your basket is empty.");
-      expect(text).toBeInTheDocument();
+      expect(itemToRemove).toBeEnabled();
+    });
+
+    await waitFor(() => {
+      expect(itemToRemove).toBeInTheDocument();
+    });
+
+    await user.click(removeBut);
+
+    await waitFor(() => {
+      expect(itemToRemove).not.toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(removeBut).not.toBeInTheDocument();
+    });
+  });
+
+  it("Should show price of 2 apples in checkout box when quantity of apples has been changed to 2", async () => {
+    const user = userEvent.setup();
+    customRender(<Cart />, true);
+
+    // const removeBut = await screen.findByRole('button', { name: /close/i });
+    const quantity = (await screen.findAllByTestId("quantityInput"))[0];
+    expect(quantity).toBeInTheDocument()
+    
+    
+    await user.type(quantity, '2{enter}');
+    
+    const price = await screen.findByTestId("totalPrice");
+    await waitFor(() => {
+      expect(price).toHaveTextContent("8,-");
     });
   });
 });

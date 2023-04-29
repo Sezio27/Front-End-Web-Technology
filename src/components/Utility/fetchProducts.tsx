@@ -20,9 +20,9 @@ export const fetchProductList = async (): Promise<Product[]> => {
   //const response: Response = await fetch("https://eoxxctddowfwq0k.m.pipedream.net/products", options)
   const response: Response = await fetch("https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json")
   // PARSING THE BODY OF THE RESPONSE TO A JAVASCRIPT JSON OBJECT (MAPS IT AUTOMATICALLY TO PRODUCTS)
-  // console.log(response.status)
-  if(response.status !== 200)
+  if(!response.ok)
   {
+    console.log("RESPONSE NOT 200, USING LOCAL PRODUCT LIST INSTEAD")
     const oldList: Product[] = oldProductList
     return oldList
   }
