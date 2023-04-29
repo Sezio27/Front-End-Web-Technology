@@ -10,3 +10,14 @@
    color: black;
    text-align: center;
 }
+
+/* Moblie responsiveness*/
+@media only screen and (max-width: 600px) {
+   .Title {
+      color: black;
+      text-align: center;
+      border-bottom: 2px solid rgba(189,195,199,0.3);
+      margin-top: 70px;
+
+   }
+}
