@@ -113,5 +113,125 @@
 }
 
 
- 
+/* menu container*/
+.menuContainer{
+   display: none;
+}
+
+
+/* Moblie responsiveness*/
+@media only screen and (max-width: 600px) {
+   /* menu container*/
+   .menuContainer{
+      display: flex;
+      z-index: 9999;
+      position: fixed;
+      align-items: center;
+      justify-content: end;
+      height: 70px;
+      width: 100%;
+      background-color: #2d91d4;
+   }
+
+   .menuContainerItem{
+      margin-right: 20px;
+   }
+   .menuContainerItem:hover{
+      cursor: pointer;
+
+   }
+
+   .itemCounter{
+      position: fixed;
+      right: 12px;
+      height: 28px;
+      width: 28px;
+      background-color: #FA3E3E;
+      border-radius: 50%;
+      display: inline-block;
+      font-size: 16px;
+   }
+
+   /* hide original checkout container*/
+   .checkoutContainer {
+      display: none;
+   }
+
+   /* checkout styling*/
+   .checkoutButton {
+      display: inline-block;
+      position: relative;
+      color: #fff;
+      padding: 0.6em 1.2em;
+      margin: 0.2em;
+      overflow: hidden;
+      min-width: 80%;
+      min-height: 40px;
+      max-height: 200px;
+      background-color: #2d91d4;
+      border-radius: 16px !important;
+      cursor: pointer;
+      transition: all 0.2s linear 0s;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+   }
+
+   .checkoutButtonInside {
+      display: flex;
+      text-align:center;
+      align-self: flex-end;
+      gap: 1em
+   }
+
+   .checkoutButtonIcon {
+      place-self: center;
+
+      height: 2em;
+      max-height: 50%;
+      max-width: 5.5vw;
+   }
+
+   .checkoutButtonText {
+      font-size:16px;
+   }
+
+   /* popup styling */
+   .modal {
+      font-size: 12px;
+      border: 3px solid rgba(189,195,195, 0.4);
+      color: black;
+      background-color: white;
+   }
+   .modal > .header {
+      width: 100%;
+      font-size: 18px;
+      text-align: center;
+      padding: 5px;
+   }
+   .modal > .content {
+      width: 100%;
+      padding: 10px 5px;
+   }
+   .modal > .actions {
+      width: 100%;
+      padding: 10px 5px;
+      margin: auto;
+      text-align: center;
+   }
+   .modal > .close {
+      cursor: pointer;
+      position: absolute;
+      display: block;
+      padding: 2px 5px;
+      line-height: 20px;
+      right: -10px;
+      top: -10px;
+      font-size: 24px;
+      background: #ffffff;
+      color: black;
+      border-radius: 18px;
+      border: 1px solid black;
+   }
+}
+
+/* Tablet responsiveness*/
  
