@@ -1,4 +1,14 @@
 [
+  {
+    "id": "apples",
+    "name": "Apples",
+    "price": 4,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "imageUrl": ""
+  },
    {
      "id": "vitamin-d-90-120",
      "name": "D-vitamin, 90ug, 120 stk",

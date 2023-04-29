@@ -1,0 +1,26 @@
+App-test.tsx:
+- Test that the app renders without crashing
+- Test that the app has the header "checkout flow" and another header "Cart" and a cart component
+
+Cart-test.tsx:
+- Test that it displays only the text "Your basket is empty" if it does not have any prooducts
+- Test that it has a checkout button
+- Test that it has succesfully fetched products and that the product list length is the size it should be
+- Test that if an item is removed by a user, the product list does not longer have that item.
+- Test that product list cannot have duplicates
+
+BasketItem-test.tsx:
+- Test that an item is displayed on the correct general format: Image, name, price,  quantity and remove button
+- Test that an item that has upsell, shows an upsell text but only if the upsell product is not already in the list
+- Test that if the quantity picker works, meaning the quantity is updated correctly if a user change it
+- Test that the price is updated correctly based on the quantity
+- Test that the rebateQuantity and rebatePercent works correctly
+
+Checkout-test.tsx
+- Test that the total price is calculated correctly
+- Test that the "items in cart" displays the correct number.
+- Test that the totalDiscount functionality works correctly
+
+Navigation-test.tsx
+- Test that all the buttons related to navigation works correctly
+- Test that information is saved when navigation back and forth in the app
