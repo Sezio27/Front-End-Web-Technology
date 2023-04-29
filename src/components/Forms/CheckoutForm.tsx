@@ -22,6 +22,10 @@ const CheckoutForm = () => {
     });
   };
 
+  const goBack = () => {
+    window.history.back();
+  }
+
 
 
   //TODO - update city immediately, and not on re-render
@@ -224,8 +228,10 @@ const CheckoutForm = () => {
         </div>
 
         <br />
-
-        <button className="formButton">To payment</button>
+        <table>
+          <button className="backButton" type="button" onClick={goBack}>Back</button>
+          <button className="formButton">To payment</button>
+        </table>
       </form>
     </div>
   );
