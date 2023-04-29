@@ -46,4 +46,17 @@
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
+    margin-left: 20px;
+}
+.backButton {
+    background-color: #2d91d4;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+}
+.backButton:hover {
+    background-color: #206796;
 }

@@ -7,6 +7,10 @@ console.log(email);
 
 const Payment = () => {
 
+  const goBack = () => {
+    window.history.back();
+  }
+
   return (
     <div className="PaymentContainer">
       <div className="ContentContainer">
@@ -35,9 +39,13 @@ const Payment = () => {
             </label>
           </div>
 
-          <div className="submit">
-            <button type="submit">Submit</button>
-          </div>
+          <br />
+          <table>
+            <button className="backButton" type="button" onClick={goBack}>Back</button>
+            
+            <button className="submit" type="submit">Submit</button>
+          </table>
+          
           </form>
 
       </div>
