@@ -8,18 +8,16 @@ interface INudgeQuantityRebate {
 const NudgeQuantityRebate = ({ rebateQuantity, rebatePercentDec, quantity, price }: INudgeQuantityRebate) => {
 
     const rebateApplicable = rebateQuantity > quantity
-    // const rebatePercent = rebatePercentDec * 100
-    const rebatePercent = rebatePercentDec
-    const savedAmount = price * rebateQuantity * (1 - rebatePercentDec)
+    const savedAmount = price * rebateQuantity * (rebatePercentDec/100)
     return (
         <>
             {rebateApplicable ?
                 <div className="rebateContainer">
-                    <span>Buy {rebateQuantity - quantity} more to save {rebatePercent}%!</span>
+                    <span>Buy {rebateQuantity - quantity} more to save {rebatePercentDec}%!</span>
                 </div>
                 :
                 <div className="rebateContainer">
-                    <span className="rebatePercent"> -{rebatePercent}%!</span>
+                    <span className="rebatePercent"> -{rebatePercentDec}%!</span>
                     <span>You are saving {savedAmount.toFixed(2)} DKK by purchasing minimum {rebateQuantity} units!</span>
                 </div>
             }

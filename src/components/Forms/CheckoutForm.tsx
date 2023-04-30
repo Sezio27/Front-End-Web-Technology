@@ -8,9 +8,7 @@ import reload from "../../assets/reload.png"
 const CheckoutForm = () => {
   const { userInfo, updateUserInfo, validZip, zipsAndCities } = useCheckoutContext();
 
-  const [loading, setLoading] = useState<boolean>(false);
-
-
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (zipsAndCities.length > 0) setLoading(false)
