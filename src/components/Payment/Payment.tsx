@@ -1,11 +1,7 @@
 import "./Payment.css";
-import { handleNavigation } from "../../Router";
+import { handleNavigation, handlePop } from "../../Router";
 
 const Payment = () => {
-
-  const goBack = () => {
-    window.history.back();
-  }
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -41,11 +37,11 @@ const Payment = () => {
           </div>
 
           <br />
-          <table>
-            <button className="backButton" type="button" onClick={goBack}>Back</button>
+          <div>
+            <button className="backButton" type="button" onClick={() => handlePop()}>Back</button>
             
             <button className="submit">Submit</button>
-          </table>
+          </div>
           
           </form>
 
