@@ -3,10 +3,10 @@ App-test.tsx:
 - Test that the app has the header "checkout flow" and another header "Cart" and a cart component
 
 Cart-test.tsx:
-- Test that it displays only the text "Your basket is empty" if it does not have any prooducts
-- Test that it has a checkout button
+- Test that it displays only the text "Your basket is empty" if it does not have any prooducts 	✔
+- Test that it has a checkout button 	✔
 - Test that it has succesfully fetched products and that the product list length is the size it should be
-- Test that if an item is removed by a user, the product list does not longer have that item.
+- Test that if an item is removed by a user, the product list does not longer have that item. ✔
 - Test that product list cannot have duplicates
 
 BasketItem-test.tsx:
@@ -18,9 +18,19 @@ BasketItem-test.tsx:
 
 Checkout-test.tsx
 - Test that the total price is calculated correctly
-- Test that the "items in cart" displays the correct number.
+- Test that the "items in cart" displays the correct number
 - Test that the totalDiscount functionality works correctly
+
+CheckoutForm.tsx
+- Test to see if inputted zipcode correctly updates city
+- Test if user can go to payment after filling out required form inputs
 
 Navigation-test.tsx
 - Test that all the buttons related to navigation works correctly
 - Test that information is saved when navigation back and forth in the app
+
+
+
+
+
+GLOBALS I CONFIG BLEV ENABLED FOR FETCH.. FATTER IKKE EN SKID

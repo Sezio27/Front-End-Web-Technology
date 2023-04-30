@@ -38,7 +38,7 @@ const BasketItem = ({ item }: { item: Item }) => {
 
   const CloseButton = () => {
     return (
-      <button className="close-button" onClick={() => removeFromCart(id)}>
+      <button className="close-button" data-testid="remove-button" onClick={() => removeFromCart(id)}>
         <IoCloseSharp />
       </button>
     );
@@ -93,7 +93,7 @@ const BasketItem = ({ item }: { item: Item }) => {
       <td className="quantityContainer">
         <QuantityPicker productId={id} quantity={quantity} />
       </td>
-      <td className="priceContainer">
+      <td className="priceContainer" data-testid='priceContainer'>
         {getSubtotal() + " " + currency}
         {(activeDiscount && subTotalWithSavings !==0) && <div>{`${subTotalWithSavings},- Saved!`}</div>}
       </td>

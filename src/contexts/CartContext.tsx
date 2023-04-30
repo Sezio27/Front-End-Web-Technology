@@ -86,9 +86,8 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     const fetchItems = async () => {
       console.log("FETCHING PRODUCTS")
       const productList: Product[] = await fetchProductList();
-      // const productList: Product[] = oldProductList
       // await delay(1000)
-      console.log("LENGTH OF PRODUCTS" + productList.length)
+      console.log("LENGTH OF PRODUCTS: " + productList.length)
       
       setProducts(productList);
     };
@@ -96,15 +95,17 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
   }, []);
 
   useEffect(() => {
-      const tempBasketItems = products.map((product) => ({
-        product: { ...product },
-        quantity: 0,
-      }));
-      setBasketItems(tempBasketItems);
+      if(products.length > 1) {
+        const tempBasketItems = products.map((product) => ({
+          product: { ...product },
+          quantity: 0,
+        }));
+        setBasketItems(tempBasketItems);
+      }
     }, [products]);
 
 
- 
+ // NOT USED ATM
   const fetchZips = async () => {
     try {
       const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
@@ -114,7 +115,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   const removeFromCart = (productId: string) => {

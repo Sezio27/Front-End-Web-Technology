@@ -10,8 +10,10 @@ import { useEffect, useState } from "react";
 const Cart = () => {
   const { basketItems } = useCartContext();
 
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
+  
+  
   useEffect(() => {
     if(basketItems.length > 0 ) setLoading(false)
   }, [basketItems]);

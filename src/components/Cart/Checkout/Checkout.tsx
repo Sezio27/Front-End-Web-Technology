@@ -32,11 +32,11 @@ const Checkout = ({ currency }: ICheckout) => {
     <div className="primaryContainer">
       <div className="textSection">
         Items in cart:
-        <div className="textEnd">{totalQuantity}</div>
+        <div className="textEnd" data-testid='totalItems'>{totalQuantity}</div>
       </div>
       <div className="textSection">
         Total price of items:
-        <div className="textEnd">{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
+        <div className="textEnd" data-testid='totalPrice'>{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
       </div>
       {totalSavings > 0 && (
         <div className="savingsText">
