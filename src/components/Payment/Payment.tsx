@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import "./Payment.css";
+import { handleNavigation } from "../../Router";
 
 const Payment = () => {
-
-  const navigate = useNavigate();
 
   const goBack = () => {
     window.history.back();
@@ -11,8 +9,7 @@ const Payment = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
-    navigate("/Checkout/Receipt");
+    handleNavigation("/checkout/receipt")
   };
 
   return (
@@ -55,19 +52,7 @@ const Payment = () => {
       </div>
     </div> 
   );
-/*   const checkboxValue = document.querySelector('from');
 
-        checkboxValue.addEventListner('submit', (e) => {
-           e.preventDefault();
-
-          document.querySelectorAll('[type="checkbox"]').forEach(item => {
-            if (item.checked === true ){
-                checkboxes.push(itemsValue);
-      }
-
-  })
-      consol.log(checkboxes); */
 };
-/* }; */
 
 export default Payment;

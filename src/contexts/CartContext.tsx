@@ -76,9 +76,30 @@ export const useCartContext = () => {
 //CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
 export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
   const [products, setProducts] = useState<Product[]>([])
-  const [basketItems, setBasketItems] = useState<Item[]>(value);
-  const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
+
+  const [basketItems, setBasketItems] = useState<Item[]>(() => {
+    const savedItems = localStorage.getItem("basketItems"); 
+    return savedItems ? JSON.parse(savedItems) : value;
+  });
+
+  const [userInfo, setUserInfo] = useState<UserInfo>(() => {
+    const savedUserInfo = localStorage.getItem("userInfo");
+    return savedUserInfo ? JSON.parse(savedUserInfo) : initialUserInfo;
+  });
+
   const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>([]);
+
+
+
+  //Save userInfo in localStorage
+  useEffect (() => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+  }, [userInfo])
+
+  //Save BasketItems in localStorage
+  useEffect (() => {
+    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+  }, [basketItems])
 
 
   useEffect(() => {
@@ -95,12 +116,18 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     fetchItems();
   }, []);
 
+
+   //Initializing basketItems
   useEffect(() => {
-      const tempBasketItems = products.map((product) => ({
-        product: { ...product },
-        quantity: 0,
-      }));
-      setBasketItems(tempBasketItems);
+
+    if (JSON.stringify(basketItems) === JSON.stringify(value)) {
+
+        const tempBasketItems = products.map((product) => ({
+          product: { ...product },
+          quantity: 0,
+        }));
+        setBasketItems(tempBasketItems);
+      }
     }, [products]);
 
 

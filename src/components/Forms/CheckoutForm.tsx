@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import "./CheckoutForm.css";
-import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext";
 import { UserInfo } from "../../Types/Types";
+import { handleNavigation, handlePop } from "../../Router";
 
 const CheckoutForm = () => {
   const { userInfo, setUserInfo, zipsAndCities, fetchZips } = useCartContext();
-  const navigate = useNavigate();
   const [validZip, setValidZip] = useState(true);
   const [firstTime, setFirstTime] = useState(true);
 
@@ -21,10 +20,6 @@ const CheckoutForm = () => {
       [key]: value,
     });
   };
-
-  const goBack = () => {
-    window.history.back();
-  }
 
 
 
@@ -54,7 +49,7 @@ const CheckoutForm = () => {
       localStorage.setItem("name2", userInfo.lastName);
       localStorage.setItem("address1", userInfo.address1);
 
-      navigate("/Checkout/Payment");
+      handleNavigation("/checkout/payment")
     }
   };
 
@@ -67,7 +62,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="country"
-            id = "country"
+            id="country"
             value={userInfo.country}
             onChange={(e) => updateUserInfo("country", e.target.value)}
             required
@@ -82,7 +77,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="zip"
-            id = "zip"
+            id="zip"
             value={userInfo.zipCode}
             onChange={(e) => updateUserInfo("zipCode", e.target.value)}
             required
@@ -101,7 +96,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="city"
-            id = "city"
+            id="city"
             value={userInfo.city}
             onChange={(e) => updateUserInfo("city", e.target.value)}
             required
@@ -115,7 +110,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="address1"
-            id = "address1"
+            id="address1"
             value={userInfo.address1}
             onChange={(e) => updateUserInfo("address1", e.target.value)}
             required
@@ -128,7 +123,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="address2"
-            id = "address2"
+            id="address2"
             value={userInfo.address2}
             onChange={(e) => updateUserInfo("address2", e.target.value)}
           />
@@ -140,7 +135,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="billingAddress"
-            id = "billingAddress"
+            id="billingAddress"
             value={userInfo.billingAddress}
             onChange={(e) => updateUserInfo("billingAddress", e.target.value)}
           />
@@ -152,7 +147,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="firstName"
-            id = "firstName"
+            id="firstName"
             max="50"
             value={userInfo.firstName}
             onChange={(e) => updateUserInfo("firstName", e.target.value)}
@@ -167,7 +162,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="lastName"
-            id = "lastName"
+            id="lastName"
             max="50"
             value={userInfo.lastName}
             onChange={(e) => updateUserInfo("lastName", e.target.value)}
@@ -182,7 +177,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="tel"
             name="phone"
-            id = "phone"
+            id="phone"
             value={userInfo.phone}
             onChange={(e) => updateUserInfo("phone", e.target.value)}
             required
@@ -196,7 +191,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="email"
             name="email"
-            id = "email"
+            id="email"
             value={userInfo.email}
             onChange={(e) => updateUserInfo("email", e.target.value)}
             required
@@ -209,7 +204,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="companyName"
-            id = "companyName"
+            id="companyName"
             max="40"
             value={userInfo.companyName}
             onChange={(e) => updateUserInfo("companyName", e.target.value)}
@@ -222,7 +217,7 @@ const CheckoutForm = () => {
             className="formInput"
             type="text"
             name="companyVat"
-            id = "companyVat"
+            id="companyVat"
             value={userInfo.companyVAT}
             onChange={(e) => updateUserInfo("companyVAT", e.target.value)}
             pattern="\d{8}"
@@ -230,10 +225,10 @@ const CheckoutForm = () => {
         </div>
 
         <br />
-        <table>
-          <button className="backButton" type="button" onClick={goBack}>Back</button>
+        <div>
+          <button className="backButton" type="button" onClick={() => handlePop()}>Back</button>
           <button className="formButton">To payment</button>
-        </table>
+        </div>
       </form>
     </div>
   );
