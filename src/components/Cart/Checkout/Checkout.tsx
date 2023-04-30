@@ -24,6 +24,10 @@ const Checkout = ({ currency }: ICheckout) => {
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
+    const handleCheckout = () => {
+        localStorage.setItem("totalPrice", String(totalPrice));
+    };
+
   return (
     <div className="primaryContainer">
       <div className="textSection">
@@ -43,7 +47,7 @@ const Checkout = ({ currency }: ICheckout) => {
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
         <Link to="/Checkout">
-          <button className="checkoutButton">
+          <button className="checkoutButton" onClick={handleCheckout}>
             <div className="checkoutButtonInside">
               <img src={LockIcon} className="checkoutButtonIcon" />
               <span className="checkoutButtonText">Checkout</span>
