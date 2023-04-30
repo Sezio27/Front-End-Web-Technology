@@ -22,6 +22,10 @@ const CheckoutForm = () => {
     });
   };
 
+  const goBack = () => {
+    window.history.back();
+  }
+
 
 
   //TODO - update city immediately, and not on re-render
@@ -43,11 +47,13 @@ const CheckoutForm = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    //
     if (validZip) {
+
       localStorage.setItem("email", userInfo.email);
-      // window.location.href = '/Checkout/Payment';
       localStorage.setItem("name", userInfo.firstName);
+      localStorage.setItem("name2", userInfo.lastName);
+      localStorage.setItem("address1", userInfo.address1);
+
       navigate("/Checkout/Payment");
     }
   };
@@ -224,8 +230,10 @@ const CheckoutForm = () => {
         </div>
 
         <br />
-
-        <button className="formButton">To payment</button>
+        <table>
+          <button className="backButton" type="button" onClick={goBack}>Back</button>
+          <button className="formButton">To payment</button>
+        </table>
       </form>
     </div>
   );
