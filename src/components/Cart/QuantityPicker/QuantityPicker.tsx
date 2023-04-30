@@ -41,7 +41,7 @@ const QuantityPicker = ({ productId, quantity}: QuantityPickerProps) => {
       <TextField
         id="number"
         type="string"
-        label='quantityInput'
+        label='Qty'
         value={inputQuantity}
         onKeyDown={handleEnterPress}
         onBlur = {handleFocusLoss}

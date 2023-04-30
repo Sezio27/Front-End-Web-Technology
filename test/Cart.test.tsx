@@ -81,9 +81,10 @@ describe("Cart : With Items", () => {
     customRender(<Cart />, true);
 
     //getting correct input when finding by abel
-    const quantity = (await screen.findAllByLabelText(/^quantityInput/i))[0] as HTMLInputElement;
-    expect(quantity).toBeInTheDocument();
+    const quantity = (await screen.findAllByLabelText(/^Qty/i))[0] as HTMLInputElement;
 
+    screen.debug(quantity)
+    await waitFor(() => expect(quantity).toBeInTheDocument())
     await user.type(quantity, "2{enter}");
     await waitFor(() => {
       expect(quantity.value).toBe("2");
@@ -91,7 +92,7 @@ describe("Cart : With Items", () => {
 
     const price = await screen.findByTestId("totalPrice");
     await waitFor(() => {
-      screen.debug(price);
+      // screen.debug(price);
       expect(price).toHaveTextContent("8,-");
     });
   });
@@ -101,7 +102,7 @@ describe("Cart : With Items", () => {
     customRender(<Cart />, true);
 
     //getting correct input when finding by abel
-    const quantity = (await screen.findAllByLabelText(/^quantityInput/i))[0] as HTMLInputElement;
+    const quantity = (await screen.findAllByLabelText(/^Qty/i))[0] as HTMLInputElement;
     expect(quantity).toBeInTheDocument();
 
     await user.type(quantity, "123{enter}");

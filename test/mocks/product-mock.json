@@ -5,12 +5,22 @@
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
-    "upsellProductId": null,
+    "upsellProductId": "apples-pro",
     "imageUrl": ""
   },
   {
     "id": "oranges",
     "name": "Oranges",
+    "price": 3,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "upsellProductId": null,
+    "imageUrl": ""
+  },
+  {
+    "id": "apples-pro",
+    "name": "Apples pro",
     "price": 3,
     "currency": "DKK",
     "rebateQuantity": 3,

@@ -12,7 +12,7 @@ Cart-test.tsx:
 BasketItem-test.tsx:
 - Test that an item is displayed on the correct general format: Image, name, price,  quantity and remove button
 - Test that an item that has upsell, shows an upsell text but only if the upsell product is not already in the list
-- Test that if the quantity picker works, meaning the quantity is updated correctly if a user change it
+-  
 - Test that the price is updated correctly based on the quantity
 - Test that the rebateQuantity and rebatePercent works correctly
 

@@ -70,7 +70,7 @@ const BasketItem = ({ item }: { item: Item }) => {
   }, [quantity]);
 
   return (
-    <tr key={id} className="rowWrapper">
+    <tr key={id} className="rowWrapper" data-testid='basketItem'>
       <th className="productContainer">
         <div className="rowHeaderImage">
           <img className="image" src={item.product.imageUrl} />

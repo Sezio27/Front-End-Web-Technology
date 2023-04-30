@@ -11,7 +11,7 @@ const NudgeUpSell = ({ productId, upSellName }: INudgeUpSell) => {
     const {changeToUpsell} = useCartContext();
 
     return (
-        <div className="upSellContainer">
+        <div className="upSellContainer" data-testid='upSellContainer'>
             <span>Go organic?</span>
             <FaLongArrowAltRight />
             <button onClick={() => changeToUpsell(productId)} className="upSellButton"> {upSellName} </button>
