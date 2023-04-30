@@ -66,7 +66,12 @@ export const useCartContext = () => {
 
 //CART PROVIDER WHOM PROVIDES CONTEXT TO CHILDREN
 export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
-  const [products, setProducts] = useState<Product[]>([])
+  
+
+  const [products, setProducts] = useState<Product[]>(() => {
+    const savedProducts = localStorage.getItem("products"); 
+    return savedProducts ? JSON.parse(savedProducts) : [];
+  });
 
   const [basketItems, setBasketItems] = useState<Item[]>(() => {
     const savedItems = localStorage.getItem("basketItems"); 
@@ -86,17 +91,18 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
       const productList: Product[] = await fetchProductList();
       // await delay(1000)
       console.log("LENGTH OF PRODUCTS: " + productList.length)
-      
+      localStorage.setItem('products', JSON.stringify(productList));
       setProducts(productList);
     };
-    fetchItems();
+    if (products.length < 1) fetchItems(); 
+    
   }, []);
 
 
    //Initializing basketItems
   useEffect(() => {
 
-    if (products.length > 1 && JSON.stringify(basketItems) === JSON.stringify(value)) {
+    if (products.length > 1 && JSON.stringify(basketItems) === JSON.stringify(value)) { //Will also be executed if user removes all items and refreshes page
 
         const tempBasketItems = products.map((product) => ({
           product: { ...product },
