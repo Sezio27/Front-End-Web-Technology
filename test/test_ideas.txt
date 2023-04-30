@@ -18,8 +18,12 @@ BasketItem-test.tsx:
 
 Checkout-test.tsx
 - Test that the total price is calculated correctly
-- Test that the "items in cart" displays the correct number.
+- Test that the "items in cart" displays the correct number
 - Test that the totalDiscount functionality works correctly
+
+CheckoutForm.tsx
+- Test to see if inputted zipcode correctly updates city
+- Test if user can go to payment after filling out required form inputs
 
 Navigation-test.tsx
 - Test that all the buttons related to navigation works correctly

@@ -105,7 +105,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     }, [products]);
 
 
- 
+ // NOT USED ATM
   const fetchZips = async () => {
     try {
       const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
@@ -115,7 +115,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   const removeFromCart = (productId: string) => {

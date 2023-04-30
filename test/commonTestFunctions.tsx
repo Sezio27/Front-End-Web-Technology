@@ -18,6 +18,11 @@ const getProductsFromLocal = (RenderWithoutProducts: boolean, Slice?: number) =>
   else return prodductList
 };
 
+
+export function createFetchResponse(data) {
+  return { ok: true, json: () => new Promise((resolve) => resolve(data)) };
+}
+
 export const customRender = (ui, RenderWithoutProducts: boolean) => {
 //   return render(<CartProvider value={getProductsFromLocal(RenderWithoutProducts)}>{ui} </CartProvider>, { wrapper: RouterWrapper });
   return render(<CartProvider value={[]}>{ui} </CartProvider>, {wrapper: BrowserRouter});
