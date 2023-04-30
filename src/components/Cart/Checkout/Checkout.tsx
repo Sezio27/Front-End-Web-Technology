@@ -15,13 +15,13 @@ interface ICheckout {
 
 const Checkout = ({ currency }: ICheckout) => {
   const {calculateTotals} = useCartContext()
-
-  const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = calculateTotals()
   
+  const {totalQuantity, totalPrice, totalRebateSavings, totalOrderSavings, totalPriceAfterSavings, totalDiscountActive} = calculateTotals()
+    //${TwoDecimals((totalOrderSavings))}
   const promtSavings = () => {
     if (totalPrice == undefined) return; 
     return totalDiscountActive
-    ? `You've saved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`
+    ? `You've saved 10% off your total order!`
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
@@ -36,16 +36,29 @@ const Checkout = ({ currency }: ICheckout) => {
         Items in cart:
         <div className="textEnd" data-testid='totalItems'>{totalQuantity}</div>
       </div>
-      <div className="textSection">
+      <div className="textSection total">
         Total price of items:
         <div className="textEnd" data-testid='totalPrice'>{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
       </div>
-      {totalSavings > 0 && (
+      {totalRebateSavings > 0 && (
         <div className="savingsText">
           <span>Price savings of items</span>
-          <div className="savingsTextEnd">{`${totalSavings},-`}</div>
+          <div className="savingsTextEnd">{`- ${TwoDecimals(totalRebateSavings)},-`}</div>
         </div>
       )}
+      {totalRebateSavings > 0 && (
+        <div className="savingsText">
+          <span>Buying for more than 300</span>
+          <div className="savingsTextEnd">{`- ${TwoDecimals(totalOrderSavings)},-`}</div>
+        </div>
+      )}
+       {totalPrice > totalPriceAfterSavings && (
+        <div className="textSection">
+        Total price:
+        <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPriceAfterSavings)},- ${currency}`}</div>
+        </div>
+       )}
+      
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
 

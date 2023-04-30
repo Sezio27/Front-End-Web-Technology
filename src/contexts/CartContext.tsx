@@ -49,7 +49,9 @@ const CartContext = createContext<ICartContext>({
   calculateTotals: () => ({
     totalQuantity: 0,
     totalPrice: 0,
-    totalSavings: 0,
+    totalRebateSavings: 0,
+    totalOrderSavings: 0,
+    totalPriceAfterSavings: 0,
     totalDiscountActive: false,
   }),
   getProductName: () => undefined,
@@ -82,7 +84,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
   useEffect (() => {
     localStorage.setItem('basketItems', JSON.stringify(basketItems));
   }, [basketItems])
-
 
   useEffect(() => {
     // Fetching items from custom build method.
@@ -141,11 +142,19 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     }
   };
 
+
+  //Active basketItems
+
+
+  
+
   const calculateTotals = () => {
     const totals: BasketTotals = {
       totalQuantity: 0,
       totalPrice: 0,
-      totalSavings: 0,
+      totalRebateSavings: 0,
+      totalOrderSavings: 0,
+      totalPriceAfterSavings: 0,
       totalDiscountActive: false,
     };
 
@@ -161,22 +170,24 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
               rebatePercentage: rebatePercent,
             })
           : 0;
-
-      totals.totalSavings += basketItemDiscount;
+            
+      totals.totalRebateSavings += basketItemDiscount;
       totals.totalPrice += subTotal;
       totals.totalQuantity += quantity;
+
     });
 
     if (totals.totalPrice >= 300) {
       totals.totalDiscountActive = true;
-      totals.totalPrice = (totals.totalPrice - totals.totalSavings) * 0.9;
+      totals.totalOrderSavings = (totals.totalPrice - totals.totalRebateSavings) * 0.1;
+      totals.totalPriceAfterSavings = totals.totalPrice - totals.totalRebateSavings - totals.totalOrderSavings ;
     } else {
       totals.totalDiscountActive = false;
     }
 
-    if (totals.totalPrice < 0) {
+    if (totals.totalPriceAfterSavings < 0) {
       console.log("PRICE AFTER DISCOUNT BELOW ZERO - ERROR");
-      totals.totalPrice = 0;
+      totals.totalPriceAfterSavings = 0;
     }
 
     return totals;

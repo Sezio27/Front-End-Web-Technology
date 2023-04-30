@@ -1,8 +1,12 @@
 import "./Receipt.css";
-
+import { useCartContext } from "../../contexts/CartContext";
+import { Item } from "../../Types/Types";
 const Receipt = () => {
 
-    const totalPrice = Number(localStorage.getItem("totalPrice"));
+    const { basketItems, calculateTotals } = useCartContext();
+
+    const {totalOrderSavings, totalRebateSavings, totalPriceAfterSavings} = calculateTotals()
+   
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
     const email = localStorage.getItem("email");
@@ -16,16 +20,6 @@ const Receipt = () => {
         hour: "numeric",
         minute: "numeric",
     });
-
-    const itemsInCart = JSON.parse(localStorage.getItem("itemsInCart") || "[]");
-
-    const itemsPrice = itemsInCart
-        .filter((item: any) => item.quantity > 0)
-        .reduce((total: number, item: any) => {
-            return total + item.price * item.quantity;
-        }, 0);
-
-    const rebate = totalPrice - itemsPrice;
 
     return (
         <div className="ReceiptContainer">
@@ -47,20 +41,20 @@ const Receipt = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {itemsInCart
-                        .filter((item: any) => item.quantity > 0)
-                        .map((item: any) => (
-                            <tr key={item.id}>
-                                <td>{item.name}</td>
+                    {basketItems
+                        .filter((item: Item) => item.quantity > 0)
+                        .map((item: Item) => (
+                            <tr key={item.product.id}>
+                                <td>{item.product.name}</td>
                                 <td>{item.quantity}</td>
-                                <td>{item.price * item.quantity} DKK</td>
+                                <td>{item.product.price * item.quantity} DKK</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
 
-                <p className="rabat">Rebate: {rebate.toFixed(2)} DKK</p>
-                <p className="total">Total price paid: {totalPrice.toFixed(2)} DKK</p>
+                <p className="rabat">Total savings: {(totalOrderSavings + totalRebateSavings ).toFixed(2)} DKK</p>
+                <p className="total">Total price paid: {totalPriceAfterSavings.toFixed(2)} DKK</p>
                 <p className="date">Date of receipt: {date}</p>
             </div>
 

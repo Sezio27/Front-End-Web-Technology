@@ -1,6 +1,5 @@
 import { IoCloseSharp } from "react-icons/io5";
 import { Item } from "../../../Types/Types";
-import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
 import { calculateItemDiscount } from "../../../Utilities/SavingsUtility";
 import QuantityPicker from "../QuantityPicker/QuantityPicker";
 import NudgeQuantityRebate from "../../NudgeMessage/NudgeQuantityRebate";
@@ -8,7 +7,6 @@ import NudgeUpSell from "../../NudgeMessage/NudgeUpSell";
 import "./BasketItem.css";
 
 import { useCartContext } from "../../../contexts/CartContext";
-import React from "react";
 
 const BasketItem = ({ item }: { item: Item }) => {
   const { removeFromCart, isProductInBasket, getProductName } = useCartContext();
@@ -47,27 +45,6 @@ const BasketItem = ({ item }: { item: Item }) => {
   const showQuantityRebate = rebateQuantity !== 0 && rebateQuantity && rebatePercent;
 
   const showUpSell = upsellProductId && !isProductInBasket(upsellProductId);
-
-  // til receipt dimsen
-  React.useEffect(() => {
-    const itemsInCart = JSON.parse(localStorage.getItem("itemsInCart") || "[]");
-
-    const existingItem = itemsInCart.find((item: any) => item.id === id);
-
-    if (existingItem) {
-      existingItem.quantity = quantity;
-      existingItem.price = price;
-    } else {
-      itemsInCart.push({
-        id,
-        name,
-        quantity,
-        price,
-      });
-    }
-
-    localStorage.setItem("itemsInCart", JSON.stringify(itemsInCart));
-  }, [quantity]);
 
   return (
     <tr key={id} className="rowWrapper" data-testid='basketItem'>
