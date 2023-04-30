@@ -1,12 +1,12 @@
 import "./Checkout.css";
 import shoppingLogo from "../../../assets/shoppingbag.png"
 import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
-import { Link } from "react-router-dom";
 import LockIcon from "../../../assets/lockicon.png";
 
 
 import { useCartContext } from "../../../contexts/CartContext";
 import Popup from "reactjs-popup";
+import { handleNavigation } from "../../../Router";
 
 interface ICheckout {
   currency: string;
@@ -61,14 +61,14 @@ const CheckoutResponsive = ({ currency }: ICheckout) => {
                                 )}
                                 <div>
                                     <div className="totalDiscountText"> {promtSavings()} </div>
-                                    <Link to="/Checkout">
-                                        <button className="checkoutButton">
+                                 
+                                        <button className="checkoutButton" onClick={() => handleNavigation('/checkout')}>
                                             <div className="checkoutButtonInside">
                                                 <img src={LockIcon} className="checkoutButtonIcon"/>
                                                 <span className="checkoutButtonText">Checkout</span>
                                             </div>
                                         </button>
-                                    </Link>
+                      
                                 </div>
                             </div>
                         </div>

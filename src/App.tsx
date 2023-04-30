@@ -29,8 +29,8 @@ function App() {
 
             <Router path="/" content={startPage}/>
             <Router path="/checkout" content={<CheckoutForm />} />
-            <Router path="/checkout/payment" content={<Payment/>} />
-            <Router path="/checkout/receipt" content={<Receipt/>} />
+            <Router path="/payment" content={<Payment/>} />
+            <Router path="/receipt" content={<Receipt/>} />
             
         
     </CartProvider>

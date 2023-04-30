@@ -49,7 +49,7 @@ const CheckoutForm = () => {
       localStorage.setItem("name2", userInfo.lastName);
       localStorage.setItem("address1", userInfo.address1);
 
-      handleNavigation("/checkout/payment")
+      handleNavigation("/payment")
     }
   };
 

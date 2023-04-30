@@ -9,7 +9,7 @@ const Payment = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    handleNavigation("/checkout/receipt")
+    handleNavigation("/receipt")
   };
 
   return (
