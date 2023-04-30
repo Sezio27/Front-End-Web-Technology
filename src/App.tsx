@@ -5,6 +5,7 @@ import Payment from "./components/Payment/Payment";
 import Receipt from "./components/Receipt/Receipt";
 import CheckoutResponsive from "./components/Cart/Checkout/CheckoutResponsive";
 import Router from "./Router"
+import { CheckoutProvider } from "./contexts/CheckoutContext";
 
 function App() {
 
@@ -25,15 +26,19 @@ function App() {
   </div>
  
   return (
+    <>
     <CartProvider value={[]}>
 
             <Router path="/" content={startPage}/>
-            <Router path="/checkout" content={<CheckoutForm />} />
             <Router path="/payment" content={<Payment/>} />
             <Router path="/receipt" content={<Receipt/>} />
             
         
     </CartProvider>
+    <CheckoutProvider>
+      <Router path="/checkout" content={<CheckoutForm />} />
+    </CheckoutProvider>
+  </>
   );
 }
 
