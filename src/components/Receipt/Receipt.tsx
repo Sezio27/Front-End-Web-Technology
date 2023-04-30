@@ -3,8 +3,8 @@ import "./Receipt.css";
 const Receipt = () => {
 
     const totalPrice = Number(localStorage.getItem("totalPrice"));
-    const name1 = localStorage.getItem("name");
-    const name2 = localStorage.getItem("name2");
+    const firstName = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("lastName");
     const email = localStorage.getItem("email");
     const address1 = localStorage.getItem("address1");
 
@@ -34,7 +34,7 @@ const Receipt = () => {
 
                 <h1>Receipt</h1>
                 <p>Thank you for your purchase!</p>
-                <p>{name1} {name2}</p>
+                <p>{firstName} {lastName}</p>
                 <p>Email: {email}</p>
                 <p>Ship to: {address1}</p>
 

@@ -2,8 +2,6 @@ import "./Checkout.css";
 import shoppingLogo from "../../../assets/shoppingbag.png"
 import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
 import LockIcon from "../../../assets/lockicon.png";
-
-
 import { useCartContext } from "../../../contexts/CartContext";
 import Popup from "reactjs-popup";
 import { handleNavigation } from "../../../Router";
@@ -23,6 +21,7 @@ const CheckoutResponsive = ({ currency }: ICheckout) => {
     ? `You've shaved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
+  
 
   return (
     <div className="menuContainer">
@@ -36,6 +35,7 @@ const CheckoutResponsive = ({ currency }: ICheckout) => {
                             }}/>}
                     modal
                     nested
+                    
                 >{close => {
                 return (
                     <div className="modal">

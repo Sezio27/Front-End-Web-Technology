@@ -21,12 +21,13 @@ const Checkout = ({ currency }: ICheckout) => {
   const promtSavings = () => {
     if (totalPrice == undefined) return; 
     return totalDiscountActive
-    ? `You've shaved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`
+    ? `You've saved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
     const handleCheckout = () => {
         localStorage.setItem("totalPrice", String(totalPrice));
+        handleNavigation("/checkout");
     };
 
   return (
@@ -48,7 +49,7 @@ const Checkout = ({ currency }: ICheckout) => {
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
 
-          <button className="checkoutButton" onClick={() => handleNavigation("/checkout")}>
+          <button className="checkoutButton" onClick={() => handleCheckout()}>
             <div className="checkoutButtonInside">
               <img src={LockIcon} className="checkoutButtonIcon" />
               <span className="checkoutButtonText">Checkout</span>

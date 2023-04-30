@@ -1,12 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent } from "react";
 import "./CheckoutForm.css";
 import { useCartContext } from "../../contexts/CartContext";
 import { UserInfo } from "../../Types/Types";
 import { handleNavigation, handlePop } from "../../Router";
 
 const CheckoutForm = () => {
-  const { userInfo, setUserInfo, zipsAndCities, setZipsAndCities } = useCartContext();
+  
   const [validZip, setValidZip] = useState(true);
+  const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>(() => {
+    const savedZipCities = localStorage.getItem("ZipCities");
+    return savedZipCities ? JSON.parse(savedZipCities) : [];
+  });;
+
+  const getInitialUserInfo = (): UserInfo => {
+    const defaultUserInfo: UserInfo = {
+      country: "Denmark",
+      zipCode: "",
+      city: "",
+      address1: "",
+      address2: "",
+      billingAddress: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      email: "",
+      companyName: "",
+      companyVAT: "",
+    };
+  
+    const savedUserInfo: Partial<UserInfo> = {};
+
+    Object.keys(defaultUserInfo).forEach((key) => {
+      const keyT = key as keyof UserInfo;
+      const value = localStorage.getItem(key);
+      if (value) {
+        savedUserInfo[keyT] = value;
+      }
+    });
+   
+    return { ...defaultUserInfo, ...savedUserInfo };
+  };
+
+  const [userInfo, setUserInfo] = useState<UserInfo>(getInitialUserInfo());
 
   const updateUserInfo = (key: keyof UserInfo, value: string) => {
     setUserInfo({
@@ -15,30 +50,41 @@ const CheckoutForm = () => {
     });
   };
 
-  
+  const saveInput = (key: keyof UserInfo) => {
+    localStorage.setItem(key, userInfo[key])
+  };
+
+
+
+
+  //Fetch zip/city info if not fetched before (not saved in localStorage)
   const fetchZips = async () => {
     console.log("FETCHING ZIP CODES")
     try {
+
       const DK_ZIP_URL = "https://api.dataforsyningen.dk/postnumre";
       const response = await fetch(DK_ZIP_URL);
       const data = await response.json();
-      setZipsAndCities(data.map((item: { nr: string; navn: string }) => ({ zip: item.nr, city: item.navn })));
+
+      const zipcity = data.map((item: { nr: string, navn: string }) => ({ zip: item.nr, city: item.navn }))
+      localStorage.setItem("ZipCities", JSON.stringify(zipcity))
+      setZipsAndCities(zipcity)
+
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
-    if(zipsAndCities.length < 1) {
+    if (zipsAndCities.length < 1) {
       fetchZips();
     }
 
   }, []);
 
-  //TODO - update city immediately, and not on re-render
+  //Update city-info immediately if valid zip otherwise set city-info blank and show invalid zip 
   useEffect(() => {
     if (userInfo.zipCode.length === 4) {
-      // console.log(zipsAndCities);
       const existingZipCityIndex = zipsAndCities.findIndex(
         (item: { zip: string; city: string }) => item.zip === userInfo.zipCode
       );
@@ -48,22 +94,24 @@ const CheckoutForm = () => {
       } else {
         setValidZip(false);
       }
+    } else {
+      updateUserInfo("city", "")
     }
   }, [userInfo.zipCode]);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (validZip) {
-      localStorage.setItem("email", userInfo.email);
-      localStorage.setItem("name", userInfo.firstName);
-      localStorage.setItem("name2", userInfo.lastName);
-      localStorage.setItem("address1", userInfo.address1);
+      // localStorage.setItem("email", userInfo.email);
+      // localStorage.setItem("name", userInfo.firstName);
+      // localStorage.setItem("name2", userInfo.lastName);
+      // localStorage.setItem("address1", userInfo.address1);
 
       handleNavigation("/payment")
     }
   };
-
+ 
   return (
     <div className="formContainer">
       <form className="theForm" onSubmit={handleSubmit}>
@@ -95,6 +143,7 @@ const CheckoutForm = () => {
             id="zip"
             value={userInfo.zipCode}
             onChange={(e) => updateUserInfo("zipCode", e.target.value)}
+            onBlur={() => saveInput("zipCode")}
             required
             pattern="\d{4}"
           />
@@ -132,6 +181,7 @@ const CheckoutForm = () => {
             id="address1"
             value={userInfo.address1}
             onChange={(e) => updateUserInfo("address1", e.target.value)}
+            onBlur={() => saveInput("address1")}
             required
           />
         </div>
@@ -147,6 +197,7 @@ const CheckoutForm = () => {
             id="address2"
             value={userInfo.address2}
             onChange={(e) => updateUserInfo("address2", e.target.value)}
+            onBlur={() => saveInput("address2")}
           />
         </div>
 
@@ -161,6 +212,7 @@ const CheckoutForm = () => {
             id="billingAddress"
             value={userInfo.billingAddress}
             onChange={(e) => updateUserInfo("billingAddress", e.target.value)}
+            onBlur={() => saveInput("billingAddress")}
           />
         </div>
 
@@ -176,6 +228,7 @@ const CheckoutForm = () => {
             max="50"
             value={userInfo.firstName}
             onChange={(e) => updateUserInfo("firstName", e.target.value)}
+            onBlur={() => saveInput("firstName")}
             required
             pattern="^[A-Za-z]+$"
           />
@@ -193,6 +246,7 @@ const CheckoutForm = () => {
             max="50"
             value={userInfo.lastName}
             onChange={(e) => updateUserInfo("lastName", e.target.value)}
+            onBlur={() => saveInput("lastName")}
             required
             pattern="^[A-Za-z]+$"
           />
@@ -209,6 +263,7 @@ const CheckoutForm = () => {
             id="phone"
             value={userInfo.phone}
             onChange={(e) => updateUserInfo("phone", e.target.value)}
+            onBlur={() => saveInput("phone")}
             required
             pattern="(\+45|45)?[1-9]\d{7}"
           />
@@ -225,6 +280,7 @@ const CheckoutForm = () => {
             id="email"
             value={userInfo.email}
             onChange={(e) => updateUserInfo("email", e.target.value)}
+            onBlur={() => saveInput("email")}
             required
           />
         </div>
@@ -241,6 +297,7 @@ const CheckoutForm = () => {
             max="40"
             value={userInfo.companyName}
             onChange={(e) => updateUserInfo("companyName", e.target.value)}
+            onBlur={() => saveInput("companyName")}
           />
         </div>
 
@@ -255,6 +312,7 @@ const CheckoutForm = () => {
             id="companyVat"
             value={userInfo.companyVAT}
             onChange={(e) => updateUserInfo("companyVAT", e.target.value)}
+            onBlur={() => saveInput("companyVAT")}
             pattern="\d{8}"
           />
         </div>

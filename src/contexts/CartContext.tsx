@@ -13,9 +13,6 @@ interface CartProviderProps {
 interface ICartContext {
   basketItems: Item[];
   setBasketItems: (basketItems: Item[]) => void;
-  zipsAndCities: { zip: string, city: string }[];
-  setZipsAndCities: (zipsAndCities: { zip: string, city: string }[]) => void
-  fetchZips: () => void;
   removeFromCart: (productId: string) => void;
   changeToUpsell: (productId: string) => void;
   calculateTotals: () => BasketTotals;
@@ -49,9 +46,6 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const CartContext = createContext<ICartContext>({
   basketItems: [],
   setBasketItems: () => { },
-  zipsAndCities: [],
-  setZipsAndCities: () => { },
-  fetchZips: () => { },
   removeFromCart: () => { },
   changeToUpsell: () => { },
   calculateTotals: () => ({
@@ -87,7 +81,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     return savedUserInfo ? JSON.parse(savedUserInfo) : initialUserInfo;
   });
 
-  const [zipsAndCities, setZipsAndCities] = useState<{ zip: string, city: string }[]>([]);
+  
 
 
 
@@ -129,18 +123,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
       }
     }, [products]);
 
-
- // NOT USED ATM
-  const fetchZips = async () => {
-    try {
-      const DK_ZIP_URL = 'https://api.dataforsyningen.dk/postnumre';
-      const response = await fetch(DK_ZIP_URL);
-      const data = await response.json();
-      setZipsAndCities(data.map((item: { nr: string, navn: string }) => ({ zip: item.nr, city: item.navn })))
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const removeFromCart = (productId: string) => {
     const updatedCart = basketItems.filter((item) => item.product.id !== productId);
@@ -235,9 +217,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
       value={{
         basketItems, 
         setBasketItems, 
-        zipsAndCities, 
-        setZipsAndCities, 
-        fetchZips, 
         removeFromCart, 
         changeToUpsell, 
         calculateTotals, 
