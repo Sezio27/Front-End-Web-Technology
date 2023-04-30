@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import "./CheckoutForm.css";
-import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext";
 import { UserInfo } from "../../Types/Types";
+import { handleNavigation, handlePop } from "../../Router";
 
 const CheckoutForm = () => {
   const { userInfo, setUserInfo, zipsAndCities, setZipsAndCities } = useCartContext();
-  const navigate = useNavigate();
   const [validZip, setValidZip] = useState(true);
-  const [firstTime, setFirstTime] = useState(true);
 
   const updateUserInfo = (key: keyof UserInfo, value: string) => {
     setUserInfo({
@@ -17,10 +15,7 @@ const CheckoutForm = () => {
     });
   };
 
-  const goBack = () => {
-    window.history.back();
-  };
-
+  
   const fetchZips = async () => {
     console.log("FETCHING ZIP CODES")
     try {
@@ -36,7 +31,6 @@ const CheckoutForm = () => {
   useEffect(() => {
     if(zipsAndCities.length < 1) {
       fetchZips();
-      // setFirstTime(false);
     }
 
   }, []);
@@ -66,7 +60,7 @@ const CheckoutForm = () => {
       localStorage.setItem("name2", userInfo.lastName);
       localStorage.setItem("address1", userInfo.address1);
 
-      navigate("/Checkout/Payment");
+      handleNavigation("/payment")
     }
   };
 
@@ -266,12 +260,10 @@ const CheckoutForm = () => {
         </div>
 
         <br />
-        <table>
-          <button className="backButton" type="button" onClick={goBack}>
-            Back
-          </button>
+        <div>
+          <button className="backButton" type="button" onClick={() => handlePop()}>Back</button>
           <button className="formButton">To payment</button>
-        </table>
+        </div>
       </form>
     </div>
   );

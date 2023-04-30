@@ -2,11 +2,12 @@ import "./Checkout.css";
 // import lockLogo from "./assets/lockicon.png"
 import { FaChevronRight } from "react-icons/fa";
 import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
-import { Link } from "react-router-dom";
+
 import LockIcon from "../../../assets/lockicon.png";
 
 
 import { useCartContext } from "../../../contexts/CartContext";
+import { handleNavigation } from "../../../Router";
 
 interface ICheckout {
   currency: string;
@@ -46,14 +47,14 @@ const Checkout = ({ currency }: ICheckout) => {
       )}
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
-        <Link to="/Checkout">
-          <button className="checkoutButton" onClick={handleCheckout}>
+
+          <button className="checkoutButton" onClick={() => handleNavigation("/checkout")}>
             <div className="checkoutButtonInside">
               <img src={LockIcon} className="checkoutButtonIcon" />
               <span className="checkoutButtonText">Checkout</span>
             </div>
           </button>
-        </Link>
+       
       </div>
     </div>
   );
