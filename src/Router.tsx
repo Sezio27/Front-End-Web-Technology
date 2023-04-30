@@ -12,30 +12,21 @@ const Router = ({ path, content }: IRouter) => {
 
 
     useEffect(() => {
-        const handleLocationChangeNav = () => {
-            console.log("Navigate")
+        const handleLocationChange= () => {
             setCurrentPath(window.location.pathname);
         };
 
-        const handleLocationChangePop = () => {
-            console.log("Pop")
-            setCurrentPath(window.location.pathname);
-        };
+   
 
-        const handleUnload = () => {
 
-            //lav logik her for gemme data muligvis
-            console.log("Unload")
-        };
-
-        window.addEventListener('navigate', handleLocationChangeNav);
-        window.addEventListener('popstate', handleLocationChangePop);
-        window.addEventListener('beforeunload', handleUnload)
+        window.addEventListener('navigate', handleLocationChange);
+        window.addEventListener('popstate', handleLocationChange);
+      
 
         return () => {
-            window.removeEventListener('navigate', handleLocationChangeNav);
-            window.removeEventListener('popstate', handleLocationChangePop);
-            window.removeEventListener('beforeunload', handleUnload)
+            window.removeEventListener('navigate', handleLocationChange);
+            window.removeEventListener('popstate', handleLocationChange);
+           
         };
     }, []);
 

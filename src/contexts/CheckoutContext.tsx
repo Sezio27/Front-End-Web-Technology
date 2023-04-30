@@ -9,6 +9,7 @@ interface CheckoutContextData {
   updateUserInfo: (key: keyof UserInfo, value: string) => void;
   validZip: boolean;
   setValidZip: (valid: boolean) => void;
+  zipsAndCities: { zip: string, city: string }[]
 }
 
 
@@ -87,7 +88,6 @@ export const CheckoutProvider: FC<CheckoutProviderProps> = ({ children }) => {
     if (zipsAndCities.length < 1) {
       fetchZips();
     }
-
   }, []);
 
   //Update city-info immediately if valid zip otherwise set city-info blank and show invalid zip 
@@ -114,6 +114,7 @@ export const CheckoutProvider: FC<CheckoutProviderProps> = ({ children }) => {
         updateUserInfo,
         validZip,
         setValidZip,
+        zipsAndCities,
       }}
     >
       {children}

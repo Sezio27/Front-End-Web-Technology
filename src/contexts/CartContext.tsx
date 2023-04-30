@@ -19,8 +19,6 @@ interface ICartContext {
   getProductName: (productId: string) => string | undefined;
   onQuantityChange: (productId: string, quantity: number) => void;
   isProductInBasket: (productId: string) => boolean
-  userInfo: UserInfo;
-  setUserInfo: (userInfo: UserInfo) => void;
 
 }
 const initialUserInfo: UserInfo = {
@@ -57,8 +55,7 @@ const CartContext = createContext<ICartContext>({
   getProductName: () => undefined,
   onQuantityChange: () => {},
   isProductInBasket: () => false,
-  userInfo: initialUserInfo,
-  setUserInfo: () => { }
+
 });
 
 
@@ -75,20 +72,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
     const savedItems = localStorage.getItem("basketItems"); 
     return savedItems ? JSON.parse(savedItems) : value;
   });
-
-  const [userInfo, setUserInfo] = useState<UserInfo>(() => {
-    const savedUserInfo = localStorage.getItem("userInfo");
-    return savedUserInfo ? JSON.parse(savedUserInfo) : initialUserInfo;
-  });
-
-  
-
-
-
-  //Save userInfo in localStorage
-  useEffect (() => {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
-  }, [userInfo])
 
   //Save BasketItems in localStorage
   useEffect (() => {
@@ -223,8 +206,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
         getProductName, 
         onQuantityChange, 
         isProductInBasket, 
-        userInfo, 
-        setUserInfo
       }}
     >
       {children}
