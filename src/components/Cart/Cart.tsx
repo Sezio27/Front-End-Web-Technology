@@ -10,19 +10,26 @@ import { useEffect, useState } from "react";
 const Cart = () => {
   const { basketItems } = useCartContext();
 
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  
-  
+
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+  /*
   useEffect(() => {
     if(basketItems.length > 0 ) setLoading(false)
   }, [basketItems]);
+   */
 
-  
   return (
     
     <div className="cartContainer">
-      {loading ? <img src={reload} className="loading-logo"/> : 
+      {loading ? <img src={reload} className="loading-logo" alt="loading-logo"/> :
       (basketItems.length > 0 ? (
         <div className="cartSection">
           <div className="basketContainer">
