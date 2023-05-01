@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/checkout"
+  to = "/"
+
+[[redirects]]
+  from = "/payment"
+  to = "/"
+
+[[redirects]]
+  from = "/receipt"
+  to = "/"
