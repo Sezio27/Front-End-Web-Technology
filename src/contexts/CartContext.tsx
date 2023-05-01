@@ -5,7 +5,7 @@ import { fetchProductList } from "../components/Utility/fetchProducts";
 import oldProductList from "../data/products.json"
 
 
-interface CartProviderProps {
+export interface CartProviderProps {
   children: ReactNode;
   value: any;
 }

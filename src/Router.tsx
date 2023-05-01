@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactElement } from 'react';
 
-interface IRouter {
+export interface IRouter {
     path: string;
     content: ReactElement
 }

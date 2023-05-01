@@ -6,7 +6,7 @@ import Cart from "../src/components/Cart/Cart";
 import { cleanup, findByTestId, findByText, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi, afterEach, Vitest, MockedFunction, Mock } from "vitest";
 import { fetchProductList } from "../src/components/Utility/fetchProducts";
-import { createFetchResponse, customRender } from "./HelperFunctions/commonTestFunctions";
+import { createFetchResponse, customRenderCart } from "./HelperFunctions/commonTestFunctions";
 import userEvent from "@testing-library/user-event";
 
 // //mocking global fetch.. dont know how to mock locally.
@@ -16,7 +16,7 @@ global.fetch = vi.fn();
 describe("Cart : Empty", () => {
   fetch.mockResolvedValueOnce(createFetchResponse([]));
   it("Should show empty basket if no basket items have rendered", async () => {
-    await waitFor(() => customRender(<Cart wantInitialLoading={false} />));
+    await waitFor(() => customRenderCart(<Cart wantInitialLoading={false} />));
 
     const text = await screen.findByText("Your basket is empty.");
     await waitFor(() => {
@@ -32,7 +32,7 @@ describe("Cart : With Items", () => {
   });
 
   it("Should render the box containing price of products and checkout-button", async () => {
-    customRender(<Cart wantInitialLoading={false} />);
+    customRenderCart(<Cart wantInitialLoading={false} />);
 
     const text = await screen.findByText("Items in cart:");
     await waitFor(() => {
@@ -51,7 +51,7 @@ describe("Cart : With Items", () => {
 
   it("Should show price of 2 apples in checkout box when quantity of apples has been changed to 2", async () => {
     const user = userEvent.setup();
-    await waitFor(() => customRender(<Cart wantInitialLoading={false} />));
+    await waitFor(() => customRenderCart(<Cart wantInitialLoading={false} />));
 
     //getting correct input when finding by abel
     const quantity = screen.getAllByLabelText(/^Qty/i)[0] as HTMLInputElement;
@@ -67,7 +67,7 @@ describe("Cart : With Items", () => {
 
   it("should remove APPLES from basket when clicking on the remove button", async () => {
     const user = userEvent.setup();
-    customRender(<Cart wantInitialLoading={false} />);
+    customRenderCart(<Cart wantInitialLoading={false} />);
 
     // const removeBut = await screen.findByRole('button', { name: /close/i });
     const removeBut = (await screen.findAllByTestId("remove-button"))[0];
@@ -93,7 +93,7 @@ describe("Cart : With Items", () => {
 
   it("show correct number of total items in the basket", async () => {
     const user = userEvent.setup();
-    await waitFor(() => customRender(<Cart wantInitialLoading={false} />));
+    await waitFor(() => customRenderCart(<Cart wantInitialLoading={false} />));
 
     //getting correct input when finding by abel
     const quantity = screen.getAllByLabelText(/^Qty/i)[0] as HTMLInputElement;

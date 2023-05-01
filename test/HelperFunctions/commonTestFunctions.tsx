@@ -1,10 +1,11 @@
-import React from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import products from "../mocks/product-mock.json";
 import { Product } from "../../src/Types/Types";
-import { CartProvider } from "../../src/contexts/CartContext";
+import { CartProvider, CartProviderProps } from "../../src/contexts/CartContext";
 import { render } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import { CheckoutProvider } from "../../src/contexts/CheckoutContext";
+import { CheckoutProvider, CheckoutProviderProps } from "../../src/contexts/CheckoutContext";
+import Router, { IRouter } from "../../src/Router";
 
 const RouterWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 
@@ -26,6 +27,11 @@ export const customRenderCart = (ui) => {
   return render(<CartProvider value={[]}>{ui} </CartProvider>, { wrapper: BrowserRouter });
 };
 
-export const customRenderZip = (ui) => {
-  return render(<CheckoutProvider> {ui} </CheckoutProvider>);
+export const customRenderZip = (ui: ReactElement, router: boolean) => {
+  if (router) return render(<CheckoutProvider> {routerWrapper({ path: "/checkout", content: ui })} </CheckoutProvider>);
+  else return render(<CheckoutProvider> {ui} </CheckoutProvider>);
+};
+
+export const routerWrapper = ({ path, content }: IRouter) => {
+  return <Router path={path} content={content} />;
 };

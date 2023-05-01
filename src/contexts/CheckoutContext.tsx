@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode, FC } from "react";
 import { UserInfo } from "../Types/Types";
 
-interface CheckoutProviderProps {
+export interface CheckoutProviderProps {
     children: ReactNode;
   }
 interface CheckoutContextData {
