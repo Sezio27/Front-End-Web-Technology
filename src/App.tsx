@@ -33,7 +33,6 @@ function App() {
             <Router path="/payment" content={<Payment/>} />
             <Router path="/receipt" content={<Receipt/>} />
             
-        
     </CartProvider>
     <CheckoutProvider>
       <Router path="/checkout" content={<CheckoutForm />} />
