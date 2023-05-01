@@ -24,13 +24,13 @@ const Cart = ({wantInitialLoading} : ICart) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
 
   
   /* This is for the actual implementation of loading, meaning the site loads untill data has been fetched
-  
+
   useEffect(() => {
     if(basketItems.length > 0 ) setLoading(false)
   }, [basketItems]);
