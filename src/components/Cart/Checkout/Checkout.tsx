@@ -1,11 +1,6 @@
 import "./Checkout.css";
-// import lockLogo from "./assets/lockicon.png"
-import { FaChevronRight } from "react-icons/fa";
-import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
-
+import { TwoDecimals } from "../../../Utilities/NumberUtitlity";
 import LockIcon from "../../../assets/lockicon.png";
-
-
 import { useCartContext } from "../../../contexts/CartContext";
 import { handleNavigation } from "../../../Router";
 
@@ -13,22 +8,22 @@ interface ICheckout {
   currency: string;
 }
 
-const Checkout = ({ currency }: ICheckout) => {
-  const {calculateTotals} = useCartContext()
-  
-  const {totalQuantity, totalPrice, totalRebateSavings, totalOrderSavings, totalPriceAfterSavings, totalDiscountActive} = calculateTotals()
-    //${TwoDecimals((totalOrderSavings))}
+const Checkout = ( currency : ICheckout) => {
+  const { calculateTotals } = useCartContext()
+
+  const { totalQuantity, totalPrice, totalRebateSavings, totalOrderSavings, totalPriceAfterSavings, totalDiscountActive } = calculateTotals()
+  //${TwoDecimals((totalOrderSavings))}
   const promtSavings = () => {
-    if (totalPrice == undefined) return; 
+    if (totalPrice == undefined) return;
     return totalDiscountActive
-    ? `You've saved 10% off your total order!`
+      ? `You've saved 10% off your total order!`
       : `Buy for ${300 - totalPrice},- more to save 10%`;
   };
 
-    const handleCheckout = () => {
-        localStorage.setItem("totalPrice", String(totalPrice));
-        handleNavigation("/checkout");
-    };
+  const handleCheckout = () => {
+    localStorage.setItem("totalPrice", String(totalPrice));
+    handleNavigation("/checkout");
+  };
 
   return (
     <div className="primaryContainer">
@@ -36,10 +31,13 @@ const Checkout = ({ currency }: ICheckout) => {
         Items in cart:
         <div className="textEnd" data-testid='totalItems'>{totalQuantity}</div>
       </div>
-      <div className="textSection total">
-        Total price of items:
-        <div className="textEnd" data-testid='totalPrice'>{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
-      </div>
+      {totalPriceAfterSavings > 0 && (
+        <div className="textSection total">
+          Total price of items:
+          <div className="textEnd" data-testid='totalPrice'>{`${TwoDecimals(totalPrice)},-`}</div>
+        </div>
+      )
+      }
       {totalRebateSavings > 0 && (
         <div className="savingsText">
           <span>Price savings of items</span>
@@ -52,23 +50,25 @@ const Checkout = ({ currency }: ICheckout) => {
           <div className="savingsTextEnd">{`- ${TwoDecimals(totalOrderSavings)},-`}</div>
         </div>
       )}
-       {totalPrice > totalPriceAfterSavings && (
-        <div className="textSection">
+      <div className="textSection">
         Total price:
-        <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPriceAfterSavings)},- ${currency}`}</div>
-        </div>
-       )}
-      
+        {totalPriceAfterSavings > 0 ? (
+          <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPriceAfterSavings)},-`}</div>
+        ) :
+          <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPrice)},-`}</div>
+        }
+      </div>
+
       <div>
         <div className="totalDiscountText"> {promtSavings()} </div>
 
-          <button className="checkoutButton" onClick={() => handleCheckout()}>
-            <div className="checkoutButtonInside">
-              <img src={LockIcon} className="checkoutButtonIcon" />
-              <span className="checkoutButtonText">Checkout</span>
-            </div>
-          </button>
-       
+        <button className="checkoutButton" onClick={() => handleCheckout()}>
+          <div className="checkoutButtonInside">
+            <img src={LockIcon} className="checkoutButtonIcon" />
+            <span className="checkoutButtonText">Checkout</span>
+          </div>
+        </button>
+
       </div>
     </div>
   );
