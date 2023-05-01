@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import App from "../src/App";
 import CheckoutForm from "../src/components/Forms/CheckoutForm";
 import { useNavigate } from "react-router-dom";
-import { createFetchResponse, customRender } from "./commonTestFunctions";
+import { createFetchResponse, customRender } from "./HelperFunctions/commonTestFunctions";
 import Cart from "../src/components/Cart/Cart";
 import products from "./mocks/product-mock.json";
 //import mockResponse from ".././src/data/mock-response.json"
@@ -18,7 +18,7 @@ describe("App.name", () => {
     fetch.mockResolvedValueOnce(createFetchResponse(products));
     const user = userEvent.setup();
 
-    customRender(<Cart />, true);
+    customRender(<Cart wantInitialLoading={false} />);
 
     const removeBut = (await screen.findAllByTestId("remove-button"))[2];
     const quantity = (await screen.findAllByLabelText(/^Qty/i))[0] as HTMLInputElement;
@@ -38,7 +38,7 @@ describe("App.name", () => {
     fetch.mockResolvedValueOnce(createFetchResponse(products));
     const user = userEvent.setup();
 
-    await waitFor(() => customRender(<Cart />, true))
+    await waitFor(() => customRender(<Cart wantInitialLoading={false} />))
     
     // screen.debug(undefined,Infinity)
     
@@ -65,7 +65,6 @@ describe("App.name", () => {
     const applesPro = screen.getByText('Apples pro')
     expect(applesPro).toBeInTheDocument()
     expect(apples).not.toBeInTheDocument()
-    screen.debug(undefined, Infinity)
   });
 
   // it("Test that if the quantity picker works, meaning the quantity is updated correctly if a user change it", async () => {

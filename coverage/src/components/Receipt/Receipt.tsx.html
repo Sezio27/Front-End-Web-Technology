@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/Payment/Payment.tsx</title>
+    <title>Code coverage report for src/components/Receipt/Receipt.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Payment</a> Payment.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Receipt</a> Receipt.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">9.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/54</span>
+                <span class='fraction'>6/65</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">9.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/54</span>
+                <span class='fraction'>6/65</span>
             </div>
         
             
@@ -117,7 +117,17 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -169,63 +179,83 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "./Payment.css";
-import { handleNavigation, handlePop } from "../../Router";
-&nbsp;
-const Payment = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import "./Receipt.css";
+import { useCartContext } from "../../contexts/CartContext";
+import { Item } from "../../Types/Types";
+const Receipt = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleSubmit = (e: { preventDefault: () =&gt; void }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >    handleNavigation("/receipt")</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >    const { basketItems, calculateTotals } = useCartContext();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="PaymentContainer"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="ContentContainer"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;h1&gt;Payment&lt;/h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;form className="checkboxValue" onSubmit={handleSubmit}&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div className="checkboxes"&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;label&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;input type="checkbox" required /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  Please accept our Terms and conditions</span>
-<span class="cstat-no" title="statement not covered" >                &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >                 &lt;label&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;input type="checkbox" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                Would you like to receive our newsletter?</span>
-<span class="cstat-no" title="statement not covered" >              &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >              </span>
+<span class="cstat-no" title="statement not covered" >    const {totalOrderSavings, totalRebateSavings, totalPriceAfterSavings} = calculateTotals()</span>
+<span class="cstat-no" title="statement not covered" >   </span>
+<span class="cstat-no" title="statement not covered" >    const firstName = localStorage.getItem("firstName");</span>
+<span class="cstat-no" title="statement not covered" >    const lastName = localStorage.getItem("lastName");</span>
+<span class="cstat-no" title="statement not covered" >    const email = localStorage.getItem("email");</span>
+<span class="cstat-no" title="statement not covered" >    const address1 = localStorage.getItem("address1");</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const date = new Date().toLocaleString("en", {</span>
+<span class="cstat-no" title="statement not covered" >        weekday: "long",</span>
+<span class="cstat-no" title="statement not covered" >        year: "numeric",</span>
+<span class="cstat-no" title="statement not covered" >        month: "long",</span>
+<span class="cstat-no" title="statement not covered" >        day: "numeric",</span>
+<span class="cstat-no" title="statement not covered" >        hour: "numeric",</span>
+<span class="cstat-no" title="statement not covered" >        minute: "numeric",</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div className="ReceiptContainer"&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className="ContentContainer"&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                &lt;h1&gt;Receipt&lt;/h1&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;p&gt;Thank you for your purchase!&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;p&gt;{firstName} {lastName}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;p&gt;Email: {email}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;p&gt;Ship to: {address1}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                &lt;table className="ItemsTable"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;thead&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;tr&gt;</span>
+<span class="cstat-no" title="statement not covered" >                        &lt;th&gt;Item&lt;/th&gt;</span>
+<span class="cstat-no" title="statement not covered" >                        &lt;th&gt;Quantity&lt;/th&gt;</span>
+<span class="cstat-no" title="statement not covered" >                        &lt;th&gt;Price&lt;/th&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;/tr&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;/thead&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;tbody&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    {basketItems</span>
+<span class="cstat-no" title="statement not covered" >                        .filter((item: Item) =&gt; item.quantity &gt; 0)</span>
+<span class="cstat-no" title="statement not covered" >                        .map((item: Item) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >                            &lt;tr key={item.product.id}&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                &lt;td&gt;{item.product.name}&lt;/td&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                &lt;td&gt;{item.quantity}&lt;/td&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                &lt;td&gt;{item.product.price * item.quantity} DKK&lt;/td&gt;</span>
+<span class="cstat-no" title="statement not covered" >                            &lt;/tr&gt;</span>
+<span class="cstat-no" title="statement not covered" >                        ))}</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;/tbody&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;/table&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                &lt;p className="rabat"&gt;Total savings: {(totalOrderSavings + totalRebateSavings ).toFixed(2)} DKK&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;p className="total"&gt;Total price paid: {totalPriceAfterSavings.toFixed(2)} DKK&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;p className="date"&gt;Date of receipt: {date}&lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >          &lt;div className="comment"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;label&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;h2&gt;Comments:&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;textarea rows={8} cols={50}&gt;&lt;/textarea&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >          &lt;br /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;button className="backButton" type="button" onClick={() =&gt; handlePop()}&gt;Back&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >            </span>
-<span class="cstat-no" title="statement not covered" >            &lt;button className="submit"&gt;Submit&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >          </span>
-<span class="cstat-no" title="statement not covered" >          &lt;/form&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt; </span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-export default Payment;
-&nbsp;</pre></td></tr></table></pre>
+export default Receipt;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

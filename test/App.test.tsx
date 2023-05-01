@@ -12,7 +12,6 @@ describe(App.name, () => {
 
     const cart = screen.getByText('Cart')
     const flow = screen.getByText('Checkout Flow')
-    screen.debug(cart)
     expect(cart).toBeInTheDocument()
     expect(flow).toBeInTheDocument()
   });

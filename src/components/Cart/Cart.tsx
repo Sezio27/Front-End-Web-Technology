@@ -7,7 +7,11 @@ import { useCartContext } from "../../contexts/CartContext";
 import { useEffect, useState } from "react";
 
 
-const Cart = () => {
+interface ICart {
+  wantInitialLoading: boolean
+}
+
+const Cart = ({wantInitialLoading} : ICart) => {
   const { basketItems } = useCartContext();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -15,6 +19,8 @@ const Cart = () => {
 
 
   useEffect(() => {
+    if(!wantInitialLoading)
+      return
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

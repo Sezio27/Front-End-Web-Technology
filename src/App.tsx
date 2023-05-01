@@ -20,7 +20,7 @@ function App() {
         <h1 className="Subtitle"> Cart </h1>
       </div>
       <div className="siteSectionComponent">
-          <Cart/>
+          <Cart wantInitialLoading={true}/>
       </div>
     </div>
   </div>
