@@ -17,21 +17,6 @@ const CheckoutForm = () => {
   const saveInput = (key: keyof UserInfo) => {
     localStorage.setItem(key, userInfo[key])
   };
-  
-  //TODO - update city immediately, and not on re-render
-  useEffect(() => {
-    if (userInfo.zipCode.length === 4) {
-      const existingZipCityIndex = zipsAndCities.findIndex(
-        (item: { zip: string; city: string }) => item.zip === userInfo.zipCode
-      );
-      if (existingZipCityIndex !== -1) {
-        setValidZip(true);
-        updateUserInfo("city", zipsAndCities[existingZipCityIndex].city);
-      } else {
-        setValidZip(false);
-      }
-    }
-  }, [userInfo.zipCode]);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
