@@ -17,7 +17,9 @@ export type Item = {
 export type BasketTotals = {
   totalQuantity: number;
   totalPrice: number;
-  totalSavings: number
+  totalRebateSavings: number,
+  totalOrderSavings: number,
+  totalPriceAfterSavings: number,
   totalDiscountActive: boolean
 };
 

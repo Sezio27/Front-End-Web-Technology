@@ -20,7 +20,7 @@ const Receipt = () => {
         hour: "numeric",
         minute: "numeric",
     });
-
+    
     return (
         <div className="ReceiptContainer">
 

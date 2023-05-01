@@ -16,9 +16,6 @@ const Router = ({ path, content }: IRouter) => {
             setCurrentPath(window.location.pathname);
         };
 
-   
-
-
         window.addEventListener('navigate', handleLocationChange);
         window.addEventListener('popstate', handleLocationChange);
       
