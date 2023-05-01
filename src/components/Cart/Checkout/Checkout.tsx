@@ -34,7 +34,7 @@ const Checkout = ( currency : ICheckout) => {
       {totalPriceAfterSavings > 0 && (
         <div className="textSection total">
           Total price of items:
-          <div className="textEnd" data-testid='totalPrice'>{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
+          <div className="textEnd" data-testid='totalPrice'>{`${TwoDecimals(totalPrice)},-`}</div>
         </div>
       )
       }
@@ -53,9 +53,9 @@ const Checkout = ( currency : ICheckout) => {
       <div className="textSection">
         Total price:
         {totalPriceAfterSavings > 0 ? (
-          <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPriceAfterSavings)},- ${currency}`}</div>
+          <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPriceAfterSavings)},-`}</div>
         ) :
-          <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPrice)},- ${currency}`}</div>
+          <div className="textEnd totalAfter" data-testid='totalPriceAfter'>{`${TwoDecimals(totalPrice)},-`}</div>
         }
       </div>
 
