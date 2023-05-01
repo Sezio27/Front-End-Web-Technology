@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.04% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>79/84</span>
+                <span class='fraction'>85/102</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">25% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.04% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>79/84</span>
+                <span class='fraction'>85/102</span>
             </div>
         
             
@@ -147,7 +147,25 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -172,10 +190,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -207,6 +224,25 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -233,44 +269,47 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "./Checkout.css";
 import shoppingLogo from "../../../assets/shoppingbag.png"
-import { RoundToNearestHalf, TwoDecimals } from "../../../Utilities/NumberUtitlity";
+import { TwoDecimals } from "../../../Utilities/NumberUtitlity";
 import LockIcon from "../../../assets/lockicon.png";
 import { useCartContext } from "../../../contexts/CartContext";
 import Popup from "reactjs-popup";
 import { handleNavigation } from "../../../Router";
 &nbsp;
 interface ICheckout {
-  currency: string;
+    currency: string;
 }
 &nbsp;
 const CheckoutResponsive = ({ currency }: ICheckout) =&gt; {
-  const {calculateTotals} = useCartContext()
+    const { calculateTotals } = useCartContext()
 &nbsp;
-  const {totalQuantity, totalPrice, totalSavings, totalDiscountActive} = calculateTotals()
-  
-  const promtSavings = () =&gt; {
-    if (totalPrice == undefined) <span class="branch-0 cbranch-no" title="branch not covered" >return; </span>
-    return <span class="branch-0 cbranch-no" title="branch not covered" >totalDiscountActive</span>
-<span class="cstat-no" title="statement not covered" >    ? `You've shaved an extra ${TwoDecimals((totalPrice * 1.1) - totalPrice)} (10%) off your total order!`</span>
-      : `Buy for ${300 - totalPrice},- more to save 10%`;
-  };
-  
+    const { totalQuantity, totalPrice, totalRebateSavings, totalOrderSavings, totalPriceAfterSavings, totalDiscountActive } = calculateTotals()
 &nbsp;
-  return (
-    &lt;div className="menuContainer"&gt;
-        &lt;div className="menuContainerItem"&gt;
-            &lt;span className="itemCounter"&gt;{totalQuantity}&lt;/span&gt;
-            &lt;Popup
+    const promtSavings = () =&gt; {
+        if (totalPrice == undefined) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+        return <span class="branch-0 cbranch-no" title="branch not covered" >totalDiscountActive</span>
+<span class="cstat-no" title="statement not covered" >            ? `You've saved 10% off your total order!`</span>
+            : `Buy for ${300 - totalPrice},- more to save 10%`;
+    };
+&nbsp;
+    const handleCheckout = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.setItem("totalPrice", String(totalPrice));</span>
+<span class="cstat-no" title="statement not covered" >        handleNavigation("/checkout");</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
+&nbsp;
+&nbsp;
+    return (
+        &lt;div className="menuContainer"&gt;
+            &lt;div className="menuContainerItem"&gt;
+                &lt;span className="itemCounter"&gt;{totalQuantity}&lt;/span&gt;
+                &lt;Popup
                     trigger={
-                            &lt;img src={shoppingLogo} alt="shopping cart" style={{
-                                height: 50,
-                                width: 50,
-                            }}/&gt;}
+                        &lt;img src={shoppingLogo} alt="shopping cart" style={{
+                            height: 50,
+                            width: 50,
+                        }} /&gt;}
                     modal
                     nested
-                    
-                &gt;{close =&gt; {
-                return (
+                    onClose={close}&gt;
                     &lt;div className="modal"&gt;
                         &lt;button className="close" onClick={close}&gt;
                             &amp;times;
@@ -282,36 +321,51 @@ const CheckoutResponsive = ({ currency }: ICheckout) =&gt; {
                                     Items in cart:
                                     &lt;div className="textEnd"&gt;{totalQuantity}&lt;/div&gt;
                                 &lt;/div&gt;
-                                &lt;div className="textSection"&gt;
-                                    Total price of items:
-                                    &lt;div className="textEnd"&gt;{`${TwoDecimals(totalPrice)},- ${currency}`}&lt;/div&gt;
-                                &lt;/div&gt;
-                                {totalSavings &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 &amp;&amp; (</span>
+                                {totalPriceAfterSavings &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;div className="textSection total"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                        Total price of items:</span>
+<span class="cstat-no" title="statement not covered" >                                        &lt;div className="textEnd" data-testid='totalPrice'&gt;{`${TwoDecimals(totalPrice)},-`}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;/div&gt;</span>
+                                )
+                                }
+                                {totalRebateSavings &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >                                    &lt;div className="savingsText"&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                        &lt;span&gt;Price savings of items&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >                                        &lt;div className="savingsTextEnd"&gt;{`${totalSavings},-`}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                        &lt;div className="savingsTextEnd"&gt;{`- ${TwoDecimals(totalRebateSavings)},-`}&lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >                                    &lt;/div&gt;</span>
                                 )}
+                                {totalRebateSavings &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;div className="savingsText"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                        &lt;span&gt;Buying for more than 300&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                        &lt;div className="savingsTextEnd"&gt;{`- ${TwoDecimals(totalOrderSavings)},-`}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >                                    &lt;/div&gt;</span>
+                                )}
+                                &lt;div className="textSection"&gt;
+                                    Total price:
+                                    {totalPriceAfterSavings &gt; <span class="branch-0 cbranch-no" title="branch not covered" >0 ? (</span>
+<span class="cstat-no" title="statement not covered" >                                        &lt;div className="textEnd totalAfter" data-testid='totalPriceAfter'&gt;{`${TwoDecimals(totalPriceAfterSavings)},-`}&lt;/div&gt;</span>
+                                    ) :
+                                        &lt;div className="textEnd totalAfter" data-testid='totalPriceAfter'&gt;{`${TwoDecimals(totalPrice)},-`}&lt;/div&gt;
+                                    }
+                                &lt;/div&gt;
                                 &lt;div&gt;
                                     &lt;div className="totalDiscountText"&gt; {promtSavings()} &lt;/div&gt;
-                                 
-                                        &lt;button className="checkoutButton" onClick={<span class="fstat-no" title="function not covered" >() =&gt; handleNavigation('/checkout')}&gt;</span>
-                                            &lt;div className="checkoutButtonInside"&gt;
-                                                &lt;img src={LockIcon} className="checkoutButtonIcon"/&gt;
-                                                &lt;span className="checkoutButtonText"&gt;Checkout&lt;/span&gt;
-                                            &lt;/div&gt;
-                                        &lt;/button&gt;
-                      
+&nbsp;
+                                    &lt;button className="checkoutButton" onClick={<span class="fstat-no" title="function not covered" >() =&gt; handleCheckout()}&gt;</span>
+                                        &lt;div className="checkoutButtonInside"&gt;
+                                            &lt;img src={LockIcon} className="checkoutButtonIcon" /&gt;
+                                            &lt;span className="checkoutButtonText"&gt;Checkout&lt;/span&gt;
+                                        &lt;/div&gt;
+                                    &lt;/button&gt;
+&nbsp;
                                 &lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                );
-            }}
                 &lt;/Popup&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-    &lt;/div&gt;
-  );
+    );
 };
 &nbsp;
 export default CheckoutResponsive;
@@ -322,7 +376,7 @@ export default CheckoutResponsive;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-01T14:07:39.631Z
+                at 2023-05-01T14:10:54.005Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -60,7 +60,8 @@ describe("Cart : With Items", () => {
     user.type(quantity, "2{enter}");
     await waitFor(() => expect(quantity.value).toBe("2"));
 
-    const price = screen.getByTestId("totalPrice");
+    // const price = screen.getByTestId("totalPrice");
+    const price = screen.getByTestId("totalPriceAfter");
 
     await waitFor(() => expect(price).toHaveTextContent("8,-"));
   });
