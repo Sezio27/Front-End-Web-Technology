@@ -17,7 +17,7 @@ const Cart = ({wantInitialLoading} : ICart) => {
   const [loading, setLoading] = useState<boolean>(false);
 
 
-
+  //Manually / forced loading
   useEffect(() => {
     if(!wantInitialLoading)
       return
@@ -26,7 +26,11 @@ const Cart = ({wantInitialLoading} : ICart) => {
       setLoading(false);
     }, 2000);
   }, []);
-  /*
+
+
+  
+  /* This is for the actual implementation of loading, meaning the site loads untill data has been fetched
+  
   useEffect(() => {
     if(basketItems.length > 0 ) setLoading(false)
   }, [basketItems]);

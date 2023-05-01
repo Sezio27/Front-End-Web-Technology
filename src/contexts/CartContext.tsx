@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode, FC } from "react";
-import { Item, BasketTotals, UserInfo, Product } from "../Types/Types";
+import { Item, BasketTotals, Product } from "../Types/Types";
 import { calculateItemDiscount } from "../Utilities/SavingsUtility";
 import { fetchProductList } from "../components/Utility/fetchProducts";
-import oldProductList from "../data/products.json"
 
 
 export interface CartProviderProps {
@@ -21,20 +20,6 @@ interface ICartContext {
   isProductInBasket: (productId: string) => boolean
 
 }
-const initialUserInfo: UserInfo = {
-  country: "Denmark",
-  zipCode: "",
-  city: "",
-  address1: "",
-  address2: "",
-  billingAddress: "",
-  firstName: "",
-  lastName: "",
-  phone: "",
-  email: "",
-  companyName: "",
-  companyVAT: "",
-};
 
 
 // Custom wait method to showcase icon spinning
@@ -143,10 +128,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children, value }) => {
   };
 
 
-  //Active basketItems
-
-
-  
 
   const calculateTotals = () => {
     const totals: BasketTotals = {
