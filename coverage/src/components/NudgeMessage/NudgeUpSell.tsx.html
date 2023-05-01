@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.82% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.82% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,18 +94,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { FaLongArrowAltRight } from "react-icons/fa";
 import { useCartContext } from "../../contexts/CartContext";
@@ -115,19 +115,19 @@ interface INudgeUpSell {
     upSellName: string
 }
 &nbsp;
-const NudgeUpSell = <span class="fstat-no" title="function not covered" >({ productId, upSellName }: INudgeUpSell) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    </span>
-<span class="cstat-no" title="statement not covered" >    const {changeToUpsell} = useCartContext();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="upSellContainer" data-testid='upSellContainer'&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;span&gt;Go organic?&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;FaLongArrowAltRight /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;button onClick={() =&gt; changeToUpsell(productId)} className="upSellButton"&gt; {upSellName} &lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    )</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >}</span>
+const NudgeUpSell = ({ productId, upSellName }: INudgeUpSell) =&gt; {
+    
+    const {changeToUpsell} = useCartContext();
+&nbsp;
+    return (
+        &lt;div className="upSellContainer" data-testid='upSellContainer'&gt;
+            &lt;span&gt;Go organic?&lt;/span&gt;
+            &lt;FaLongArrowAltRight /&gt;
+            &lt;button onClick={() =&gt; changeToUpsell(productId)} className="upSellButton"&gt; {upSellName} &lt;/button&gt;
+        &lt;/div&gt;
+    )
+&nbsp;
+}
 &nbsp;
 export default NudgeUpSell;</pre></td></tr></table></pre>
 
@@ -136,7 +136,7 @@ export default NudgeUpSell;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-01T13:56:48.116Z
+                at 2023-05-01T14:07:39.631Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
