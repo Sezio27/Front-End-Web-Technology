@@ -21,7 +21,7 @@ export const fetchProductList = async (): Promise<Product[]> => {
   try {
 //const response: Response = await fetch("https://eoxxctddowfwq0k.m.pipedream.net/products", options)
     const response: Response =
-        await fetch("https://SSraw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json")
+        await fetch("https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json")
     // PARSING THE BODY OF THE RESPONSE TO A JAVASCRIPT JSON OBJECT (MAPS IT AUTOMATICALLY TO PRODUCTS)
     if(!response.ok)
     {
